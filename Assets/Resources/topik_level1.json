@@ -1,0 +1,22 @@
+[
+  {"word":"학교","meaning_en":"school","romanization":"hakgyo","example":"학교에 가요.","syllable_count":2},
+  {"word":"사람","meaning_en":"person","romanization":"saram","example":"저는 사람이에요.","syllable_count":2},
+  {"word":"물","meaning_en":"water","romanization":"mul","example":"물을 마셔요.","syllable_count":1},
+  {"word":"밥","meaning_en":"rice / meal","romanization":"bap","example":"밥을 먹어요.","syllable_count":1},
+  {"word":"책","meaning_en":"book","romanization":"chaek","example":"책을 읽어요.","syllable_count":1},
+  {"word":"가방","meaning_en":"bag","romanization":"gabang","example":"가방이 있어요.","syllable_count":2},
+  {"word":"친구","meaning_en":"friend","romanization":"chingu","example":"친구를 만나요.","syllable_count":2},
+  {"word":"선생님","meaning_en":"teacher","romanization":"seonsaengnim","example":"선생님이 가르쳐요.","syllable_count":3},
+  {"word":"나라","meaning_en":"country","romanization":"nara","example":"한국은 나라예요.","syllable_count":2},
+  {"word":"음식","meaning_en":"food","romanization":"eumsik","example":"음식이 맛있어요.","syllable_count":2},
+  {"word":"병원","meaning_en":"hospital","romanization":"byeongwon","example":"병원에 가요.","syllable_count":2},
+  {"word":"시장","meaning_en":"market","romanization":"sijang","example":"시장에서 사요.","syllable_count":2},
+  {"word":"버스","meaning_en":"bus","romanization":"beoseu","example":"버스를 타요.","syllable_count":2},
+  {"word":"지하철","meaning_en":"subway","romanization":"jihacheol","example":"지하철을 타요.","syllable_count":3},
+  {"word":"공항","meaning_en":"airport","romanization":"gonghang","example":"공항에 가요.","syllable_count":2},
+  {"word":"날씨","meaning_en":"weather","romanization":"nalssi","example":"날씨가 좋아요.","syllable_count":2},
+  {"word":"시간","meaning_en":"time","romanization":"sigan","example":"시간이 없어요.","syllable_count":2},
+  {"word":"돈","meaning_en":"money","romanization":"don","example":"돈이 있어요.","syllable_count":1},
+  {"word":"집","meaning_en":"house / home","romanization":"jip","example":"집에 가요.","syllable_count":1},
+  {"word":"나무","meaning_en":"tree","romanization":"namu","example":"나무가 커요.","syllable_count":2}
+]
