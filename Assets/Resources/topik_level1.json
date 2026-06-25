@@ -1,144 +1,6262 @@
 {
-  "entries": [
+  "words": [
     {
-      "word": "학교",
-      "meaning_en": "school",
-      "romanization": "hakgyo",
-      "example": "학교에 가요.",
+      "word": "가게",
+      "meaning": "store; shop",
+      "romanization": "gage",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "사람",
-      "meaning_en": "person",
-      "romanization": "saram",
-      "example": "저는 사람이에요.",
+      "word": "가깝다",
+      "meaning": "to be close",
+      "romanization": "gakkapda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "가끔",
+      "meaning": "sometimes",
+      "romanization": "gakkeum",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "물",
-      "meaning_en": "water",
-      "romanization": "mul",
-      "example": "물을 마셔요.",
-      "syllable_count": 1
+      "word": "가다",
+      "meaning": "to go",
+      "romanization": "gada",
+      "example": "",
+      "syllable_count": 2
     },
     {
-      "word": "밥",
-      "meaning_en": "rice / meal",
-      "romanization": "bap",
-      "example": "밥을 먹어요.",
-      "syllable_count": 1
-    },
-    {
-      "word": "책",
-      "meaning_en": "book",
-      "romanization": "chaek",
-      "example": "책을 읽어요.",
-      "syllable_count": 1
+      "word": "가르치다",
+      "meaning": "to teach",
+      "romanization": "gareuchida",
+      "example": "",
+      "syllable_count": 4
     },
     {
       "word": "가방",
-      "meaning_en": "bag",
+      "meaning": "bag",
       "romanization": "gabang",
-      "example": "가방이 있어요.",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "친구",
-      "meaning_en": "friend",
-      "romanization": "chingu",
-      "example": "친구를 만나요.",
-      "syllable_count": 2
-    },
-    {
-      "word": "선생님",
-      "meaning_en": "teacher",
-      "romanization": "seonsaengnim",
-      "example": "선생님이 가르쳐요.",
+      "word": "가볍다",
+      "meaning": "to be light",
+      "romanization": "gabyeopda",
+      "example": "",
       "syllable_count": 3
     },
     {
-      "word": "나라",
-      "meaning_en": "country",
-      "romanization": "nara",
-      "example": "한국은 나라예요.",
+      "word": "가수",
+      "meaning": "singer",
+      "romanization": "gasu",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "음식",
-      "meaning_en": "food",
-      "romanization": "eumsik",
-      "example": "음식이 맛있어요.",
+      "word": "가슴",
+      "meaning": "chest; breast",
+      "romanization": "gaseum",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "병원",
-      "meaning_en": "hospital",
-      "romanization": "byeongwon",
-      "example": "병원에 가요.",
-      "syllable_count": 2
-    },
-    {
-      "word": "시장",
-      "meaning_en": "market",
-      "romanization": "sijang",
-      "example": "시장에서 사요.",
-      "syllable_count": 2
-    },
-    {
-      "word": "버스",
-      "meaning_en": "bus",
-      "romanization": "beoseu",
-      "example": "버스를 타요.",
-      "syllable_count": 2
-    },
-    {
-      "word": "지하철",
-      "meaning_en": "subway",
-      "romanization": "jihacheol",
-      "example": "지하철을 타요.",
+      "word": "가운데",
+      "meaning": "middle",
+      "romanization": "gaunde",
+      "example": "",
       "syllable_count": 3
+    },
+    {
+      "word": "가을",
+      "meaning": "fall; autumn",
+      "romanization": "gaeul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "가장",
+      "meaning": "most",
+      "romanization": "gajang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "가져오다",
+      "meaning": "to bring",
+      "romanization": "gajyeooda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "가족",
+      "meaning": "family",
+      "romanization": "gajok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "가지다",
+      "meaning": "to have",
+      "romanization": "gajida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "간호사",
+      "meaning": "nurse",
+      "romanization": "ganhosa",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "갈비",
+      "meaning": "rib; spareribs",
+      "romanization": "galbi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "감기",
+      "meaning": "cold",
+      "romanization": "gamgi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "감사",
+      "meaning": "thank",
+      "romanization": "gamsa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "감사하다",
+      "meaning": "to thank; to appreciate",
+      "romanization": "gamsahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "갑자기",
+      "meaning": "suddenly",
+      "romanization": "gapjagi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "값",
+      "meaning": "price",
+      "romanization": "gap",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "강",
+      "meaning": "river",
+      "romanization": "gang",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "같다",
+      "meaning": "to be the same",
+      "romanization": "gatda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "같이",
+      "meaning": "like; together",
+      "romanization": "gachi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "개",
+      "meaning": "dog; a measure word or counter",
+      "romanization": "gae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "개월",
+      "meaning": "month (counter for duration)",
+      "romanization": "gaewol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "거",
+      "meaning": "thing (colloquial contraction of 것)",
+      "romanization": "geo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "거기",
+      "meaning": "there",
+      "romanization": "geogi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "거리",
+      "meaning": "distance; street",
+      "romanization": "geori",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "거울",
+      "meaning": "mirror",
+      "romanization": "geoul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "걱정",
+      "meaning": "anxiety; worry; concern",
+      "romanization": "geokjeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "걱정하다",
+      "meaning": "to worry",
+      "romanization": "geokjeonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "건강",
+      "meaning": "health",
+      "romanization": "geongang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "건강하다",
+      "meaning": "to be healthy",
+      "romanization": "geonganghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "건물",
+      "meaning": "building",
+      "romanization": "geonmul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "걷다",
+      "meaning": "to walk",
+      "romanization": "geotda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "걸다",
+      "meaning": "to bet; to call; to hang",
+      "romanization": "geolda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "걸어가다",
+      "meaning": "to walk there",
+      "romanization": "georeogada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "걸어오다",
+      "meaning": "to walk here",
+      "romanization": "georeooda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "검은색",
+      "meaning": "black",
+      "romanization": "geomeunsaek",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "것",
+      "meaning": "that; thing; it",
+      "romanization": "geot",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "게임",
+      "meaning": "game",
+      "romanization": "geim",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "겨울",
+      "meaning": "winter",
+      "romanization": "gyeoul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "결혼",
+      "meaning": "marriage",
+      "romanization": "gyeolhon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "결혼식",
+      "meaning": "wedding; wedding ceremony",
+      "romanization": "gyeolhonsik",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "결혼하다",
+      "meaning": "to get married",
+      "romanization": "gyeolhonhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "경복궁",
+      "meaning": "Gyeongbokgung",
+      "romanization": "gyeongbokgung",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "경주",
+      "meaning": "race; Gyeongju",
+      "romanization": "gyeongju",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "경찰",
+      "meaning": "police",
+      "romanization": "gyeongchal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "경찰관",
+      "meaning": "police officer",
+      "romanization": "gyeongchalgwan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "경찰서",
+      "meaning": "police office",
+      "romanization": "gyeongchalseo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "경치",
+      "meaning": "view; landscape",
+      "romanization": "gyeongchi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "계란",
+      "meaning": "egg",
+      "romanization": "gyeran",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "계속",
+      "meaning": "continuously; continue",
+      "romanization": "gyesok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "계시다",
+      "meaning": "to be; to exist (honorific form of 있다)",
+      "romanization": "gyesida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "계절",
+      "meaning": "season",
+      "romanization": "gyejeol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "계획",
+      "meaning": "plan",
+      "romanization": "gyehoek",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "고기",
+      "meaning": "meat",
+      "romanization": "gogi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "고등학교",
+      "meaning": "high school",
+      "romanization": "godeunghakgyo",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "고등학생",
+      "meaning": "high school student",
+      "romanization": "godeunghaksaeng",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "고맙다",
+      "meaning": "to be thankful; to thank",
+      "romanization": "gomapda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "고양이",
+      "meaning": "cat",
+      "romanization": "goyangi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "고프다",
+      "meaning": "to be hungry",
+      "romanization": "gopeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "고향",
+      "meaning": "hometown",
+      "romanization": "gohyang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "곧",
+      "meaning": "soon",
+      "romanization": "got",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "곳",
+      "meaning": "place",
+      "romanization": "got",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "공",
+      "meaning": "ball",
+      "romanization": "gong",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "공부",
+      "meaning": "study",
+      "romanization": "gongbu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "공부하다",
+      "meaning": "to study",
+      "romanization": "gongbuhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "공원",
+      "meaning": "park",
+      "romanization": "gongwon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "공중전화",
+      "meaning": "payphone; public phone",
+      "romanization": "gongjungjeonhwa",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "공책",
+      "meaning": "note book; notebook; note",
+      "romanization": "gongchaek",
+      "example": "",
+      "syllable_count": 2
     },
     {
       "word": "공항",
-      "meaning_en": "airport",
+      "meaning": "airport",
       "romanization": "gonghang",
-      "example": "공항에 가요.",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "공휴일",
+      "meaning": "public holiday",
+      "romanization": "gonghyuil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "과",
+      "meaning": "division; department",
+      "romanization": "gwa",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "과일",
+      "meaning": "fruit",
+      "romanization": "gwail",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "과자",
+      "meaning": "cookie",
+      "romanization": "gwaja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "괜찮다",
+      "meaning": "to be okay; to be fine",
+      "romanization": "gwaenchanta",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "교과서",
+      "meaning": "textbook",
+      "romanization": "gyogwaseo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "교수",
+      "meaning": "professor",
+      "romanization": "gyosu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "교실",
+      "meaning": "classroom",
+      "romanization": "gyosil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "교통",
+      "meaning": "traffic",
+      "romanization": "gyotong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "교회",
+      "meaning": "church",
+      "romanization": "gyohoe",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "구",
+      "meaning": "9; orb",
+      "romanization": "gu",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "구경",
+      "meaning": "sightseeing; watching",
+      "romanization": "gugyeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "구두",
+      "meaning": "dress shoe; shoes",
+      "romanization": "gudu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "구름",
+      "meaning": "cloud",
+      "romanization": "gureum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "구십",
+      "meaning": "90",
+      "romanization": "gusip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "구월",
+      "meaning": "September",
+      "romanization": "guwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "군인",
+      "meaning": "soldier; military personnel",
+      "romanization": "gunin",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "권",
+      "meaning": "measuring word for books",
+      "romanization": "gwon",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "귀",
+      "meaning": "ear",
+      "romanization": "gwi",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "그",
+      "meaning": "that; he; she; it",
+      "romanization": "geu",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "그거",
+      "meaning": "it",
+      "romanization": "geugeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그것",
+      "meaning": "that; it",
+      "romanization": "geugeot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그곳",
+      "meaning": "there",
+      "romanization": "geugot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그날",
+      "meaning": "that day",
+      "romanization": "geunal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그동안",
+      "meaning": "meantime; meanwhile; up to now",
+      "romanization": "geudongan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그때",
+      "meaning": "then; at that time",
+      "romanization": "geuttae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그래",
+      "meaning": "yes; yeah",
+      "romanization": "geurae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그래서",
+      "meaning": "so; therefore; thus",
+      "romanization": "geuraeseo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그러나",
+      "meaning": "but; however",
+      "romanization": "geureona",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그러니까",
+      "meaning": "that's why; so; because",
+      "romanization": "geureonikka",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "그러면",
+      "meaning": "in that case; then; if so",
+      "romanization": "geureomyeon",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그런데",
+      "meaning": "but; by the way; however",
+      "romanization": "geureonde",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그럼",
+      "meaning": "then; well then",
+      "romanization": "geureom",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그렇다",
+      "meaning": "to be so; that's right",
+      "romanization": "geureota",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그렇지만",
+      "meaning": "nevertheless; but",
+      "romanization": "geureochiman",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "그릇",
+      "meaning": "bowl; container; tableware",
+      "romanization": "geureut",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그리고",
+      "meaning": "and",
+      "romanization": "geurigo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그리다",
+      "meaning": "to draw a picture; to draw",
+      "romanization": "geurida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "그림",
+      "meaning": "drawing; painting; picture",
+      "romanization": "geurim",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그분",
+      "meaning": "his; the person",
+      "romanization": "geubun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "그쪽",
+      "meaning": "there; the person",
+      "romanization": "geujjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "극장",
+      "meaning": "theater; cinema",
+      "romanization": "geukjang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "근처",
+      "meaning": "near; nearby; neighborhood",
+      "romanization": "geuncheo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "금요일",
+      "meaning": "Friday",
+      "romanization": "geumyoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "급",
+      "meaning": "class; grade",
+      "romanization": "geup",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "기다리다",
+      "meaning": "to wait",
+      "romanization": "gidarida",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "기분",
+      "meaning": "feeling; mood",
+      "romanization": "gibun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "기숙사",
+      "meaning": "dormitory",
+      "romanization": "gisuksa",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "기차",
+      "meaning": "train",
+      "romanization": "gicha",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "길",
+      "meaning": "way; road",
+      "romanization": "gil",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "길다",
+      "meaning": "to be long",
+      "romanization": "gilda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "김밥",
+      "meaning": "gimbap (rice roll)",
+      "romanization": "gimbap",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "김치",
+      "meaning": "kimchi",
+      "romanization": "gimchi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "깎다",
+      "meaning": "to trim; to cut; to shave",
+      "romanization": "kkakda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "깨끗하다",
+      "meaning": "to be clean",
+      "romanization": "kkaekkeuthada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "꼭",
+      "meaning": "surely; exactly; absolutely",
+      "romanization": "kkok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "꽃",
+      "meaning": "flower",
+      "romanization": "kkot",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "꿈",
+      "meaning": "dream",
+      "romanization": "kkum",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "끄다",
+      "meaning": "to turn off; to extinguish; to stop",
+      "romanization": "kkeuda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "끝",
+      "meaning": "end",
+      "romanization": "kkeut",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "끝나다",
+      "meaning": "to end; to finish",
+      "romanization": "kkeunnada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "끝내다",
+      "meaning": "to finish; to end (something)",
+      "romanization": "kkeunnaeda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "나",
+      "meaning": "I",
+      "romanization": "na",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "나가다",
+      "meaning": "to go out; to get out",
+      "romanization": "nagada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "나다",
+      "meaning": "to occur; to come out",
+      "romanization": "nada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "나라",
+      "meaning": "country",
+      "romanization": "nara",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "나무",
+      "meaning": "tree",
+      "romanization": "namu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "나쁘다",
+      "meaning": "to be bad",
+      "romanization": "nappeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "나오다",
+      "meaning": "to come out; to appear",
+      "romanization": "naoda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "나이",
+      "meaning": "age; old",
+      "romanization": "nai",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "나중",
+      "meaning": "later; after",
+      "romanization": "najung",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "날",
+      "meaning": "day",
+      "romanization": "nal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "날다",
+      "meaning": "to fly",
+      "romanization": "nalda",
+      "example": "",
       "syllable_count": 2
     },
     {
       "word": "날씨",
-      "meaning_en": "weather",
+      "meaning": "weather",
       "romanization": "nalssi",
-      "example": "날씨가 좋아요.",
+      "example": "",
       "syllable_count": 2
     },
     {
-      "word": "시간",
-      "meaning_en": "time",
-      "romanization": "sigan",
-      "example": "시간이 없어요.",
+      "word": "날짜",
+      "meaning": "date",
+      "romanization": "naljja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "남녀",
+      "meaning": "men and women",
+      "romanization": "namnyeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "남대문",
+      "meaning": "Namdaemun (gate in Seoul)",
+      "romanization": "namdaemun",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "남대문시장",
+      "meaning": "Namdaemun market",
+      "romanization": "namdaemunsijang",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "남동생",
+      "meaning": "younger brother",
+      "romanization": "namdongsaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "남자",
+      "meaning": "man",
+      "romanization": "namja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "남쪽",
+      "meaning": "south",
+      "romanization": "namjjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "남편",
+      "meaning": "husband",
+      "romanization": "nampyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "남학생",
+      "meaning": "male student",
+      "romanization": "namhaksaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "낮",
+      "meaning": "day; noon; during the day",
+      "romanization": "nat",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "낮다",
+      "meaning": "to be low",
+      "romanization": "natda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "내년",
+      "meaning": "next year",
+      "romanization": "naenyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "내다",
+      "meaning": "to pay; to put out",
+      "romanization": "naeda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "내려가다",
+      "meaning": "to go down",
+      "romanization": "naeryeogada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "내려오다",
+      "meaning": "to come down",
+      "romanization": "naeryeooda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "내리다",
+      "meaning": "to get off (a vehicle); to go down",
+      "romanization": "naerida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "내일",
+      "meaning": "tomorrow",
+      "romanization": "naeil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "냉면",
+      "meaning": "cold noodles",
+      "romanization": "naengmyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "냉장고",
+      "meaning": "refrigerator",
+      "romanization": "naengjanggo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "너",
+      "meaning": "you",
+      "romanization": "neo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "너무",
+      "meaning": "too; very",
+      "romanization": "neomu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "넓다",
+      "meaning": "to be wide",
+      "romanization": "neolda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "넣다",
+      "meaning": "to put in; to insert",
+      "romanization": "neota",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "네",
+      "meaning": "yes",
+      "romanization": "ne",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "넥타이",
+      "meaning": "necktie",
+      "romanization": "nektai",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "넷",
+      "meaning": "4",
+      "romanization": "net",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "넷째",
+      "meaning": "fourth",
+      "romanization": "netjjae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "년",
+      "meaning": "year",
+      "romanization": "nyeon",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "노란색",
+      "meaning": "yellow color",
+      "romanization": "noransaek",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "노래",
+      "meaning": "song",
+      "romanization": "norae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "노래하다",
+      "meaning": "to sing",
+      "romanization": "noraehada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "노트",
+      "meaning": "note",
+      "romanization": "noteu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "놀다",
+      "meaning": "to play; to hang out; to have fun",
+      "romanization": "nolda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "놀라다",
+      "meaning": "to be surprised",
+      "romanization": "nollada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "높다",
+      "meaning": "to be high",
+      "romanization": "nopda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "놓다",
+      "meaning": "to put",
+      "romanization": "nota",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "누구",
+      "meaning": "who",
+      "romanization": "nugu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "누나",
+      "meaning": "older sister (for male); sister (as seen from the younger brother)",
+      "romanization": "nuna",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "눈",
+      "meaning": "eye; snow",
+      "romanization": "nun",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "눈물",
+      "meaning": "tear",
+      "romanization": "nunmul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "뉴스",
+      "meaning": "news",
+      "romanization": "nyuseu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "늦다",
+      "meaning": "to be late",
+      "romanization": "neutda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "다",
+      "meaning": "all; whole",
+      "romanization": "da",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "다녀오다",
+      "meaning": "to return from; to come back from",
+      "romanization": "danyeooda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "다니다",
+      "meaning": "to attend; to go regularly; to commute",
+      "romanization": "danida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "다르다",
+      "meaning": "to be different",
+      "romanization": "dareuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "다른",
+      "meaning": "other ~; another ~; different ~",
+      "romanization": "dareun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "다리",
+      "meaning": "bridge; leg; foot",
+      "romanization": "dari",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "다섯",
+      "meaning": "5",
+      "romanization": "daseot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "다섯째",
+      "meaning": "fifth (ordinal number)",
+      "romanization": "daseotjjae",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "다시",
+      "meaning": "again",
+      "romanization": "dasi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "다음",
+      "meaning": "next; after",
+      "romanization": "daeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "닦다",
+      "meaning": "to wipe; to polish",
+      "romanization": "dakda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "단어",
+      "meaning": "word",
+      "romanization": "daneo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "닫다",
+      "meaning": "to close",
+      "romanization": "datda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "달",
+      "meaning": "month; moon",
+      "romanization": "dal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "달다",
+      "meaning": "to be sweet",
+      "romanization": "dalda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "달러",
+      "meaning": "dollar",
+      "romanization": "dalleo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "달력",
+      "meaning": "calendar",
+      "romanization": "dallyeok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "닭",
+      "meaning": "chicken",
+      "romanization": "dak",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "닭고기",
+      "meaning": "chicken (meat)",
+      "romanization": "dakgogi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "담배",
+      "meaning": "cigarette",
+      "romanization": "dambae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "대답",
+      "meaning": "answer; reply",
+      "romanization": "daedap",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "대답하다",
+      "meaning": "to answer; to reply",
+      "romanization": "daedapada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "대사관",
+      "meaning": "embassy",
+      "romanization": "daesagwan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "대학",
+      "meaning": "university; college",
+      "romanization": "daehak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "대학교",
+      "meaning": "university",
+      "romanization": "daehakgyo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "대학생",
+      "meaning": "college student",
+      "romanization": "daehaksaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "대화",
+      "meaning": "conversation; dialogue",
+      "romanization": "daehwa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "댁",
+      "meaning": "home (honorific form of 집); house",
+      "romanization": "daek",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "더",
+      "meaning": "more",
+      "romanization": "deo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "덥다",
+      "meaning": "to be hot",
+      "romanization": "deopda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "도서관",
+      "meaning": "library",
+      "romanization": "doseogwan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "도시",
+      "meaning": "city",
+      "romanization": "dosi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "도와주다",
+      "meaning": "to help (someone)",
+      "romanization": "dowajuda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "도착",
+      "meaning": "arrival",
+      "romanization": "dochak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "도착하다",
+      "meaning": "to arrive",
+      "romanization": "dochakada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "독일",
+      "meaning": "Germany",
+      "romanization": "dogil",
+      "example": "",
       "syllable_count": 2
     },
     {
       "word": "돈",
-      "meaning_en": "money",
+      "meaning": "money",
       "romanization": "don",
-      "example": "돈이 있어요.",
+      "example": "",
       "syllable_count": 1
+    },
+    {
+      "word": "돌아가다",
+      "meaning": "to go back; to return",
+      "romanization": "doragada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "돌아오다",
+      "meaning": "to return; to come back; to come home",
+      "romanization": "doraoda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "돕다",
+      "meaning": "to help",
+      "romanization": "dopda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "동물",
+      "meaning": "animal",
+      "romanization": "dongmul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "동생",
+      "meaning": "younger sibling",
+      "romanization": "dongsaeng",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "동안",
+      "meaning": "during; while; for (a period of time)",
+      "romanization": "dongan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "동쪽",
+      "meaning": "east side",
+      "romanization": "dongjjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "돼지",
+      "meaning": "pig",
+      "romanization": "dwaeji",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "돼지고기",
+      "meaning": "pork",
+      "romanization": "dwaejigogi",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "되다",
+      "meaning": "to become",
+      "romanization": "doeda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "두",
+      "meaning": "2; two",
+      "romanization": "du",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "둘",
+      "meaning": "two (native Korean number)",
+      "romanization": "dul",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "둘째",
+      "meaning": "second (ordinal number)",
+      "romanization": "duljjae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "뒤",
+      "meaning": "back; rear",
+      "romanization": "dwi",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "드리다",
+      "meaning": "to give (to an older or respected person)",
+      "romanization": "deurida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "듣다",
+      "meaning": "to listen",
+      "romanization": "deutda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "들다",
+      "meaning": "to hold; to enter",
+      "romanization": "deulda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "들어가다",
+      "meaning": "to enter; to go in",
+      "romanization": "deureogada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "들어오다",
+      "meaning": "to come in; to enter",
+      "romanization": "deureoroda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "등산",
+      "meaning": "hike; hiking; mountain-climbing",
+      "romanization": "deungsan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "따뜻하다",
+      "meaning": "to be warm",
+      "romanization": "ttatteuthada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "딸",
+      "meaning": "daughter",
+      "romanization": "ttal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "딸기",
+      "meaning": "strawberry",
+      "romanization": "ttalgi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "때",
+      "meaning": "time; moment; occasion; stain",
+      "romanization": "ttae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "때문",
+      "meaning": "because of; due to",
+      "romanization": "ttaemun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "떠나다",
+      "meaning": "to leave",
+      "romanization": "tteonada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "떡",
+      "meaning": "rice cake",
+      "romanization": "tteok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "또",
+      "meaning": "and; moreover; in addition; again",
+      "romanization": "tto",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "똑같다",
+      "meaning": "to be exactly the same",
+      "romanization": "ttokgatda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "똑바로",
+      "meaning": "straight; upright",
+      "romanization": "ttokbaro",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "뛰다",
+      "meaning": "to run; to jump; to beat (heart)",
+      "romanization": "ttwida",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "뜨겁다",
+      "meaning": "to be hot (to the touch)",
+      "romanization": "tteugeopda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "라디오",
+      "meaning": "radio",
+      "romanization": "radio",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "라면",
+      "meaning": "ramen; instant noodles",
+      "romanization": "ramyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "러시아",
+      "meaning": "Russia",
+      "romanization": "reosia",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "마리",
+      "meaning": "measure word for animals",
+      "romanization": "mari",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "마시다",
+      "meaning": "to drink",
+      "romanization": "masida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "마음",
+      "meaning": "mind; heart; feelings",
+      "romanization": "maeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "마지막",
+      "meaning": "the last; the end",
+      "romanization": "majimak",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "마흔",
+      "meaning": "forty (native Korean number)",
+      "romanization": "maheun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "만",
+      "meaning": "ten thousand",
+      "romanization": "man",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "만나다",
+      "meaning": "to meet",
+      "romanization": "mannada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "만들다",
+      "meaning": "to make; to create",
+      "romanization": "mandeulda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "많다",
+      "meaning": "to be many; to be a lot",
+      "romanization": "manta",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "많이",
+      "meaning": "a lot of; many",
+      "romanization": "mani",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "말",
+      "meaning": "words; speech; language",
+      "romanization": "mal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "말다",
+      "meaning": "to stop doing; to quit (auxiliary verb)",
+      "romanization": "malda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "말씀",
+      "meaning": "words; speech (honorific)",
+      "romanization": "malsseum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "말씀하다",
+      "meaning": "to speak (honorific)",
+      "romanization": "malsseumhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "말하다",
+      "meaning": "to speak; to say; to talk",
+      "romanization": "malhada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "맑다",
+      "meaning": "to be clear; to be clean",
+      "romanization": "makda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "맛",
+      "meaning": "taste; flavor",
+      "romanization": "mat",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "맛없다",
+      "meaning": "to be bland; to be tasteless; to not be delicious",
+      "romanization": "maseopda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "맛있다",
+      "meaning": "to be tasty; to be delicious",
+      "romanization": "masitda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "매우",
+      "meaning": "very; extremely",
+      "romanization": "maeu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "매일",
+      "meaning": "daily; everyday",
+      "romanization": "maeil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "맥주",
+      "meaning": "beer",
+      "romanization": "maekju",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "맵다",
+      "meaning": "to be spicy",
+      "romanization": "maepda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "머리",
+      "meaning": "head; hair",
+      "romanization": "meori",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "먹다",
+      "meaning": "to eat",
+      "romanization": "meokda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "먼저",
+      "meaning": "ahead; first; first of all; before",
+      "romanization": "meonjeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "멀다",
+      "meaning": "to be far",
+      "romanization": "meolda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "메뉴",
+      "meaning": "menu",
+      "romanization": "menyu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "며칠",
+      "meaning": "a few days; what day (of the month)",
+      "romanization": "myeochil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "명",
+      "meaning": "measure word for people",
+      "romanization": "myeong",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "몇",
+      "meaning": "how many; a few; a number of",
+      "romanization": "myeot",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "모두",
+      "meaning": "everyone",
+      "romanization": "modu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "모든",
+      "meaning": "all; every",
+      "romanization": "modeun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "모르다",
+      "meaning": "to not know",
+      "romanization": "moreuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "모자",
+      "meaning": "hat; cap; mother and son",
+      "romanization": "moja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "목",
+      "meaning": "neck; throat",
+      "romanization": "mok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "목요일",
+      "meaning": "Thursday",
+      "romanization": "mogyoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "목욕",
+      "meaning": "bath; bathing",
+      "romanization": "mogyok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "몸",
+      "meaning": "body",
+      "romanization": "mom",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "못",
+      "meaning": "cannot",
+      "romanization": "mot",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "못하다",
+      "meaning": "cannot do; to be unable to do",
+      "romanization": "mothada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "무겁다",
+      "meaning": "to be heavy",
+      "romanization": "mugeopda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "무슨",
+      "meaning": "what; which",
+      "romanization": "museun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "무엇",
+      "meaning": "what",
+      "romanization": "mueot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "문",
+      "meaning": "door; gate",
+      "romanization": "mun",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "문제",
+      "meaning": "problem; question; issue",
+      "romanization": "munje",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "묻다",
+      "meaning": "to ask a question; to ask",
+      "romanization": "mutda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "물",
+      "meaning": "water",
+      "romanization": "mul",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "물건",
+      "meaning": "thing; stuff",
+      "romanization": "mulgeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "물론",
+      "meaning": "of course; needless to say",
+      "romanization": "mullon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "물어보다",
+      "meaning": "to ask a question; to ask",
+      "romanization": "mureoboda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "뭐",
+      "meaning": "what",
+      "romanization": "mwo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "미국",
+      "meaning": "USA; The United States",
+      "romanization": "miguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "미안하다",
+      "meaning": "to be sorry",
+      "romanization": "mianhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "미터",
+      "meaning": "meter",
+      "romanization": "miteo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "밑",
+      "meaning": "under; bottom; below",
+      "romanization": "mit",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "바꾸다",
+      "meaning": "to change; to exchange",
+      "romanization": "bakkuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "바나나",
+      "meaning": "banana",
+      "romanization": "banana",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "바다",
+      "meaning": "sea; ocean",
+      "romanization": "bada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "바람",
+      "meaning": "wind",
+      "romanization": "baram",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "바로",
+      "meaning": "straight; right; immediately; soon; just",
+      "romanization": "baro",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "바쁘다",
+      "meaning": "to be busy",
+      "romanization": "bappeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "바지",
+      "meaning": "pants",
+      "romanization": "baji",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "박물관",
+      "meaning": "museum",
+      "romanization": "bangmulgwan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "밖",
+      "meaning": "outside; out",
+      "romanization": "bak",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "반",
+      "meaning": "half; class (school)",
+      "romanization": "ban",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "반갑다",
+      "meaning": "to be glad; to be nice to meet",
+      "romanization": "bangapda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "받다",
+      "meaning": "to receive",
+      "romanization": "batda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "발",
+      "meaning": "foot",
+      "romanization": "bal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "발음",
+      "meaning": "pronunciation",
+      "romanization": "bareum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "밝다",
+      "meaning": "to be bright",
+      "romanization": "bakda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "밤",
+      "meaning": "night",
+      "romanization": "bam",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "밥",
+      "meaning": "cooked rice; meal",
+      "romanization": "bap",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "방",
+      "meaning": "room",
+      "romanization": "bang",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "방학",
+      "meaning": "school vacation",
+      "romanization": "banghak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "배",
+      "meaning": "ship; stomach; pear",
+      "romanization": "bae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "배고프다",
+      "meaning": "to be hungry",
+      "romanization": "baegopeuda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "배부르다",
+      "meaning": "to be full (after eating)",
+      "romanization": "baebureuda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "배우다",
+      "meaning": "to learn",
+      "romanization": "baeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "백",
+      "meaning": "hundred",
+      "romanization": "baek",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "백화점",
+      "meaning": "department store",
+      "romanization": "baekwajeom",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "버리다",
+      "meaning": "throw away; discard",
+      "romanization": "beorida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "버스",
+      "meaning": "bus",
+      "romanization": "beoseu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "번",
+      "meaning": "times (ex; 3 times); ~ time(s)",
+      "romanization": "beon",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "번호",
+      "meaning": "number",
+      "romanization": "beonho",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "벌써",
+      "meaning": "already",
+      "romanization": "beolsseo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "벗다",
+      "meaning": "to take off (clothes, shoes)",
+      "romanization": "beotda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "별",
+      "meaning": "star",
+      "romanization": "byeol",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "병",
+      "meaning": "bottles; measure word for bottle(s); illness",
+      "romanization": "byeong",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "병원",
+      "meaning": "hospital",
+      "romanization": "byeongwon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "보내다",
+      "meaning": "to send",
+      "romanization": "bonaeda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "보다",
+      "meaning": "to see",
+      "romanization": "boda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "보통",
+      "meaning": "normally; usually; on average",
+      "romanization": "botong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "복잡하다",
+      "meaning": "to be complicated; to be crowded",
+      "romanization": "bokjapada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "볼펜",
+      "meaning": "ballpoint pen",
+      "romanization": "bolpen",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "봄",
+      "meaning": "spring",
+      "romanization": "bom",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "부르다",
+      "meaning": "to call; to sing",
+      "romanization": "bureuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "부모",
+      "meaning": "parents",
+      "romanization": "bumo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "부모님",
+      "meaning": "parents",
+      "romanization": "bumonim",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "부부",
+      "meaning": "married couple",
+      "romanization": "bubu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "부산",
+      "meaning": "Busan (city in Korea)",
+      "romanization": "busan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "부엌",
+      "meaning": "kitchen",
+      "romanization": "bueok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "부인",
+      "meaning": "wife; married woman (polite)",
+      "romanization": "buin",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "북쪽",
+      "meaning": "north side",
+      "romanization": "bukjjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "분",
+      "meaning": "measuring word for person; minute",
+      "romanization": "bun",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "불",
+      "meaning": "fire; light",
+      "romanization": "bul",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "불고기",
+      "meaning": "bulgogi (grilled marinated meat)",
+      "romanization": "bulgogi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "불다",
+      "meaning": "to blow (wind, instrument)",
+      "romanization": "bulda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "비",
+      "meaning": "rain",
+      "romanization": "bi",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "비누",
+      "meaning": "soap",
+      "romanization": "binu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "비디오",
+      "meaning": "video",
+      "romanization": "bidio",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "비빔밥",
+      "meaning": "bibimbap (mixed rice dish)",
+      "romanization": "bibimbap",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "비슷하다",
+      "meaning": "to be similar",
+      "romanization": "biseuthada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "비싸다",
+      "meaning": "to be expensive",
+      "romanization": "bissada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "비행기",
+      "meaning": "airplane",
+      "romanization": "bihaenggi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "빠르다",
+      "meaning": "to be fast; to be quick",
+      "romanization": "ppareuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "빨간색",
+      "meaning": "red color",
+      "romanization": "ppalgansaek",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "빨리",
+      "meaning": "quickly",
+      "romanization": "ppalli",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "빵",
+      "meaning": "bread",
+      "romanization": "ppang",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "사",
+      "meaning": "four (Sino-Korean number)",
+      "romanization": "sa",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "사과",
+      "meaning": "apple",
+      "romanization": "sagwa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사다",
+      "meaning": "to buy",
+      "romanization": "sada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사람",
+      "meaning": "person; man",
+      "romanization": "saram",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사랑",
+      "meaning": "love",
+      "romanization": "sarang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사랑하다",
+      "meaning": "to love",
+      "romanization": "saranghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "사무실",
+      "meaning": "office",
+      "romanization": "samusil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "사십",
+      "meaning": "40; forty",
+      "romanization": "sasip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사용하다",
+      "meaning": "to use",
+      "romanization": "sayonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "사월",
+      "meaning": "April",
+      "romanization": "sawol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사이",
+      "meaning": "between; gap; relationship",
+      "romanization": "sai",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사장",
+      "meaning": "company president; boss",
+      "romanization": "sajang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사전",
+      "meaning": "dictionary",
+      "romanization": "sajeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사진",
+      "meaning": "photo; picture",
+      "romanization": "sajin",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "사탕",
+      "meaning": "candy",
+      "romanization": "satang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "산",
+      "meaning": "mountain",
+      "romanization": "san",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "산책",
+      "meaning": "a walk; stroll",
+      "romanization": "sanchaek",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "살",
+      "meaning": "age; flesh; ~ year(s) old",
+      "romanization": "sal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "살다",
+      "meaning": "to live",
+      "romanization": "salda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "삼",
+      "meaning": "3; three",
+      "romanization": "sam",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "삼십",
+      "meaning": "30; thirty",
+      "romanization": "samsip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "삼월",
+      "meaning": "March",
+      "romanization": "samwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "새",
+      "meaning": "new; bird",
+      "romanization": "sae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "색",
+      "meaning": "color",
+      "romanization": "saek",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "색깔",
+      "meaning": "colors; color",
+      "romanization": "saekkkal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "샌드위치",
+      "meaning": "sandwich",
+      "romanization": "saendwichi",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "생각",
+      "meaning": "thinking; thought",
+      "romanization": "saenggak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "생각하다",
+      "meaning": "to think",
+      "romanization": "saenggakhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "생기다",
+      "meaning": "to come into being; to arise; to occur",
+      "romanization": "saenggida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "생선",
+      "meaning": "fish (as food)",
+      "romanization": "saengseon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "생일",
+      "meaning": "birthday",
+      "romanization": "saengil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "생활",
+      "meaning": "life",
+      "romanization": "saenghwal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "샤워",
+      "meaning": "shower",
+      "romanization": "syawo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서다",
+      "meaning": "to stand",
+      "romanization": "seoda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서로",
+      "meaning": "each other; both",
+      "romanization": "seoro",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서른",
+      "meaning": "30; thirty (native Korean number)",
+      "romanization": "seoreun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서울",
+      "meaning": "Seoul",
+      "romanization": "seoul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서울역",
+      "meaning": "Seoul Station",
+      "romanization": "seoullyeok",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "서점",
+      "meaning": "bookstore",
+      "romanization": "seojeom",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "서쪽",
+      "meaning": "west side",
+      "romanization": "seojjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "선물",
+      "meaning": "present; gift",
+      "romanization": "seonmul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "선물하다",
+      "meaning": "to give a gift",
+      "romanization": "seonmulhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "선생",
+      "meaning": "teacher",
+      "romanization": "seonsaeng",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "선생님",
+      "meaning": "teacher",
+      "romanization": "seonsaengnim",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "설명",
+      "meaning": "explanation; description",
+      "romanization": "seolmyeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "설명하다",
+      "meaning": "to explain",
+      "romanization": "seolmyeonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "설악산",
+      "meaning": "Seoraksan; Mt. Seorak",
+      "romanization": "seoraksan",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "설탕",
+      "meaning": "sugar",
+      "romanization": "seoltang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "세",
+      "meaning": "3; three of ~",
+      "romanization": "se",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "세수",
+      "meaning": "washing one's face",
+      "romanization": "sesu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "세탁기",
+      "meaning": "washing machine",
+      "romanization": "setakgi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "센티미터",
+      "meaning": "centimeter",
+      "romanization": "sentimiteo",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "셋",
+      "meaning": "three (native Korean number)",
+      "romanization": "set",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "셋째",
+      "meaning": "third (ordinal number)",
+      "romanization": "setjjae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "소개하다",
+      "meaning": "to introduce",
+      "romanization": "sogaehada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "소금",
+      "meaning": "salt",
+      "romanization": "sogeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "소파",
+      "meaning": "sofa",
+      "romanization": "sopa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "소풍",
+      "meaning": "picnic; outing",
+      "romanization": "sopung",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "속",
+      "meaning": "inside; interior",
+      "romanization": "sok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "손",
+      "meaning": "hand",
+      "romanization": "son",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "손가락",
+      "meaning": "finger",
+      "romanization": "songarak",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "손님",
+      "meaning": "customer",
+      "romanization": "sonnim",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "쇠고기",
+      "meaning": "beef",
+      "romanization": "soegogi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "쇼핑",
+      "meaning": "shopping",
+      "romanization": "syoping",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "수",
+      "meaning": "way; method; means",
+      "romanization": "su",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "수건",
+      "meaning": "towel",
+      "romanization": "sugeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "수박",
+      "meaning": "watermelon",
+      "romanization": "subak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "수업",
+      "meaning": "class; lesson",
+      "romanization": "sueop",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "수영",
+      "meaning": "swimming",
+      "romanization": "suyeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "수영장",
+      "meaning": "swimming pool",
+      "romanization": "suyeongjang",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "수요일",
+      "meaning": "Wednesday",
+      "romanization": "suyoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "숙제",
+      "meaning": "homework",
+      "romanization": "sukje",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "숟가락",
+      "meaning": "spoon",
+      "romanization": "sutgarak",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "술",
+      "meaning": "alcohol; liquor",
+      "romanization": "sul",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "쉬다",
+      "meaning": "to rest",
+      "romanization": "swida",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "쉰",
+      "meaning": "fifty (native Korean number)",
+      "romanization": "swin",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "쉽다",
+      "meaning": "to be easy",
+      "romanization": "swipda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "슈퍼마켓",
+      "meaning": "supermarket",
+      "romanization": "syupeomaket",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "스무",
+      "meaning": "20 of",
+      "romanization": "seumu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "스물",
+      "meaning": "20",
+      "romanization": "seumul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "스키",
+      "meaning": "skiing; ski",
+      "romanization": "seuki",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "스트레스",
+      "meaning": "stress",
+      "romanization": "seuteureseu",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "스포츠",
+      "meaning": "sports",
+      "romanization": "seupocheu",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "슬프다",
+      "meaning": "to be sad",
+      "romanization": "seulpeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "시",
+      "meaning": "city; o'clock",
+      "romanization": "si",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "시간",
+      "meaning": "time",
+      "romanization": "sigan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "시계",
+      "meaning": "watch; clock",
+      "romanization": "sigye",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "시원하다",
+      "meaning": "to be cool; to be refreshing",
+      "romanization": "siwonhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "시월",
+      "meaning": "October",
+      "romanization": "siwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "시작",
+      "meaning": "beginning; start",
+      "romanization": "sijak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "시작되다",
+      "meaning": "to begin; to be started",
+      "romanization": "sijakdoeda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "시작하다",
+      "meaning": "to start; to begin",
+      "romanization": "sijakada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "시장",
+      "meaning": "market",
+      "romanization": "sijang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "시험",
+      "meaning": "test; exam",
+      "romanization": "siheom",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "식당",
+      "meaning": "resturant; restaurant; cafeteria",
+      "romanization": "sikdang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "식사",
+      "meaning": "meal",
+      "romanization": "siksa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "식사하다",
+      "meaning": "to have a meal",
+      "romanization": "siksahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "식탁",
+      "meaning": "dining table",
+      "romanization": "siktak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "신다",
+      "meaning": "to wear (footwear); to put on",
+      "romanization": "sinda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "신문",
+      "meaning": "newspaper",
+      "romanization": "sinmun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "신발",
+      "meaning": "shoe; shoes; footwear",
+      "romanization": "sinbal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "실례",
+      "meaning": "excuse me; impoliteness",
+      "romanization": "sillye",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "실례하다",
+      "meaning": "to excuse oneself; to be rude",
+      "romanization": "sillyehada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "싫다",
+      "meaning": "to dislike; to hate",
+      "romanization": "silta",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "싫어하다",
+      "meaning": "to dislike; to hate",
+      "romanization": "sireohada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "십",
+      "meaning": "ten (Sino-Korean number)",
+      "romanization": "sip",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "십이월",
+      "meaning": "December",
+      "romanization": "sibiwol",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "십일월",
+      "meaning": "November",
+      "romanization": "sibirwol",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "싶다",
+      "meaning": "(auxiliary) want to; seem",
+      "romanization": "sipda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "싸다",
+      "meaning": "to be cheap",
+      "romanization": "ssada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "싸우다",
+      "meaning": "to fight; to quarrel",
+      "romanization": "ssauda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "쓰다",
+      "meaning": "to write; to use; to wear (glasses)",
+      "romanization": "sseuda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "쓰레기",
+      "meaning": "trash; garbage",
+      "romanization": "sseuregi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "씨",
+      "meaning": "Mr./Ms. (honorific title after a name); seed",
+      "romanization": "ssi",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "씻다",
+      "meaning": "to wash",
+      "romanization": "ssitda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아",
+      "meaning": "ah! oh! (interjection)",
+      "romanization": "a",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "아기",
+      "meaning": "baby; toddler",
+      "romanization": "agi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아내",
+      "meaning": "wife",
+      "romanization": "anae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아니",
+      "meaning": "no (interjection)",
+      "romanization": "ani",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아니다",
+      "meaning": "to not be",
+      "romanization": "anida",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아니요",
+      "meaning": "no",
+      "romanization": "aniyo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아들",
+      "meaning": "son",
+      "romanization": "adeul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아래",
+      "meaning": "below; bottom; under",
+      "romanization": "arae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아름답다",
+      "meaning": "to be beautiful",
+      "romanization": "areumdapda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "아마",
+      "meaning": "perhaps; maybe",
+      "romanization": "ama",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아무",
+      "meaning": "any; anyone (with negative or conditional)",
+      "romanization": "amu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아버지",
+      "meaning": "father",
+      "romanization": "abeoji",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아빠",
+      "meaning": "dad; daddy",
+      "romanization": "appa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아이",
+      "meaning": "child",
+      "romanization": "ai",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아이스크림",
+      "meaning": "ice cream",
+      "romanization": "aiseukeurim",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "아저씨",
+      "meaning": "sir; uncle; mister",
+      "romanization": "ajeossi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아주",
+      "meaning": "very; completely",
+      "romanization": "aju",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아주머니",
+      "meaning": "ma'am; aunt; old lady; madame",
+      "romanization": "ajumeoni",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "아줌마",
+      "meaning": "middle-aged woman; ma'am (colloquial)",
+      "romanization": "ajumma",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아직",
+      "meaning": "yet; still",
+      "romanization": "ajik",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아침",
+      "meaning": "morning; breakfast",
+      "romanization": "achim",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아파트",
+      "meaning": "apartment; mansion",
+      "romanization": "apateu",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아프다",
+      "meaning": "to be painful; to be sick",
+      "romanization": "apeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "아홉",
+      "meaning": "9",
+      "romanization": "ahop",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "아흔",
+      "meaning": "ninety (native Korean number)",
+      "romanization": "aheun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "안",
+      "meaning": "in; within; not ~",
+      "romanization": "an",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "안경",
+      "meaning": "eye glasses; specs; glasses",
+      "romanization": "angyeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "안녕",
+      "meaning": "hello; goodbye (informal greeting)",
+      "romanization": "annyeong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "안녕하다",
+      "meaning": "to be well; to be peaceful",
+      "romanization": "annyeonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "안녕히",
+      "meaning": "peacefully; safely (used in farewells)",
+      "romanization": "annyeonghi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "안다",
+      "meaning": "to hug; to hold in one's arms",
+      "romanization": "anda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "안되다",
+      "meaning": "to not work out; to fail",
+      "romanization": "andoeda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "앉다",
+      "meaning": "to sit",
+      "romanization": "anda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "않다",
+      "meaning": "(auxiliary verb, negation) to not do; to not be",
+      "romanization": "antta",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "알다",
+      "meaning": "to know",
+      "romanization": "alda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "앞",
+      "meaning": "in front of; front; previous",
+      "romanization": "ap",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "야구",
+      "meaning": "baseball",
+      "romanization": "yagu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "약",
+      "meaning": "medicine; about",
+      "romanization": "yak",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "약국",
+      "meaning": "pharmacy",
+      "romanization": "yakguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "약속",
+      "meaning": "appointment; promise",
+      "romanization": "yaksok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "약속하다",
+      "meaning": "to promise",
+      "romanization": "yaksokhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "양말",
+      "meaning": "socks",
+      "romanization": "yangmal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "양복",
+      "meaning": "suit (Western-style clothing)",
+      "romanization": "yangbok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "얘기",
+      "meaning": "story; talk (contraction of 이야기)",
+      "romanization": "yaegi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "얘기하다",
+      "meaning": "to talk; to chat (colloquial)",
+      "romanization": "yaegihada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "어",
+      "meaning": "uh; oh (interjection)",
+      "romanization": "eo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "어깨",
+      "meaning": "shoulder",
+      "romanization": "eokkae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어느",
+      "meaning": "which; how",
+      "romanization": "eoneu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어디",
+      "meaning": "where",
+      "romanization": "eodi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어떠하다",
+      "meaning": "to be how; to be in what state",
+      "romanization": "eotteohada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "어떤",
+      "meaning": "which; what kind of; certain",
+      "romanization": "eotteon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어떻다",
+      "meaning": "to be how; to be what way",
+      "romanization": "eottota",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "어렵다",
+      "meaning": "to be difficult",
+      "romanization": "eoryeopda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "어른",
+      "meaning": "adult",
+      "romanization": "eoreun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어린이",
+      "meaning": "child; children",
+      "romanization": "eorini",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "어머니",
+      "meaning": "mother",
+      "romanization": "eomeoni",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "어서",
+      "meaning": "quick; hurry; quickly",
+      "romanization": "eoseo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "어제",
+      "meaning": "yesterday",
+      "romanization": "eoje",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "언니",
+      "meaning": "older sister (used by females)",
+      "romanization": "eonni",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "언제",
+      "meaning": "when",
+      "romanization": "eonje",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "언제나",
+      "meaning": "always; anytime",
+      "romanization": "eonjena",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "얼굴",
+      "meaning": "face",
+      "romanization": "eolgul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "얼마",
+      "meaning": "how much",
+      "romanization": "eolma",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "얼마나",
+      "meaning": "how much",
+      "romanization": "eolmana",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "엄마",
+      "meaning": "mom; mommy",
+      "romanization": "eomma",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "없다",
+      "meaning": "to not have; to not exist",
+      "romanization": "eopda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "에어컨",
+      "meaning": "air conditioner",
+      "romanization": "eeokeon",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "여권",
+      "meaning": "passport",
+      "romanization": "yeogwon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여기",
+      "meaning": "here",
+      "romanization": "yeogi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여덟",
+      "meaning": "eight (native Korean number)",
+      "romanization": "yeodeol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여동생",
+      "meaning": "younger sister",
+      "romanization": "yeodongsaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "여든",
+      "meaning": "eighty (native Korean number)",
+      "romanization": "yeodeun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여러",
+      "meaning": "several; various; many",
+      "romanization": "yeoreo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여러분",
+      "meaning": "everyone; ladies and gentlemen",
+      "romanization": "yeoreobun",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "여름",
+      "meaning": "summer",
+      "romanization": "yeoreum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여보세요",
+      "meaning": "hello (on phone); hello",
+      "romanization": "yeoboseyo",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "여섯",
+      "meaning": "6",
+      "romanization": "yeoseot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여자",
+      "meaning": "girl; woman",
+      "romanization": "yeoja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여학생",
+      "meaning": "female student",
+      "romanization": "yeohaksaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "여행",
+      "meaning": "trip; travel",
+      "romanization": "yeohaeng",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "여행하다",
+      "meaning": "to travel",
+      "romanization": "yeohaenghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "역",
+      "meaning": "station",
+      "romanization": "yeok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "역사",
+      "meaning": "history",
+      "romanization": "yeoksa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "연습",
+      "meaning": "practice",
+      "romanization": "yeonseup",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "연습하다",
+      "meaning": "to practice",
+      "romanization": "yeonseupada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "연필",
+      "meaning": "pencil",
+      "romanization": "yeonpil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "열",
+      "meaning": "ten (native Korean number)",
+      "romanization": "yeol",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "열다",
+      "meaning": "to open",
+      "romanization": "yeolda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "열쇠",
+      "meaning": "key",
+      "romanization": "yeolsoe",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "열심히",
+      "meaning": "hard; enthusiastic",
+      "romanization": "yeolsimhi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "영국",
+      "meaning": "United Kingdom; England",
+      "romanization": "yeongguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "영어",
+      "meaning": "English (language)",
+      "romanization": "yeongeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "영화",
+      "meaning": "movie",
+      "romanization": "yeonghwa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "옆",
+      "meaning": "beside; side",
+      "romanization": "yeop",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "예",
+      "meaning": "yes",
+      "romanization": "ye",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "예쁘다",
+      "meaning": "to be pretty",
+      "romanization": "yeppeuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "예순",
+      "meaning": "sixty (native Korean number)",
+      "romanization": "yesun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "옛날",
+      "meaning": "old; a long ago; olden days",
+      "romanization": "yennal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오",
+      "meaning": "five (Sino-Korean number)",
+      "romanization": "o",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "오늘",
+      "meaning": "today",
+      "romanization": "oneul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오다",
+      "meaning": "to come",
+      "romanization": "oda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오래",
+      "meaning": "long; much",
+      "romanization": "orae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오래간만",
+      "meaning": "after a long time",
+      "romanization": "oraeganman",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "오랜만",
+      "meaning": "after a long time",
+      "romanization": "oraenman",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "오렌지",
+      "meaning": "orange (fruit)",
+      "romanization": "orenji",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "오르다",
+      "meaning": "to rise; to climb",
+      "romanization": "oreuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "오른쪽",
+      "meaning": "right (direction); right side; right",
+      "romanization": "oreunjjok",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "오빠",
+      "meaning": "older brother (used by females)",
+      "romanization": "oppa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오십",
+      "meaning": "fifty (Sino-Korean number)",
+      "romanization": "osip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오월",
+      "meaning": "May (month)",
+      "romanization": "owol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오전",
+      "meaning": "morning; a.m.",
+      "romanization": "ojeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "오후",
+      "meaning": "afternoon",
+      "romanization": "ohu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "올라가다",
+      "meaning": "to go up; to climb",
+      "romanization": "ollagada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "올해",
+      "meaning": "this year",
+      "romanization": "olhae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "옷",
+      "meaning": "clothes; dress",
+      "romanization": "ot",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "왜",
+      "meaning": "why",
+      "romanization": "wae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "왜냐하면",
+      "meaning": "because; the reason is",
+      "romanization": "waenyahamyeon",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "외국",
+      "meaning": "foreign country",
+      "romanization": "oeguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "외국어",
+      "meaning": "foreign language",
+      "romanization": "oegugeo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "외국인",
+      "meaning": "foreigner",
+      "romanization": "oegugin",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "왼쪽",
+      "meaning": "left side",
+      "romanization": "oenjjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "요리",
+      "meaning": "cooking; a dish",
+      "romanization": "yori",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "요리하다",
+      "meaning": "to cook",
+      "romanization": "yorihada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "요일",
+      "meaning": "day of the week",
+      "romanization": "yoil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "요즈음",
+      "meaning": "these days; nowadays",
+      "romanization": "yojeueum",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "요즘",
+      "meaning": "these days; nowadays; around this time; lately",
+      "romanization": "yojeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "우리",
+      "meaning": "our; we; us",
+      "romanization": "uri",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "우리나라",
+      "meaning": "our country",
+      "romanization": "urinara",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "우산",
+      "meaning": "umbrella",
+      "romanization": "usan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "우유",
+      "meaning": "milk",
+      "romanization": "uyu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "우체국",
+      "meaning": "post office",
+      "romanization": "ucheguk",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "운동",
+      "meaning": "exercise",
+      "romanization": "undong",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "운동장",
+      "meaning": "playground; sports field",
+      "romanization": "undongjang",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "운동하다",
+      "meaning": "to exercise; to work out",
+      "romanization": "undonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "운동화",
+      "meaning": "sneakers; athletic shoes",
+      "romanization": "undonghwa",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "운전",
+      "meaning": "driving",
+      "romanization": "unjeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "운전하다",
+      "meaning": "to drive",
+      "romanization": "unjeonhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "울다",
+      "meaning": "to cry",
+      "romanization": "ulda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "웃다",
+      "meaning": "to laugh",
+      "romanization": "utda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "원",
+      "meaning": "won (Korean currency unit)",
+      "romanization": "won",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "월",
+      "meaning": "month",
+      "romanization": "wol",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "월요일",
+      "meaning": "Monday",
+      "romanization": "woryoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "위",
+      "meaning": "upper part; top; up",
+      "romanization": "wi",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "위험",
+      "meaning": "danger; risk",
+      "romanization": "wiheom",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "위험하다",
+      "meaning": "to be dangerous",
+      "romanization": "wiheomhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "유명하다",
+      "meaning": "to be famous",
+      "romanization": "yumyeonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "유월",
+      "meaning": "June",
+      "romanization": "yuwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "육",
+      "meaning": "six (Sino-Korean number)",
+      "romanization": "yuk",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "육십",
+      "meaning": "sixty (Sino-Korean number)",
+      "romanization": "yuksip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "은행",
+      "meaning": "bank",
+      "romanization": "eunhaeng",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "음식",
+      "meaning": "food",
+      "romanization": "eumsik",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "음악",
+      "meaning": "music",
+      "romanization": "eumak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "의사",
+      "meaning": "doctor (medical)",
+      "romanization": "uisa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "의자",
+      "meaning": "chair",
+      "romanization": "uija",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이",
+      "meaning": "this; tooth; 2",
+      "romanization": "i",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "이거",
+      "meaning": "this (colloquial contraction of 이것)",
+      "romanization": "igeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이것",
+      "meaning": "this; this thing",
+      "romanization": "igeot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이곳",
+      "meaning": "this place",
+      "romanization": "igot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이때",
+      "meaning": "this time; at this moment",
+      "romanization": "ittae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이런",
+      "meaning": "this kind of; like this",
+      "romanization": "ireon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이렇다",
+      "meaning": "to be like this; to be this way",
+      "romanization": "ireota",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "이름",
+      "meaning": "name",
+      "romanization": "ireum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이번",
+      "meaning": "this round; this time",
+      "romanization": "ibeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이분",
+      "meaning": "this person (polite)",
+      "romanization": "ibun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이십",
+      "meaning": "twenty (Sino-Korean number)",
+      "romanization": "isip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이야기",
+      "meaning": "story; talk; conversation",
+      "romanization": "iyagi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "이야기하다",
+      "meaning": "to converse; to talk",
+      "romanization": "iyagihada",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "이월",
+      "meaning": "February",
+      "romanization": "iwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이제",
+      "meaning": "now",
+      "romanization": "ije",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이쪽",
+      "meaning": "this side; this way",
+      "romanization": "ijjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "이해하다",
+      "meaning": "to understand",
+      "romanization": "ihaehada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "인사",
+      "meaning": "greeting",
+      "romanization": "insa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "인사하다",
+      "meaning": "to greet",
+      "romanization": "insahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "인천",
+      "meaning": "Incheon (city in Korea)",
+      "romanization": "incheon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "일",
+      "meaning": "work; 1; day",
+      "romanization": "il",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "일곱",
+      "meaning": "seven (native Korean number)",
+      "romanization": "ilgop",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "일본",
+      "meaning": "Japan",
+      "romanization": "ilbon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "일본어",
+      "meaning": "Japanese (language)",
+      "romanization": "ilboneo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "일어나다",
+      "meaning": "to wake up; to get up; to occur",
+      "romanization": "ireonada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "일요일",
+      "meaning": "Sunday",
+      "romanization": "illyoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "일월",
+      "meaning": "January",
+      "romanization": "irwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "일주일",
+      "meaning": "one week",
+      "romanization": "iljuil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "일찍",
+      "meaning": "early",
+      "romanization": "iljjik",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "일하다",
+      "meaning": "to work",
+      "romanization": "ilhada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "일흔",
+      "meaning": "seventy (native Korean number)",
+      "romanization": "ilheun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "읽다",
+      "meaning": "to read",
+      "romanization": "ikda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잃다",
+      "meaning": "to lose",
+      "romanization": "ilta",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잃어버리다",
+      "meaning": "to lose",
+      "romanization": "ireobeorida",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "입",
+      "meaning": "mouth",
+      "romanization": "ip",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "입다",
+      "meaning": "to wear; to put on",
+      "romanization": "ipda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "있다",
+      "meaning": "to have; to exist; to be (in a place)",
+      "romanization": "itda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잊다",
+      "meaning": "to forget",
+      "romanization": "itda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잊어버리다",
+      "meaning": "to forget",
+      "romanization": "ijeobeorida",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "잎",
+      "meaning": "leaf",
+      "romanization": "ip",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "자다",
+      "meaning": "to sleep",
+      "romanization": "jada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "자동차",
+      "meaning": "car; automobile",
+      "romanization": "jadongcha",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "자리",
+      "meaning": "seat; location",
+      "romanization": "jari",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "자장면",
+      "meaning": "jajangmyeon (Korean-Chinese black bean noodles)",
+      "romanization": "jajangmyeon",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "자전거",
+      "meaning": "bicycle",
+      "romanization": "jajeongeo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "자주",
+      "meaning": "often",
+      "romanization": "jaju",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "작년",
+      "meaning": "last year",
+      "romanization": "jangnyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "작다",
+      "meaning": "to be small",
+      "romanization": "jakda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잔",
+      "meaning": "glass; ~ cup(s)",
+      "romanization": "jan",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "잘",
+      "meaning": "well",
+      "romanization": "jal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "잘하다",
+      "meaning": "to do well; to be good at",
+      "romanization": "jalhada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "잠",
+      "meaning": "sleep",
+      "romanization": "jam",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "잠깐",
+      "meaning": "wait; just a minute",
+      "romanization": "jamkkan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잠시",
+      "meaning": "moment; for a bit; for a while; a little",
+      "romanization": "jamsi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잠자다",
+      "meaning": "to sleep",
+      "romanization": "jamjada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "잡다",
+      "meaning": "to catch; to grab; to hold",
+      "romanization": "japda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "잡수시다",
+      "meaning": "to eat (honorific form of 먹다)",
+      "romanization": "japsusida",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "잡지",
+      "meaning": "magazine",
+      "romanization": "japji",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "장",
+      "meaning": "measure word for paper; chapter",
+      "romanization": "jang",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "장미",
+      "meaning": "rose (flower)",
+      "romanization": "jangmi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "장소",
+      "meaning": "place",
+      "romanization": "jangso",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "재미",
+      "meaning": "fun; interest",
+      "romanization": "jaemi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "재미없다",
+      "meaning": "to be boring",
+      "romanization": "jaemieopda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "재미있다",
+      "meaning": "to be interesting; to be fun",
+      "romanization": "jaemiitda",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "저",
+      "meaning": "I, me (humble); that",
+      "romanization": "jeo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "저거",
+      "meaning": "that (colloquial contraction of 저것)",
+      "romanization": "jeogeo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "저것",
+      "meaning": "that thing; that",
+      "romanization": "jeogeot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "저곳",
+      "meaning": "that place (far from speaker)",
+      "romanization": "jeogot",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "저기",
+      "meaning": "there; over there",
+      "romanization": "jeogi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "저녁",
+      "meaning": "evening; dinner; night",
+      "romanization": "jeonyeok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "저쪽",
+      "meaning": "that side; over there",
+      "romanization": "jeojjok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "적다",
+      "meaning": "to be few; to write down",
+      "romanization": "jeokda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "전",
+      "meaning": "before; ago; former; I, me (very humble)",
+      "romanization": "jeon",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "전화",
+      "meaning": "telephone; phone call",
+      "romanization": "jeonhwa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "전화번호",
+      "meaning": "phone number",
+      "romanization": "jeonhwabeonho",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "전화하다",
+      "meaning": "to call",
+      "romanization": "jeonhwahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "점심",
+      "meaning": "lunch",
+      "romanization": "jeomsim",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "점심시간",
+      "meaning": "lunchtime",
+      "romanization": "jeomsimsigan",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "젓가락",
+      "meaning": "chopsticks",
+      "romanization": "jeotgarak",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "정류장",
+      "meaning": "bus stop; station",
+      "romanization": "jeongnyujang",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "정말",
+      "meaning": "really; truly",
+      "romanization": "jeongmal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "제일",
+      "meaning": "best; most",
+      "romanization": "jeil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "제주도",
+      "meaning": "Jeju Island",
+      "romanization": "jejudo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "조금",
+      "meaning": "a little",
+      "romanization": "jogeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "조용하다",
+      "meaning": "to be quiet",
+      "romanization": "joyonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "졸업",
+      "meaning": "graduate; graduation",
+      "romanization": "joreop",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "졸업하다",
+      "meaning": "to graduate",
+      "romanization": "joreophada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "좀",
+      "meaning": "some; a little",
+      "romanization": "jom",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "종이",
+      "meaning": "paper",
+      "romanization": "jongi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "좋다",
+      "meaning": "to be good; to like",
+      "romanization": "jota",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "좋아하다",
+      "meaning": "to like",
+      "romanization": "joahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "죄송하다",
+      "meaning": "to be sorry",
+      "romanization": "joesonghada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "주",
+      "meaning": "week",
+      "romanization": "ju",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "주다",
+      "meaning": "to give",
+      "romanization": "juda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "주말",
+      "meaning": "weekend",
+      "romanization": "jumal",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "주소",
+      "meaning": "address",
+      "romanization": "juso",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "주스",
+      "meaning": "juice",
+      "romanization": "juseu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "주인",
+      "meaning": "owner",
+      "romanization": "juin",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "죽다",
+      "meaning": "to die",
+      "romanization": "jukda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "준비",
+      "meaning": "prepare; preparation",
+      "romanization": "junbi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "준비하다",
+      "meaning": "to prepare",
+      "romanization": "junbihada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "중국",
+      "meaning": "China",
+      "romanization": "jungguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "중국어",
+      "meaning": "Chinese (language)",
+      "romanization": "junggugeo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "중요하다",
+      "meaning": "to be important",
+      "romanization": "jungyohada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "중학교",
+      "meaning": "middle school",
+      "romanization": "junghakgyo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "중학생",
+      "meaning": "middle school student",
+      "romanization": "junghaksaeng",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "즐겁다",
+      "meaning": "to be merry; to be pleasant",
+      "romanization": "jeulgeopda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지갑",
+      "meaning": "wallet",
+      "romanization": "jigap",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "지금",
+      "meaning": "now",
+      "romanization": "jigeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "지난달",
+      "meaning": "last month",
+      "romanization": "jinandal",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지난주",
+      "meaning": "last week",
+      "romanization": "jinanju",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지내다",
+      "meaning": "to spend (time); to live; to get along",
+      "romanization": "jinaeda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지도",
+      "meaning": "map",
+      "romanization": "jido",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "지우개",
+      "meaning": "eraser",
+      "romanization": "jiugae",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지우다",
+      "meaning": "to erase",
+      "romanization": "jiuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "지하",
+      "meaning": "underground; basement",
+      "romanization": "jiha",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "지하철",
+      "meaning": "subway",
+      "romanization": "jihacheol",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "질문",
+      "meaning": "question",
+      "romanization": "jilmun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "질문하다",
+      "meaning": "to ask a question",
+      "romanization": "jilmunhada",
+      "example": "",
+      "syllable_count": 4
     },
     {
       "word": "집",
-      "meaning_en": "house / home",
+      "meaning": "house; home",
       "romanization": "jip",
-      "example": "집에 가요.",
+      "example": "",
       "syllable_count": 1
     },
     {
-      "word": "나무",
-      "meaning_en": "tree",
-      "romanization": "namu",
-      "example": "나무가 커요.",
+      "word": "짜다",
+      "meaning": "to be salty",
+      "romanization": "jjada",
+      "example": "",
       "syllable_count": 2
+    },
+    {
+      "word": "짧다",
+      "meaning": "to be short",
+      "romanization": "jjalda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "쪽",
+      "meaning": "side; direction",
+      "romanization": "jjok",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "찌개",
+      "meaning": "stew (Korean dish)",
+      "romanization": "jjigae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "찍다",
+      "meaning": "to take (a photo); to stamp; to dip",
+      "romanization": "jjikda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "차",
+      "meaning": "car; tea",
+      "romanization": "cha",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "참",
+      "meaning": "really; very",
+      "romanization": "cham",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "창문",
+      "meaning": "window",
+      "romanization": "changmun",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "찾다",
+      "meaning": "to search for; to find; to visit",
+      "romanization": "chatda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "책",
+      "meaning": "book",
+      "romanization": "chaek",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "책상",
+      "meaning": "desk",
+      "romanization": "chaeksang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "처음",
+      "meaning": "first; for the first time",
+      "romanization": "cheoeum",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "천",
+      "meaning": "thousand",
+      "romanization": "cheon",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "천천히",
+      "meaning": "slowly",
+      "romanization": "cheoncheonhi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "첫째",
+      "meaning": "first (ordinal number)",
+      "romanization": "cheotjjae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "청바지",
+      "meaning": "jeans",
+      "romanization": "cheongbaji",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "청소",
+      "meaning": "clean",
+      "romanization": "cheongso",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "청소하다",
+      "meaning": "to clean",
+      "romanization": "cheongsohada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "초대",
+      "meaning": "invitation",
+      "romanization": "chodae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "초대하다",
+      "meaning": "to invite",
+      "romanization": "chodaehada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "초등학교",
+      "meaning": "elementary school",
+      "romanization": "chodeunghakgyo",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "초콜릿",
+      "meaning": "chocolate",
+      "romanization": "chokollit",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "추다",
+      "meaning": "to dance",
+      "romanization": "chuda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "축구",
+      "meaning": "football (soccer); football; soccer",
+      "romanization": "chukgu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "축하하다",
+      "meaning": "to congratulate",
+      "romanization": "chukhahada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "출발하다",
+      "meaning": "to depart",
+      "romanization": "chulbalhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "춤",
+      "meaning": "dance",
+      "romanization": "chum",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "춤추다",
+      "meaning": "to dance",
+      "romanization": "chumchuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "춥다",
+      "meaning": "to be cold",
+      "romanization": "chupda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "취미",
+      "meaning": "hobby",
+      "romanization": "chwimi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "층",
+      "meaning": "floor; layer; ~ floor",
+      "romanization": "cheung",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "치다",
+      "meaning": "to hit; to strike",
+      "romanization": "chida",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "치마",
+      "meaning": "skirt",
+      "romanization": "chima",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "치약",
+      "meaning": "toothpaste",
+      "romanization": "chiyak",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "친구",
+      "meaning": "friend",
+      "romanization": "chingu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "친절하다",
+      "meaning": "to be kind",
+      "romanization": "chinjeolhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "칠",
+      "meaning": "seven (Sino-Korean number)",
+      "romanization": "chil",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "칠십",
+      "meaning": "seventy (Sino-Korean number)",
+      "romanization": "chilsip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "칠월",
+      "meaning": "July",
+      "romanization": "chirwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "칠판",
+      "meaning": "blackboard",
+      "romanization": "chilpan",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "침대",
+      "meaning": "bed",
+      "romanization": "chimdae",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "칫솔",
+      "meaning": "toothbrush",
+      "romanization": "chitsol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "카드",
+      "meaning": "card",
+      "romanization": "kadeu",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "카메라",
+      "meaning": "camera",
+      "romanization": "kamera",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "칼",
+      "meaning": "knife",
+      "romanization": "kal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "캐나다",
+      "meaning": "Canada",
+      "romanization": "kaenada",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "커피",
+      "meaning": "coffee",
+      "romanization": "keopi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "컴퓨터",
+      "meaning": "computer; PC",
+      "romanization": "keompyuteo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "컵",
+      "meaning": "cup",
+      "romanization": "keop",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "켜다",
+      "meaning": "to switch on; to turn on (the light, the power, etc.)",
+      "romanization": "kyeoda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "코",
+      "meaning": "nose",
+      "romanization": "ko",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "콜라",
+      "meaning": "cola",
+      "romanization": "kolla",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "크다",
+      "meaning": "to be big; to grow",
+      "romanization": "keuda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "크리스마스",
+      "meaning": "Christmas",
+      "romanization": "keuriseumaseu",
+      "example": "",
+      "syllable_count": 5
+    },
+    {
+      "word": "키",
+      "meaning": "height (of a person)",
+      "romanization": "ki",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "타다",
+      "meaning": "to ride; to get on",
+      "romanization": "tada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "태권도",
+      "meaning": "taekwondo",
+      "romanization": "taegwondo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "태어나다",
+      "meaning": "to be born",
+      "romanization": "taeeonada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "택시",
+      "meaning": "taxi",
+      "romanization": "taeksi",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "테니스",
+      "meaning": "tennis",
+      "romanization": "tenniseu",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "테이블",
+      "meaning": "table",
+      "romanization": "teibeul",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "텔레비전",
+      "meaning": "television",
+      "romanization": "tellebijeon",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "토요일",
+      "meaning": "Saturday",
+      "romanization": "toyoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "티브이",
+      "meaning": "TV",
+      "romanization": "tibeuyi",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "팀",
+      "meaning": "team",
+      "romanization": "tim",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "파란색",
+      "meaning": "blue color",
+      "romanization": "paransaek",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "파티",
+      "meaning": "party",
+      "romanization": "pati",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "팔",
+      "meaning": "arm; eight",
+      "romanization": "pal",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "팔다",
+      "meaning": "to sell",
+      "romanization": "palda",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "팔십",
+      "meaning": "eighty (Sino-Korean number)",
+      "romanization": "palsip",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "팔월",
+      "meaning": "August",
+      "romanization": "parwol",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "퍼센트",
+      "meaning": "percent",
+      "romanization": "peosenteu",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "편지",
+      "meaning": "letter",
+      "romanization": "pyeonji",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "포도",
+      "meaning": "grape",
+      "romanization": "podo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "표",
+      "meaning": "ticket; table",
+      "romanization": "pyo",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "프랑스",
+      "meaning": "France",
+      "romanization": "peurangseu",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "피곤하다",
+      "meaning": "to be tired",
+      "romanization": "pigonhada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "피아노",
+      "meaning": "piano",
+      "romanization": "piano",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "피우다",
+      "meaning": "to smoke (a cigarette); to light",
+      "romanization": "piuda",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "피자",
+      "meaning": "pizza",
+      "romanization": "pija",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "필요",
+      "meaning": "need; necessity",
+      "romanization": "pillyo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "필요하다",
+      "meaning": "to be needed; to need",
+      "romanization": "pillyohada",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "하나",
+      "meaning": "one (native Korean number)",
+      "romanization": "hana",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "하늘",
+      "meaning": "sky",
+      "romanization": "haneul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "하다",
+      "meaning": "to do; to say",
+      "romanization": "hada",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "하지만",
+      "meaning": "but; however",
+      "romanization": "hajiman",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "학교",
+      "meaning": "school",
+      "romanization": "hakgyo",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "학년",
+      "meaning": "school year; grade level",
+      "romanization": "hangnyeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "학생",
+      "meaning": "student",
+      "romanization": "haksaeng",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한",
+      "meaning": "1; one; one of the ~",
+      "romanization": "han",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "한강",
+      "meaning": "Han River (river in Seoul)",
+      "romanization": "hangang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한국",
+      "meaning": "Korea",
+      "romanization": "hanguk",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한국말",
+      "meaning": "Korean (language)",
+      "romanization": "hangungmal",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "한국어",
+      "meaning": "Korean (language)",
+      "romanization": "hangugeo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "한글",
+      "meaning": "Hangul (the Korean alphabet)",
+      "romanization": "hangeul",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한번",
+      "meaning": "once; one time",
+      "romanization": "hanbeon",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한복",
+      "meaning": "hanbok (traditional Korean clothing)",
+      "romanization": "hanbok",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "한자",
+      "meaning": "Chinese character; hanja",
+      "romanization": "hanja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "할머니",
+      "meaning": "grandmother",
+      "romanization": "halmeoni",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "할아버지",
+      "meaning": "grandfather",
+      "romanization": "harabeoji",
+      "example": "",
+      "syllable_count": 4
+    },
+    {
+      "word": "함께",
+      "meaning": "together",
+      "romanization": "hamkke",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "항상",
+      "meaning": "always",
+      "romanization": "hangsang",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "해",
+      "meaning": "year; sun",
+      "romanization": "hae",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "핸드폰",
+      "meaning": "cell phone",
+      "romanization": "haendpon",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "햄버거",
+      "meaning": "hamburger",
+      "romanization": "hambeogeo",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "허리",
+      "meaning": "waist",
+      "romanization": "heori",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "형",
+      "meaning": "male's older brother",
+      "romanization": "hyeong",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "호",
+      "meaning": "room number; no. ~",
+      "romanization": "ho",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "호주",
+      "meaning": "Australia",
+      "romanization": "hoju",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "호텔",
+      "meaning": "hotel",
+      "romanization": "hotel",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "혼자",
+      "meaning": "alone",
+      "romanization": "honja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "화",
+      "meaning": "anger",
+      "romanization": "hwa",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "화요일",
+      "meaning": "Tuesday",
+      "romanization": "hwayoil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "화장실",
+      "meaning": "bathroom; restroom",
+      "romanization": "hwajangsil",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "환자",
+      "meaning": "patient (medical)",
+      "romanization": "hwanja",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "회사",
+      "meaning": "company",
+      "romanization": "hoesa",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "회의",
+      "meaning": "meeting; conference",
+      "romanization": "hoeui",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "후",
+      "meaning": "after",
+      "romanization": "hu",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "휴일",
+      "meaning": "holiday",
+      "romanization": "hyuil",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "휴지",
+      "meaning": "tissue; toilet paper",
+      "romanization": "hyuji",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "휴지통",
+      "meaning": "trash can; wastebasket",
+      "romanization": "hyujitong",
+      "example": "",
+      "syllable_count": 3
+    },
+    {
+      "word": "흰색",
+      "meaning": "white color",
+      "romanization": "huinsaek",
+      "example": "",
+      "syllable_count": 2
+    },
+    {
+      "word": "힘",
+      "meaning": "power; strength",
+      "romanization": "him",
+      "example": "",
+      "syllable_count": 1
+    },
+    {
+      "word": "힘들다",
+      "meaning": "to be difficult",
+      "romanization": "himdeulda",
+      "example": "",
+      "syllable_count": 3
     }
   ]
 }

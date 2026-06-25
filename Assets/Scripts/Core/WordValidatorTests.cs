@@ -14,7 +14,7 @@ public class WordValidatorTests : MonoBehaviour
 
         WordEntry entry = WordValidator.GetEntry("학교");
         Debug.Assert(entry != null, "GetEntry: 학교 should return an entry");
-        Debug.Assert(entry.meaning_en == "school", "학교 meaning should be 'school'");
+        Debug.Assert(entry.meaning == "school", "학교 meaning should be 'school'");
 
         Debug.Log("All WordValidator tests passed!");
     }

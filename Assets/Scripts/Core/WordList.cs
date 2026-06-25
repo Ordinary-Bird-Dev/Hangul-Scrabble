@@ -1,5 +1,5 @@
 [System.Serializable]
 public class WordList
 {
-    public WordEntry[] entries;
+    public WordEntry[] words;     // was entries
 }

@@ -12,46 +12,61 @@ public class SyllableSlot : MonoBehaviour
 
     public SlotState State { get; private set; } = SlotState.Empty;
 
-    private int _choIndex = -1;
-    private int _jungIndex = -1;
-    private int _jongIndex = 0;
+    private string _cho = "";
+    private string _jung = "";
+    private string _jong = "";
 
-    public char CurrentSyllable { get; private set; } = '\0';
+    public string CurrentSyllable { get; private set; } = null;
 
-    public bool TryPlaceCho(int choIndex)
+    public bool TryPlaceCho(string jamo)
     {
         if (State != SlotState.Empty)
         {
             Debug.LogWarning("SyllableSlot: cannot place cho — slot not empty.");
             return false;
         }
-        _choIndex = choIndex;
+        if (!HangulComposer.IsValidChoseong(jamo))
+        {
+            Debug.LogWarning($"SyllableSlot: '{jamo}' is not a valid choseong.");
+            return false;
+        }
+        _cho = jamo;
         State = SlotState.ChoPlaced;
         UpdatePreview();
         return true;
     }
 
-    public bool TryPlaceJung(int jungIndex)
+    public bool TryPlaceJung(string jamo)
     {
         if (State != SlotState.ChoPlaced)
         {
             Debug.LogWarning("SyllableSlot: cannot place jung — cho not placed yet.");
             return false;
         }
-        _jungIndex = jungIndex;
+        if (!HangulComposer.IsValidJungseong(jamo))
+        {
+            Debug.LogWarning($"SyllableSlot: '{jamo}' is not a valid jungseong.");
+            return false;
+        }
+        _jung = jamo;
         State = SlotState.ChoJungPlaced;
         UpdatePreview();
         return true;
     }
 
-    public bool TryPlaceJong(int jongIndex)
+    public bool TryPlaceJong(string jamo)
     {
         if (State != SlotState.ChoJungPlaced)
         {
             Debug.LogWarning("SyllableSlot: cannot place jong — cho+jung not placed yet.");
             return false;
         }
-        _jongIndex = jongIndex;
+        if (!HangulComposer.IsValidJongseong(jamo))
+        {
+            Debug.LogWarning($"SyllableSlot: '{jamo}' is not a valid jongseong.");
+            return false;
+        }
+        _jong = jamo;
         State = SlotState.Complete;
         UpdatePreview();
         return true;
@@ -71,18 +86,16 @@ public class SyllableSlot : MonoBehaviour
 
     public void Reset()
     {
-        _choIndex = -1;
-        _jungIndex = -1;
-        _jongIndex = 0;
-        CurrentSyllable = '\0';
+        _cho = "";
+        _jung = "";
+        _jong = "";
+        CurrentSyllable = null;
         State = SlotState.Empty;
     }
 
     private void UpdatePreview()
     {
-        if (_choIndex >= 0 && _jungIndex >= 0)
-        {
-            CurrentSyllable = HangulComposer.Compose(_choIndex, _jungIndex, _jongIndex);
-        }
+        if (_cho != "" && _jung != "")
+            CurrentSyllable = HangulComposer.Compose(_cho, _jung, _jong);
     }
 }

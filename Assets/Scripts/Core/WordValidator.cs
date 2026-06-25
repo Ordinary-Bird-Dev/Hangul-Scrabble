@@ -23,7 +23,7 @@ public static class WordValidator
         _wordMap = new Dictionary<string, WordEntry>();
         _wordSet = new HashSet<string>();
 
-        foreach (WordEntry entry in list.entries)
+        foreach (WordEntry entry in list.words)
         {
             _wordMap[entry.word] = entry;
             _wordSet.Add(entry.word);

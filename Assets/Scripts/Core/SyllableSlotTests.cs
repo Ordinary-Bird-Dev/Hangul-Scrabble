@@ -8,6 +8,7 @@ public class SyllableSlotTests : MonoBehaviour
         TestInvalidOrdering();
         TestReset();
         TestNoJongComplete();
+        TestInvalidJamoRejected();
         Debug.Log("All SyllableSlot tests passed!");
     }
 
@@ -15,15 +16,16 @@ public class SyllableSlotTests : MonoBehaviour
     {
         SyllableSlot slot = gameObject.AddComponent<SyllableSlot>();
 
-        bool r1 = slot.TryPlaceCho(18);   // ㅎ
-        bool r2 = slot.TryPlaceJung(0);   // ㅏ
-        bool r3 = slot.TryPlaceJong(1);   // ㄱ
+        bool r1 = slot.TryPlaceCho("ㅎ");
+        bool r2 = slot.TryPlaceJung("ㅏ");
+        bool r3 = slot.TryPlaceJong("ㄱ");
 
-        Debug.Assert(r1, "TryPlaceCho should succeed");
-        Debug.Assert(r2, "TryPlaceJung should succeed");
-        Debug.Assert(r3, "TryPlaceJong should succeed");
-        Debug.Assert(slot.State == SyllableSlot.SlotState.Complete, "State should be Complete");
-        Debug.Assert(slot.CurrentSyllable == '학',
+        Debug.Assert(r1, "TryPlaceCho(ㅎ) should succeed");
+        Debug.Assert(r2, "TryPlaceJung(ㅏ) should succeed");
+        Debug.Assert(r3, "TryPlaceJong(ㄱ) should succeed");
+        Debug.Assert(slot.State == SyllableSlot.SlotState.Complete,
+            "State should be Complete after cho+jung+jong");
+        Debug.Assert(slot.CurrentSyllable == "학",
             $"Expected 학, got {slot.CurrentSyllable}");
 
         Destroy(slot);
@@ -33,8 +35,9 @@ public class SyllableSlotTests : MonoBehaviour
     {
         SyllableSlot slot = gameObject.AddComponent<SyllableSlot>();
 
-        bool result = slot.TryPlaceJung(0);
-        Debug.Assert(!result, "Placing jung before cho should fail");
+        bool result = slot.TryPlaceJung("ㅏ");
+        Debug.Assert(!result,
+            "Placing jung before cho should fail");
         Debug.Assert(slot.State == SyllableSlot.SlotState.Empty,
             "State should stay Empty after failed placement");
 
@@ -45,14 +48,14 @@ public class SyllableSlotTests : MonoBehaviour
     {
         SyllableSlot slot = gameObject.AddComponent<SyllableSlot>();
 
-        slot.TryPlaceCho(9);    // ㅅ
-        slot.TryPlaceJung(0);   // ㅏ
+        slot.TryPlaceCho("ㅅ");
+        slot.TryPlaceJung("ㅏ");
         slot.Reset();
 
         Debug.Assert(slot.State == SyllableSlot.SlotState.Empty,
             "State should be Empty after reset");
-        Debug.Assert(slot.CurrentSyllable == '\0',
-            "CurrentSyllable should be null char after reset");
+        Debug.Assert(slot.CurrentSyllable == null,
+            "CurrentSyllable should be null after reset");
 
         Destroy(slot);
     }
@@ -61,14 +64,27 @@ public class SyllableSlotTests : MonoBehaviour
     {
         SyllableSlot slot = gameObject.AddComponent<SyllableSlot>();
 
-        slot.TryPlaceCho(9);    // ㅅ
-        slot.TryPlaceJung(0);   // ㅏ
-        slot.TryComplete();     // 사 — no jongseong
+        slot.TryPlaceCho("ㅅ");
+        slot.TryPlaceJung("ㅏ");
+        slot.TryComplete();
 
         Debug.Assert(slot.State == SyllableSlot.SlotState.Complete,
-            "State should be Complete");
-        Debug.Assert(slot.CurrentSyllable == '사',
+            "State should be Complete for syllable with no jongseong");
+        Debug.Assert(slot.CurrentSyllable == "사",
             $"Expected 사, got {slot.CurrentSyllable}");
+
+        Destroy(slot);
+    }
+
+    void TestInvalidJamoRejected()
+    {
+        SyllableSlot slot = gameObject.AddComponent<SyllableSlot>();
+
+        bool result = slot.TryPlaceCho("ㅏ");
+        Debug.Assert(!result,
+            "Placing a vowel into cho slot should fail");
+        Debug.Assert(slot.State == SyllableSlot.SlotState.Empty,
+            "State should stay Empty after invalid jamo");
 
         Destroy(slot);
     }
