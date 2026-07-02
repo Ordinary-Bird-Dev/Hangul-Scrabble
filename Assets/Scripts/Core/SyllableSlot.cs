@@ -18,6 +18,12 @@ public class SyllableSlot : MonoBehaviour
 
     public string CurrentSyllable { get; private set; } = null;
 
+    // Read-only access to the placed jamo so UI previews can render
+    // each position live as tiles are placed.
+    public string Cho => _cho;
+    public string Jung => _jung;
+    public string Jong => _jong;
+
     public bool TryPlaceCho(string jamo)
     {
         if (State != SlotState.Empty)
