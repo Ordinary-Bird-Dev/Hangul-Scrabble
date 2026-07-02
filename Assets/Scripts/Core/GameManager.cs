@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Carried across the scene load so ResultScene can display them.
     public static int LastFinalScore { get; private set; }
     public static int LastWordsCompleted { get; private set; }
+    public static WordEntry LastWordEntry { get; private set; }
 
     public event System.Action<int> RoundEnded;
 
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         Score = 0;
         WordsCompleted = 0;
+        LastWordEntry = null;
         TimeRemaining = RoundSeconds;
         _lastWordTime = float.NegativeInfinity;
         RoundActive = true;
@@ -132,6 +134,7 @@ public class GameManager : MonoBehaviour
 
     private void OnWordCompleted(WordEntry entry)
     {
+        LastWordEntry = entry;
         RegisterWord(entry.word, Time.time);
     }
 

@@ -18,6 +18,8 @@ public class WordBuilder : MonoBehaviour
 
     private readonly List<string> _syllables = new List<string>();
     private bool _initialized;
+    private Coroutine _flashRoutine;
+    private Color _wordTextColor = Color.white;
 
     public string CurrentWord => string.Concat(_syllables);
     public int SyllableCount => _syllables.Count;
@@ -60,11 +62,24 @@ public class WordBuilder : MonoBehaviour
             if (wordTextGo != null) _wordText = wordTextGo.GetComponent<TMP_Text>();
         }
 
+        if (_wordText != null) _wordTextColor = _wordText.color;
+
         if (_wordConfirmButton == null) _wordConfirmButton = FindButton("WordConfirmButton");
         if (_wordConfirmButton != null) _wordConfirmButton.onClick.AddListener(OnWordConfirmPressed);
 
         if (_wordResetButton == null) _wordResetButton = FindButton("WordResetButton");
         if (_wordResetButton != null) _wordResetButton.onClick.AddListener(ResetChain);
+
+        if (_meaningCard == null)
+        {
+            Canvas canvas = FindAnyObjectByType<Canvas>();
+            if (canvas != null)
+            {
+                TMP_Text donor = FindAnyObjectByType<TMP_Text>(FindObjectsInactive.Include);
+                _meaningCard = MeaningCardUI.CreateRuntime(canvas.transform,
+                    donor != null ? donor.font : null);
+            }
+        }
 
         _initialized = true;
         UpdateWordText();
@@ -87,6 +102,7 @@ public class WordBuilder : MonoBehaviour
         WordValidator.Load();
         if (!WordValidator.IsValid(word))
         {
+            FlashRejection();
             WordRejected?.Invoke(word);
             return false;
         }
@@ -119,6 +135,21 @@ public class WordBuilder : MonoBehaviour
     private void UpdateWordText()
     {
         if (_wordText != null) _wordText.text = CurrentWord;
+    }
+
+    private void FlashRejection()
+    {
+        if (_wordText == null || !isActiveAndEnabled) return;
+        if (_flashRoutine != null) StopCoroutine(_flashRoutine);
+        _flashRoutine = StartCoroutine(FlashRoutine());
+    }
+
+    private System.Collections.IEnumerator FlashRoutine()
+    {
+        _wordText.color = new Color(0.9f, 0.25f, 0.25f);
+        yield return new WaitForSeconds(0.4f);
+        _wordText.color = _wordTextColor;
+        _flashRoutine = null;
     }
 
     private static Button FindButton(string name)
