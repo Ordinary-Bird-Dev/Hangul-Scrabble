@@ -49,8 +49,6 @@ public class SyllableBuilderUI : MonoBehaviour
     {
         if (_initialized) return;
 
-        Debug.Log("SyllableBuilderUI.Initialize() called");
-
         if (_choSlotRoot == null) _choSlotRoot = FindSlotObject("ChoSlot");
         if (_jungSlotRoot == null) _jungSlotRoot = FindSlotObject("Jungslot", "JungSlot");
         if (_jongSlotRoot == null) _jongSlotRoot = FindSlotObject("Jongslot", "JongSlot");
@@ -77,8 +75,6 @@ public class SyllableBuilderUI : MonoBehaviour
 
     public void OnSlotTapped(SlotRole role)
     {
-        Debug.Log($"Placing jamo: {JamoTile.GetSelectedTile()?.Jamo ?? "null"} into slot");
-
         JamoTile tile = JamoTile.GetSelectedTile();
         if (tile == null) return;
 
@@ -187,7 +183,6 @@ public class SlotTapTarget : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"SlotTapTarget tapped: {gameObject.name}");
         if (_owner != null) _owner.OnSlotTapped(_role);
     }
 }
