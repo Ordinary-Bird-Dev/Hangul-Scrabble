@@ -12,7 +12,7 @@ public static class GameSettings
         set { PlayerPrefs.SetInt(SoundKey, value ? 1 : 0); PlayerPrefs.Save(); }
     }
 
-    // Off by default: a completed syllable waits for the ConfirmButton
+    // Off by default: a completed syllable waits for the WordConfirmButton
     // instead of auto-advancing to the word bar.
     public static bool AutoConfirm
     {
