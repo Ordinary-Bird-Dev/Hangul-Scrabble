@@ -1,17 +1,27 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Simple meaning card shown when a word is completed. Built at runtime
-// so no scene wiring is needed; Phase 3 replaces this with the animated
-// slide-up panel.
-public class MeaningCardUI : MonoBehaviour
+// Meaning card shown when a word is completed: slides up from below the
+// screen, shows word / meaning / romanization / example, then dismisses
+// after a few seconds or when tapped. Built at runtime so no scene
+// wiring is needed (the MeaningCard object in GameScene is an empty
+// non-UI placeholder).
+public class MeaningCardUI : MonoBehaviour, IPointerClickHandler
 {
+    public event System.Action Shown;
+    public event System.Action Hidden;
+
     [SerializeField] private TMP_Text _text;
     [SerializeField] private float _showSeconds = 3f;
+    [SerializeField] private float _slideSeconds = 0.35f;
 
-    private Coroutine _hideRoutine;
+    private RectTransform _rect;
+    private Vector2 _homePosition;
+    private bool _homeCaptured;
+    private Coroutine _routine;
 
     // Builds a card as a child of the given canvas transform, reusing the
     // font of an existing TMP text in the scene so Korean glyphs render.
@@ -42,11 +52,22 @@ public class MeaningCardUI : MonoBehaviour
         if (font != null) text.font = font;
         text.fontSize = 44f;
         text.alignment = TextAlignmentOptions.Center;
+        text.raycastTarget = false; // taps land on the card background
 
         MeaningCardUI card = cardGo.AddComponent<MeaningCardUI>();
         card._text = text;
         cardGo.SetActive(false);
         return card;
+    }
+
+    void Awake()
+    {
+        _rect = transform as RectTransform;
+    }
+
+    public void SetShowSeconds(float seconds)
+    {
+        _showSeconds = seconds;
     }
 
     public void Show(WordEntry entry)
@@ -61,24 +82,79 @@ public class MeaningCardUI : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        if (_hideRoutine != null) StopCoroutine(_hideRoutine);
-        _hideRoutine = StartCoroutine(HideAfterDelay());
+        if (_rect != null)
+        {
+            if (!_homeCaptured)
+            {
+                _homePosition = _rect.anchoredPosition;
+                _homeCaptured = true;
+            }
+
+            if (_routine != null) StopCoroutine(_routine);
+            _routine = StartCoroutine(ShowRoutine());
+        }
+        else
+        {
+            Shown?.Invoke();
+        }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        HideAnimated();
+    }
+
+    // Slides the card back down, then deactivates it.
+    public void HideAnimated()
+    {
+        if (!gameObject.activeInHierarchy)
+        {
+            Hide();
+            return;
+        }
+
+        if (_routine != null) StopCoroutine(_routine);
+        _routine = StartCoroutine(HideRoutine());
+    }
+
+    // Immediate hide, no animation.
     public void Hide()
     {
-        if (_hideRoutine != null)
+        if (_routine != null)
         {
-            StopCoroutine(_hideRoutine);
-            _hideRoutine = null;
+            StopCoroutine(_routine);
+            _routine = null;
         }
+        if (_homeCaptured && _rect != null) _rect.anchoredPosition = _homePosition;
+
+        bool wasActive = gameObject.activeSelf;
         gameObject.SetActive(false);
+        if (wasActive) Hidden?.Invoke();
     }
 
-    private IEnumerator HideAfterDelay()
+    private IEnumerator ShowRoutine()
     {
+        _rect.anchoredPosition = OffScreenPosition();
+        Shown?.Invoke();
+
+        yield return UITween.SlideTo(_rect, _homePosition, _slideSeconds);
         yield return new WaitForSeconds(_showSeconds);
-        _hideRoutine = null;
+        yield return HideRoutine();
+    }
+
+    private IEnumerator HideRoutine()
+    {
+        yield return UITween.SlideTo(_rect, OffScreenPosition(), _slideSeconds * 0.8f);
+
+        _rect.anchoredPosition = _homePosition;
+        _routine = null;
         gameObject.SetActive(false);
+        Hidden?.Invoke();
+    }
+
+    private Vector2 OffScreenPosition()
+    {
+        float drop = _rect != null ? _rect.rect.height + 500f : 900f;
+        return _homePosition - new Vector2(0f, drop);
     }
 }
