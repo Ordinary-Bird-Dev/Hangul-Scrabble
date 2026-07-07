@@ -44,6 +44,8 @@ public static class SceneBootstrap
 
             if (GameSettings.Mode == GameMode.Zen)
                 controller.AddComponent<WordJournal>();
+            else if (GameSettings.Mode == GameMode.WordHunt)
+                controller.AddComponent<WordHuntController>();
         }
 
         WireButton("SettingsButton", () => SceneManager.LoadScene("SettingScene"));

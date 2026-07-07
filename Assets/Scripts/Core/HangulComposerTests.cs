@@ -14,6 +14,7 @@ public class HangulComposerTests : MonoBehaviour
         TestInvalidJongseong();
         TestEmptyJungseongFails();
         TestIsValidHelpers();
+        TestDecompose();
         Debug.Log("All HangulComposer tests passed!");
     }
 
@@ -111,6 +112,26 @@ public class HangulComposerTests : MonoBehaviour
         Assert(HangulComposer.IsValidJongseong("") == true, "Empty string should be a valid jongseong (no final consonant)");
         Assert(HangulComposer.IsValidJongseong("ㄲ") == true, "ㄲ should be a valid jongseong");
         Assert(HangulComposer.IsValidJongseong("ㅃ") == false, "ㅃ should not be a valid jongseong (not allowed as final)");
+    }
+
+    void TestDecompose()
+    {
+        Assert(HangulComposer.TryDecompose("학", out string cho, out string jung, out string jong),
+            "학 should decompose");
+        Assert(cho == "ㅎ" && jung == "ㅏ" && jong == "ㄱ", $"학 should split into ㅎㅏㄱ, got {cho}{jung}{jong}");
+
+        Assert(HangulComposer.TryDecompose("가", out cho, out jung, out jong), "가 should decompose");
+        Assert(cho == "ㄱ" && jung == "ㅏ" && jong == "", "가 should have no jongseong");
+
+        Assert(!HangulComposer.TryDecompose("a", out _, out _, out _), "Latin letters should not decompose");
+        Assert(!HangulComposer.TryDecompose("ㄱ", out _, out _, out _), "A bare jamo should not decompose");
+        Assert(!HangulComposer.TryDecompose("", out _, out _, out _), "Empty string should not decompose");
+
+        // Round trip: compose then decompose returns the same jamo.
+        string composed = HangulComposer.Compose("ㅅ", "ㅏ", "ㄴ");
+        Assert(HangulComposer.TryDecompose(composed, out cho, out jung, out jong)
+            && cho == "ㅅ" && jung == "ㅏ" && jong == "ㄴ",
+            "Compose then TryDecompose should round-trip 산");
     }
 
     void Assert(bool condition, string message)

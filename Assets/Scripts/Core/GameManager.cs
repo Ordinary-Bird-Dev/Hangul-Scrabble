@@ -128,6 +128,13 @@ public class GameManager : MonoBehaviour
         return points;
     }
 
+    // Direct score adjustment (e.g. Word Hunt hint penalty). Never below 0.
+    public void AddPoints(int delta)
+    {
+        Score = Mathf.Max(0, Score + delta);
+        UpdateScoreUI();
+    }
+
     public void EndRound()
     {
         if (!RoundActive) return;

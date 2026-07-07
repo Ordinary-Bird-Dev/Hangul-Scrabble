@@ -49,6 +49,23 @@ public static class HangulComposer
         return System.Char.ConvertFromUtf32(code);
     }
 
+    // Reverse of Compose: splits a composed syllable into its jamo.
+    // jong is "" when the syllable has no final consonant.
+    public static bool TryDecompose(string syllable, out string cho, out string jung, out string jong)
+    {
+        cho = jung = jong = null;
+        if (string.IsNullOrEmpty(syllable)) return false;
+
+        int code = char.ConvertToUtf32(syllable, 0);
+        if (code < 0xAC00 || code > 0xD7A3) return false;
+
+        int offset = code - 0xAC00;
+        cho = Choseong[offset / (21 * 28)];
+        jung = Jungseong[(offset % (21 * 28)) / 28];
+        jong = Jongseong[offset % 28];
+        return true;
+    }
+
     public static bool IsValidChoseong(string jamo) =>
         ChoseongIndex.ContainsKey(jamo);
 

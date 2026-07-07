@@ -43,4 +43,8 @@ public static class WordValidator
         _wordMap.TryGetValue(word, out WordEntry entry);
         return entry;
     }
+
+    // All loaded entries, for modes that pick target words (Word Hunt).
+    public static IReadOnlyCollection<WordEntry> AllEntries =>
+        _wordMap != null ? (IReadOnlyCollection<WordEntry>)_wordMap.Values : System.Array.Empty<WordEntry>();
 }
