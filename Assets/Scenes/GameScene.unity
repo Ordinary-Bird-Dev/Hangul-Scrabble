@@ -2051,6 +2051,7 @@ GameObject:
   - component: {fileID: 970851939}
   - component: {fileID: 970851941}
   - component: {fileID: 970851940}
+  - component: {fileID: 970851942}
   m_Layer: 5
   m_Name: MascotImage
   m_TagString: Untagged
@@ -2115,6 +2116,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970851938}
   m_CullTransparentMesh: 1
+--- !u!114 &970851942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970851938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d0159d1ee4e7c9d99611730ab2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 970851940}
+  _idleSprite: {fileID: -2165362201895123996, guid: 413c8099fcb90eb41b901be167fc73f6, type: 3}
+  _readingSprite: {fileID: -2434748765530116758, guid: 3b4065efb71384649a7d9320e78399f2, type: 3}
 --- !u!1 &982794708
 GameObject:
   m_ObjectHideFlags: 0
