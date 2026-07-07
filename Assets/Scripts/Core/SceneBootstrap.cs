@@ -41,6 +41,9 @@ public static class SceneBootstrap
             controller.AddComponent<WordBuilder>();
             controller.AddComponent<GameManager>();
             controller.AddComponent<AudioManager>();
+
+            if (GameSettings.Mode == GameMode.Zen)
+                controller.AddComponent<WordJournal>();
         }
 
         WireButton("SettingsButton", () => SceneManager.LoadScene("SettingScene"));

@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public int WordsCompleted { get; private set; }
     public float TimeRemaining { get; private set; }
     public bool RoundActive { get; private set; }
+    public GameMode Mode { get; private set; } = GameMode.Classic;
 
     void Awake()
     {
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void StartRound()
     {
+        Mode = GameSettings.Mode;
         Score = 0;
         WordsCompleted = 0;
         LastWordEntry = null;
@@ -89,6 +91,13 @@ public class GameManager : MonoBehaviour
     public void Tick(float deltaSeconds)
     {
         if (!RoundActive) return;
+
+        // Zen Mode has no countdown: play continues until the player leaves.
+        if (Mode == GameMode.Zen)
+        {
+            UpdateTimerUI();
+            return;
+        }
 
         TimeRemaining -= deltaSeconds;
         if (TimeRemaining <= 0f)
@@ -194,11 +203,18 @@ public class GameManager : MonoBehaviour
     {
         if (_timerText != null)
         {
-            int total = Mathf.CeilToInt(TimeRemaining);
-            _timerText.text = $"{total / 60}:{total % 60:00}";
+            if (Mode == GameMode.Zen)
+            {
+                _timerText.text = "∞";
+            }
+            else
+            {
+                int total = Mathf.CeilToInt(TimeRemaining);
+                _timerText.text = $"{total / 60}:{total % 60:00}";
+            }
         }
 
-        float fraction = Mathf.Clamp01(TimeRemaining / RoundSeconds);
+        float fraction = Mode == GameMode.Zen ? 1f : Mathf.Clamp01(TimeRemaining / RoundSeconds);
         if (_progressScrollbar != null) _progressScrollbar.size = fraction;
         if (_progressSlider != null) _progressSlider.value = fraction;
     }
