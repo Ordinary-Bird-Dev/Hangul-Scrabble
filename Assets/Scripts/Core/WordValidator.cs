@@ -11,10 +11,10 @@ public static class WordValidator
     {
         if (_loaded) return;
 
-        TextAsset json = Resources.Load<TextAsset>("topik_level1");
+        TextAsset json = Resources.Load<TextAsset>("topik1_words");
         if (json == null)
         {
-            Debug.LogError("WordValidator: topik_level1.json not found in Resources!");
+            Debug.LogError("WordValidator: topik1_words.json not found in Resources!");
             return;
         }
 

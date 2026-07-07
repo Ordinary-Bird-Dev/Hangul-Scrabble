@@ -132,6 +132,12 @@ public class WordBuilder : MonoBehaviour
         ConfirmWord();
     }
 
+    private void ResetWord()
+    {
+        _syllables.Clear();
+        UpdateWordText();
+    }
+
     private void UpdateWordText()
     {
         if (_wordText != null) _wordText.text = CurrentWord;

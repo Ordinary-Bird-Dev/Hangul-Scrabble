@@ -62,7 +62,7 @@ public class WordBuilderTests : MonoBehaviour
 
         Assert(result, "학교 should validate as a TOPIK Level 1 word");
         Assert(completed != null && completed.word == "학교", "WordCompleted should carry the 학교 entry");
-        Assert(completed != null && completed.meaning == "school", $"학교 meaning should be school, got {completed?.meaning}");
+        Assert(completed != null && completed.english == "school", $"학교 meaning should be school, got {completed?.english}");
         Assert(builder.CurrentWord == "", "Chain should clear after a successful word");
         Assert(wordText.text == "", "WordText should clear after a successful word");
     }

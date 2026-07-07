@@ -36,7 +36,7 @@ public class ResultSceneController : MonoBehaviour
         if (entry == null) return;
 
         SetText("WordText", entry.word);
-        SetText("MeaningText", entry.meaning);
+        SetText("MeaningText", entry.english);
         SetText("RomanizationText", entry.romanization);
         SetText("ExampleText", entry.example);
     }

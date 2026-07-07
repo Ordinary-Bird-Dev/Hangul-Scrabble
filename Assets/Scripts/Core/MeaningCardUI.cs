@@ -56,7 +56,7 @@ public class MeaningCardUI : MonoBehaviour
         if (_text != null)
         {
             string example = string.IsNullOrEmpty(entry.example) ? "" : $"\n<i><size=70%>{entry.example}</size></i>";
-            _text.text = $"<b>{entry.word}</b>  <size=60%>({entry.romanization})</size>\n{entry.meaning}{example}";
+            _text.text = $"<b>{entry.word}</b>  <size=60%>({entry.romanization})</size>\n{entry.english}{example}";
         }
 
         gameObject.SetActive(true);
