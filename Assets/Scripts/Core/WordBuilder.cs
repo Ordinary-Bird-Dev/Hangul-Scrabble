@@ -108,11 +108,31 @@ public class WordBuilder : MonoBehaviour
         }
 
         WordEntry entry = WordValidator.GetEntry(word);
+        PlayWordBurst(word);
         ClearChain();
 
         if (_meaningCard != null) _meaningCard.Show(entry);
         WordCompleted?.Invoke(entry);
         return true;
+    }
+
+    // Success feedback: a ghost copy of the completed word scales out
+    // and fades away while the real word bar clears for the next word.
+    private void PlayWordBurst(string word)
+    {
+        if (_wordText == null || !isActiveAndEnabled) return;
+
+        GameObject ghost = Instantiate(_wordText.gameObject, _wordText.transform.parent);
+        ghost.name = "WordBurstGhost";
+
+        TMP_Text ghostText = ghost.GetComponent<TMP_Text>();
+        if (ghostText != null)
+        {
+            ghostText.text = word;
+            ghostText.raycastTarget = false;
+        }
+
+        StartCoroutine(UITween.BurstAndDestroy(ghost, 1.8f, 0.45f));
     }
 
     // WordResetButton handler: throws away the current chain.
