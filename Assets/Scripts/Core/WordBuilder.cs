@@ -103,12 +103,14 @@ public class WordBuilder : MonoBehaviour
         if (!WordValidator.IsValid(word))
         {
             FlashRejection();
+            AudioManager.TryPlayWordError();
             WordRejected?.Invoke(word);
             return false;
         }
 
         WordEntry entry = WordValidator.GetEntry(word);
         PlayWordBurst(word);
+        AudioManager.TryPlayWordSuccess();
         ClearChain();
 
         if (_meaningCard != null) _meaningCard.Show(entry);

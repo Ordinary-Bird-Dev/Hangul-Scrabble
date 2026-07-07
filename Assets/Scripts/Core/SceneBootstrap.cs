@@ -40,6 +40,7 @@ public static class SceneBootstrap
             controller.AddComponent<TileManager>();
             controller.AddComponent<WordBuilder>();
             controller.AddComponent<GameManager>();
+            controller.AddComponent<AudioManager>();
         }
 
         WireButton("SettingsButton", () => SceneManager.LoadScene("SettingScene"));

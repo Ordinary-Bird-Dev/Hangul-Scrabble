@@ -120,6 +120,7 @@ public class SyllableBuilderUI : MonoBehaviour
         string syllable = Slot.CurrentSyllable;
         Slot.Reset();
         UpdatePreviews();
+        AudioManager.TryPlaySyllableComplete();
         SyllableConfirmed?.Invoke(syllable);
     }
 

@@ -61,6 +61,7 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         State = TileState.Selected;
         ApplyVisuals();
         PlayBounce();
+        AudioManager.TryPlayTileTap();
     }
 
     public void Deselect()
