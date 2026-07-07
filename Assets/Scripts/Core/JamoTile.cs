@@ -25,6 +25,8 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     public TileState State { get; private set; } = TileState.Normal;
     public bool IsConsumed => State == TileState.Consumed;
 
+    private Coroutine _bounceRoutine;
+
     void Awake()
     {
         if (_background == null) _background = GetComponent<Image>();
@@ -58,6 +60,7 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         _currentlySelected = this;
         State = TileState.Selected;
         ApplyVisuals();
+        PlayBounce();
     }
 
     public void Deselect()
@@ -134,6 +137,15 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     {
         if (_currentlySelected != null)
             _currentlySelected.Deselect();
+    }
+
+    // Tap-to-select bounce. Scale is reset first so rapid taps never drift.
+    private void PlayBounce()
+    {
+        if (!isActiveAndEnabled) return;
+        if (_bounceRoutine != null) StopCoroutine(_bounceRoutine);
+        transform.localScale = Vector3.one;
+        _bounceRoutine = StartCoroutine(UITween.PunchScale(transform, 0.15f, 0.2f));
     }
 
     private void ApplyVisuals()
