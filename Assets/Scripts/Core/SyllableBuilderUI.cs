@@ -99,6 +99,7 @@ public class SyllableBuilderUI : MonoBehaviour
 
         tile.Consume();
         UpdatePreviews();
+        PulseSlot(role);
 
         // With auto-confirm on, a fully completed syllable (jongseong placed)
         // advances immediately. A cho+jung syllable still waits for the
@@ -133,6 +134,24 @@ public class SyllableBuilderUI : MonoBehaviour
         if (_choPreview != null) _choPreview.text = Slot.Cho;
         if (_jungPreview != null) _jungPreview.text = Slot.Jung;
         if (_jongPreview != null) _jongPreview.text = Slot.Jong;
+    }
+
+    // Compose feedback: the slot that received a jamo pulses briefly.
+    private void PulseSlot(SlotRole role)
+    {
+        if (!isActiveAndEnabled) return;
+
+        GameObject root;
+        switch (role)
+        {
+            case SlotRole.Cho: root = _choSlotRoot; break;
+            case SlotRole.Jung: root = _jungSlotRoot; break;
+            default: root = _jongSlotRoot; break;
+        }
+        if (root == null) return;
+
+        root.transform.localScale = Vector3.one;
+        StartCoroutine(UITween.PunchScale(root.transform, 0.12f, 0.22f));
     }
 
     private void AttachTapTarget(GameObject root, SlotRole role)
