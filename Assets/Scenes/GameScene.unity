@@ -598,7 +598,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0008963345}
+  m_AnchoredPosition: {x: 0, y: 0.00022481021}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &153124032
@@ -2052,6 +2052,7 @@ GameObject:
   - component: {fileID: 970851941}
   - component: {fileID: 970851940}
   - component: {fileID: 970851942}
+  - component: {fileID: 970851943}
   m_Layer: 5
   m_Name: MascotImage
   m_TagString: Untagged
@@ -2069,7 +2070,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.125173, y: 2.125173, z: 2.125173}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1360776532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2131,6 +2132,28 @@ MonoBehaviour:
   _image: {fileID: 970851940}
   _idleSprite: {fileID: -2165362201895123996, guid: 413c8099fcb90eb41b901be167fc73f6, type: 3}
   _readingSprite: {fileID: -2434748765530116758, guid: 3b4065efb71384649a7d9320e78399f2, type: 3}
+--- !u!95 &970851943
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970851938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be667d415d787d045b44c38fd08e54d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &982794708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,7 +4575,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1874873105}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999972
+  m_Size: 0.9999246
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -20,6 +20,9 @@ public class WordBuilder : MonoBehaviour
     private bool _initialized;
     private Coroutine _flashRoutine;
     private Color _wordTextColor = Color.white;
+    private Animator _mascotAnimator;
+
+    private const string MascotCelebrateTrigger = "Celebrate";
 
     public string CurrentWord => string.Concat(_syllables);
     public int SyllableCount => _syllables.Count;
@@ -81,6 +84,9 @@ public class WordBuilder : MonoBehaviour
             }
         }
 
+        GameObject mascot = GameObject.Find("MascotImage");
+        if (mascot != null) _mascotAnimator = mascot.GetComponent<Animator>();
+
         _initialized = true;
         UpdateWordText();
     }
@@ -112,6 +118,11 @@ public class WordBuilder : MonoBehaviour
         PlayWordBurst(word);
         AudioManager.TryPlayWordSuccess();
         ClearChain();
+
+        // Fires alongside _meaningCard.Show, whose Shown event swaps the
+        // mascot to the reading sprite in the same call stack.
+        if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
+            _mascotAnimator.SetTrigger(MascotCelebrateTrigger);
 
         if (_meaningCard != null) _meaningCard.Show(entry);
         WordCompleted?.Invoke(entry);
