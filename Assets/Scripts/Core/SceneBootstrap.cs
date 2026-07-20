@@ -35,18 +35,35 @@ public static class SceneBootstrap
     {
         if (Object.FindAnyObjectByType<GameManager>() == null)
         {
-            var controller = new GameObject("GameController");
-            controller.AddComponent<SyllableBuilderUI>();
-            controller.AddComponent<TileManager>();
-            controller.AddComponent<WordBuilder>();
-            controller.AddComponent<GameManager>();
-            controller.AddComponent<AudioManager>();
+            GameObject prefab = Resources.Load<GameObject>("GameController");
+            GameObject controller;
+
+            if (prefab != null)
+            {
+                controller = Object.Instantiate(prefab);
+                controller.name = "GameController";
+            }
+            else
+            {
+                Debug.LogWarning("SceneBootstrap: GameController prefab not found in Resources — falling back to a runtime-built controller with no audio clips assigned.");
+                controller = new GameObject("GameController");
+                controller.AddComponent<TileManager>();
+                controller.AddComponent<WordBuilder>();
+                controller.AddComponent<GameManager>();
+                controller.AddComponent<AudioManager>();
+            }
 
             if (GameSettings.Mode == GameMode.Zen)
                 controller.AddComponent<WordJournal>();
             else if (GameSettings.Mode == GameMode.WordHunt)
                 controller.AddComponent<WordHuntController>();
         }
+
+        // SyllableBuilderUI is deliberately not bundled with GameController:
+        // it belongs on the scene's SyllableBuilder object with its
+        // serialized ConfirmButton reference. This guard only covers a
+        // scene that ships without one.
+        EnsureController<SyllableBuilderUI>();
 
         WireButton("SettingsButton", () => SceneManager.LoadScene("SettingScene"));
     }

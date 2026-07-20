@@ -61,16 +61,34 @@ public class SyllableBuilderUI : MonoBehaviour
         AttachTapTarget(_jungSlotRoot, SlotRole.Jung);
         AttachTapTarget(_jongSlotRoot, SlotRole.Jong);
 
-        if (_confirmButton == null)
-        {
-            GameObject buttonGo = GameObject.Find("WordConfirmButton");
-            if (buttonGo != null) _confirmButton = buttonGo.GetComponent<Button>();
-        }
+        // No silent name-based fallback: an unassigned button previously
+        // grabbed WordConfirmButton and collided with WordBuilder's
+        // confirm. A misconfiguration should fail loudly instead.
         if (_confirmButton != null)
             _confirmButton.onClick.AddListener(ConfirmSyllable);
+        else
+            Debug.LogWarning("SyllableBuilderUI: _confirmButton is not assigned — syllable confirm is disabled until a Button is wired via the Inspector or Configure().");
 
         _initialized = true;
         UpdatePreviews();
+    }
+
+    // TileSelectorButton handler: places the currently selected tile into
+    // whichever slot comes next (cho -> jung -> jong), so the player
+    // doesn't need to tap the specific slot box directly.
+    public void PlaceSelectedTile()
+    {
+        if (Slot.State == SyllableSlot.SlotState.Complete) return;
+
+        SlotRole nextRole = Slot.State switch
+        {
+            SyllableSlot.SlotState.Empty => SlotRole.Cho,
+            SyllableSlot.SlotState.ChoPlaced => SlotRole.Jung,
+            SyllableSlot.SlotState.ChoJungPlaced => SlotRole.Jong,
+            _ => SlotRole.Cho
+        };
+
+        OnSlotTapped(nextRole);
     }
 
     public void OnSlotTapped(SlotRole role)
