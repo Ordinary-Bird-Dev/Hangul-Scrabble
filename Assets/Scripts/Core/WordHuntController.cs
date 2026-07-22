@@ -12,6 +12,7 @@ public class WordHuntController : MonoBehaviour
     public const int HintPenalty = 50;
 
     private WordBuilder _builder;
+    private SyllableBuilderUI _syllableBuilder;
     private TMP_Text _clueText;
     private System.Random _rng = new System.Random();
     private bool _hintUsed;
@@ -23,6 +24,11 @@ public class WordHuntController : MonoBehaviour
     void Start()
     {
         Initialize();
+    }
+
+    void Update()
+    {
+        EnsureTargetBuildable();
     }
 
     void OnDestroy()
@@ -55,17 +61,25 @@ public class WordHuntController : MonoBehaviour
     }
 
     // Candidates are short words (2-3 syllables) with an English meaning.
-    public static WordEntry PickTarget(IEnumerable<WordEntry> entries, System.Random rng)
+    // excludeWord keeps the same target from being picked twice in a row.
+    public static WordEntry PickTarget(IEnumerable<WordEntry> entries, System.Random rng, string excludeWord = null)
     {
         var candidates = new List<WordEntry>();
+        WordEntry excluded = null;
         foreach (WordEntry entry in entries)
         {
             if (entry == null || string.IsNullOrEmpty(entry.english)) continue;
             if (entry.syllable_count < 2 || entry.syllable_count > 3) continue;
+            if (excludeWord != null && entry.word == excludeWord)
+            {
+                excluded = entry;
+                continue;
+            }
             candidates.Add(entry);
         }
 
-        if (candidates.Count == 0) return null;
+        // Re-allow the excluded word only when it is the sole candidate.
+        if (candidates.Count == 0) return excluded;
         return candidates[rng.Next(candidates.Count)];
     }
 
@@ -88,12 +102,56 @@ public class WordHuntController : MonoBehaviour
 
     public void NextTarget()
     {
-        Target = PickTarget(WordValidator.AllEntries, _rng);
+        Target = PickTarget(WordValidator.AllEntries, _rng, Target != null ? Target.word : null);
         _hintUsed = false;
         UpdateClue();
 
         if (Target != null && TileManager.Instance != null)
             TileManager.Instance.DealAllWithRequired(RequiredJamoFor(Target.word));
+    }
+
+    // Word Hunt promises the target is always buildable, but consumed
+    // tiles refill with random jamo — so a slot/chain reset or a completed
+    // non-target word can leak a required jamo out of the tray for good.
+    // Jamo the player is still holding (in the syllable slot or the word
+    // chain) count as available; when the tray + held jamo can no longer
+    // form the target, the tray is re-dealt with the required jamo.
+    private void EnsureTargetBuildable()
+    {
+        if (Target == null || TileManager.Instance == null) return;
+
+        List<string> required = RequiredJamoFor(Target.word);
+        if (required.Count == 0) return;
+
+        var available = new List<string>();
+        foreach (JamoTile tile in TileManager.Instance.Tiles)
+            if (!tile.IsConsumed && !string.IsNullOrEmpty(tile.Jamo))
+                available.Add(tile.Jamo);
+
+        if (_builder != null)
+            available.AddRange(RequiredJamoFor(_builder.CurrentWord));
+
+        if (_syllableBuilder == null)
+            _syllableBuilder = FindAnyObjectByType<SyllableBuilderUI>();
+        if (_syllableBuilder != null && _syllableBuilder.Slot != null)
+        {
+            if (_syllableBuilder.Slot.Cho != "") available.Add(_syllableBuilder.Slot.Cho);
+            if (_syllableBuilder.Slot.Jung != "") available.Add(_syllableBuilder.Slot.Jung);
+            if (_syllableBuilder.Slot.Jong != "") available.Add(_syllableBuilder.Slot.Jong);
+        }
+
+        if (ContainsAll(required, available)) return;
+        TileManager.Instance.DealAllWithRequired(required);
+    }
+
+    // Multiset check: every jamo in required (with duplicates) must be
+    // matched by a distinct jamo in available.
+    public static bool ContainsAll(IReadOnlyList<string> required, List<string> available)
+    {
+        var pool = new List<string>(available);
+        foreach (string jamo in required)
+            if (!pool.Remove(jamo)) return false;
+        return true;
     }
 
     // Hint button: reveal the romanization at a 50-point penalty.
