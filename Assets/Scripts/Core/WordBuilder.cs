@@ -23,6 +23,7 @@ public class WordBuilder : MonoBehaviour
     private Animator _mascotAnimator;
 
     private const string MascotCelebrateTrigger = "Celebrate";
+    private const string MascotWrongTrigger = "Wrong";
 
     public string CurrentWord => string.Concat(_syllables);
     public int SyllableCount => _syllables.Count;
@@ -110,6 +111,8 @@ public class WordBuilder : MonoBehaviour
         {
             FlashRejection();
             AudioManager.TryPlayWordError();
+            if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
+                _mascotAnimator.SetTrigger(MascotWrongTrigger);
             WordRejected?.Invoke(word);
             return false;
         }

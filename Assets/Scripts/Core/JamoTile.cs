@@ -14,6 +14,8 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
 
     // Tap-to-select: only one tile may be selected at a time.
     private static JamoTile _currentlySelected;
+    private static Animator _mascotAnimator;
+    private const string MascotTileSelectTrigger = "TileSelect";
 
     [SerializeField] private Image _background;
     [SerializeField] private TextMeshProUGUI _label;
@@ -62,6 +64,7 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         ApplyVisuals();
         PlayBounce();
         AudioManager.TryPlayTileTap();
+        TriggerMascotTileSelect();
     }
 
     public void Deselect()
@@ -147,6 +150,17 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         if (_bounceRoutine != null) StopCoroutine(_bounceRoutine);
         transform.localScale = Vector3.one;
         _bounceRoutine = StartCoroutine(UITween.PunchScale(transform, 0.15f, 0.2f));
+    }
+
+    private static void TriggerMascotTileSelect()
+    {
+        if (_mascotAnimator == null)
+        {
+            GameObject mascot = GameObject.Find("MascotImage");
+            if (mascot != null) _mascotAnimator = mascot.GetComponent<Animator>();
+        }
+        if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
+            _mascotAnimator.SetTrigger(MascotTileSelectTrigger);
     }
 
     private void ApplyVisuals()

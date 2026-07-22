@@ -21,12 +21,14 @@ public class SceneControllerTests : MonoBehaviour
         GameObject success = MakeGo("TestSuccessPanel");
         GameObject fail = MakeGo("TestFailPanel");
         TMP_Text score = MakeText();
+        TMP_Text resultText = MakeText();
 
-        ResultSceneController.Apply(1250, 4, success, fail, score);
+        ResultSceneController.Apply(1250, 4, success, fail, score, resultText);
 
         Assert(success.activeSelf, "SuccessPanel should be active when words were completed");
         Assert(!fail.activeSelf, "FailPanel should be hidden on success");
         Assert(score.text == "Score: 1,250", $"ScoreText should read 'Score: 1,250', got '{score.text}'");
+        Assert(resultText.text == "SUCCESS!", $"ResultText should read 'SUCCESS!', got '{resultText.text}'");
     }
 
     void TestResultApplyFail()
@@ -34,18 +36,20 @@ public class SceneControllerTests : MonoBehaviour
         GameObject success = MakeGo("TestSuccessPanel2");
         GameObject fail = MakeGo("TestFailPanel2");
         TMP_Text score = MakeText();
+        TMP_Text resultText = MakeText();
 
-        ResultSceneController.Apply(0, 0, success, fail, score);
+        ResultSceneController.Apply(0, 0, success, fail, score, resultText);
 
         Assert(!success.activeSelf, "SuccessPanel should be hidden when no words were completed");
         Assert(fail.activeSelf, "FailPanel should show when no words were completed");
         Assert(score.text == "Score: 0", $"ScoreText should read 'Score: 0', got '{score.text}'");
+        Assert(resultText.text == "FAIL!", $"ResultText should read 'FAIL!', got '{resultText.text}'");
     }
 
     void TestResultApplyNullSafe()
     {
         // Must not throw when scene objects are missing.
-        ResultSceneController.Apply(100, 1, null, null, null);
+        ResultSceneController.Apply(100, 1, null, null, null, null);
         Assert(true, "Apply with null references should not throw");
     }
 

@@ -95,6 +95,12 @@ public class TileManager : MonoBehaviour
         }
 
         _initialized = true;
+
+        // Zen and Word Hunt want tiles replaced the instant they're used,
+        // rather than waiting for a batch of several to be consumed first.
+        if (GameSettings.Mode == GameMode.Zen || GameSettings.Mode == GameMode.WordHunt)
+            _refillThreshold = _tiles.Count;
+
         DealAll();
     }
 

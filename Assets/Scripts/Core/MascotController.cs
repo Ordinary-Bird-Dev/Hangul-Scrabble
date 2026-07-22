@@ -81,7 +81,6 @@ public class MascotController : MonoBehaviour
     private void ApplySprite(Sprite sprite)
     {
         if (_image == null || sprite == null) return;
-        _image.sprite = sprite;
         _image.color = Color.white; // clear the grey placeholder tint
         _image.preserveAspect = true;
     }
