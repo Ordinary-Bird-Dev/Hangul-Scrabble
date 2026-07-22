@@ -35,11 +35,14 @@ public static class WordValidator
 
     public static bool IsValid(string word)
     {
-        return _wordSet.Contains(word);
+        // _wordSet stays null if Load() failed (missing Resources asset);
+        // treat every word as invalid rather than throwing on each confirm.
+        return _wordSet != null && _wordSet.Contains(word);
     }
 
     public static WordEntry GetEntry(string word)
     {
+        if (_wordMap == null) return null;
         _wordMap.TryGetValue(word, out WordEntry entry);
         return entry;
     }

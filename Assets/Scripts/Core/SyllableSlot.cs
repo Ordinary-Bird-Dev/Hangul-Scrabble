@@ -67,7 +67,9 @@ public class SyllableSlot : MonoBehaviour
             Debug.LogWarning("SyllableSlot: cannot place jong — cho+jung not placed yet.");
             return false;
         }
-        if (!HangulComposer.IsValidJongseong(jamo))
+        // The jongseong table legitimately contains "" (no final consonant),
+        // but an undealt tile's empty jamo must not count as a placement.
+        if (string.IsNullOrEmpty(jamo) || !HangulComposer.IsValidJongseong(jamo))
         {
             Debug.LogWarning($"SyllableSlot: '{jamo}' is not a valid jongseong.");
             return false;
