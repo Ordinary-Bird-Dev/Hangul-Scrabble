@@ -36,6 +36,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // A duplicate GameManager silently steals the singleton and runs a
+        // second round timer; fail loudly instead.
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError($"GameManager: duplicate instance on '{gameObject.name}' — destroying it. Look for a second GameController in the scene.");
+            Destroy(this);
+            return;
+        }
         Instance = this;
     }
 

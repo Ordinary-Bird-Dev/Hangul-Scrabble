@@ -78,7 +78,18 @@ public class SyllableBuilderUI : MonoBehaviour
     // doesn't need to tap the specific slot box directly.
     public void PlaceSelectedTile()
     {
-        if (Slot.State == SyllableSlot.SlotState.Complete) return;
+        // Loud no-ops: this is the TileSelectorButton's only handler, so a
+        // press that does nothing should say why in the Console.
+        if (JamoTile.GetSelectedTile() == null)
+        {
+            Debug.LogWarning("SyllableBuilderUI: TileSelectorButton pressed with no tile selected.");
+            return;
+        }
+        if (Slot.State == SyllableSlot.SlotState.Complete)
+        {
+            Debug.LogWarning("SyllableBuilderUI: TileSelectorButton pressed but the syllable is already complete — confirm or reset it first.");
+            return;
+        }
 
         SlotRole nextRole = Slot.State switch
         {

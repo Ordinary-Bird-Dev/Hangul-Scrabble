@@ -43,6 +43,10 @@ public class TileDealer
     public string NextJamo() =>
         _random.NextDouble() < ConsonantRatio ? NextChoseong() : NextJungseong();
 
+    // Exposes the dealer's RNG so tray shuffles stay deterministic under
+    // a seed (Phase 4 daily puzzle).
+    public int NextIndex(int maxExclusive) => _random.Next(maxExclusive);
+
     // Deals a balanced hand: ~55% consonants, ~45% vowels, shuffled,
     // so a full tray always contains enough vowels to build syllables.
     public List<string> Deal(int count)

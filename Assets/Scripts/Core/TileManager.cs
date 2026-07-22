@@ -29,6 +29,14 @@ public class TileManager : MonoBehaviour
 
     void Awake()
     {
+        // A second TileManager (duplicate GameController, scene-authored
+        // copy) silently steals the singleton; fail loudly instead.
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError($"TileManager: duplicate instance on '{gameObject.name}' — destroying it. Look for a second GameController in the scene.");
+            Destroy(this);
+            return;
+        }
         Instance = this;
     }
 
@@ -124,7 +132,7 @@ public class TileManager : MonoBehaviour
         for (int i = 0; i < _tiles.Count; i++) indices.Add(i);
         for (int i = indices.Count - 1; i > 0; i--)
         {
-            int j = Random.Range(0, i + 1);
+            int j = _dealer.NextIndex(i + 1);
             (indices[i], indices[j]) = (indices[j], indices[i]);
         }
 

@@ -16,6 +16,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        // A duplicate AudioManager (often one with no clips assigned)
+        // silently steals the singleton and mutes every sound effect.
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError($"AudioManager: duplicate instance on '{gameObject.name}' — destroying it. Look for a second GameController in the scene.");
+            Destroy(this);
+            return;
+        }
         Instance = this;
         if (_source == null)
         {
