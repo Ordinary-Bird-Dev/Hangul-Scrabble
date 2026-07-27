@@ -204,8 +204,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 24806f86a43750d43a2514de586d49ad, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -228,6 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _background: {fileID: 4452759652090931687}
   _label: {fileID: 2690910587647944477}
-  _normalColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
-  _selectedColor: {r: 1, g: 0.85, b: 0.3, a: 1}
+  _normalColor: {r: 1, g: 0.7218669, b: 0.2603774, a: 1}
+  _selectedColor: {r: 0.33138475, g: 1, b: 0.26415092, a: 1}
   _consumedColor: {r: 0.6, g: 0.6, b: 0.6, a: 0.35}

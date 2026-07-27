@@ -16,6 +16,29 @@ public class GameManager : MonoBehaviour
     public static int LastWordsCompleted { get; private set; }
     public static WordEntry LastWordEntry { get; private set; }
 
+    public static float? SavedTimeRemaining { get; private set; }
+    public static int? SavedScore { get; private set; }
+    public static int? SavedWordsCompleted { get; private set; }
+    public static GameMode? SavedMode { get; private set; }
+
+    public void SaveSessionState()
+    {
+        if (!RoundActive) return;
+
+        SavedTimeRemaining = TimeRemaining;
+        SavedScore = Score;
+        SavedWordsCompleted = WordsCompleted;
+        SavedMode = Mode;
+    }
+
+    public static void ClearSavedSession()
+    {
+        SavedTimeRemaining = null;
+        SavedScore = null;
+        SavedWordsCompleted = null;
+        SavedMode = null;
+    }
+
     public event System.Action<int> RoundEnded;
 
     [SerializeField] private TMP_Text _timerText;
@@ -86,10 +109,23 @@ public class GameManager : MonoBehaviour
     public void StartRound()
     {
         Mode = GameSettings.Mode;
-        Score = 0;
-        WordsCompleted = 0;
+
+        if (SavedTimeRemaining.HasValue && SavedMode.HasValue && SavedMode.Value == Mode)
+        {
+            Score = SavedScore ?? 0;
+            WordsCompleted = SavedWordsCompleted ?? 0;
+            TimeRemaining = SavedTimeRemaining.Value;
+        }
+        else
+        {
+            Score = 0;
+            WordsCompleted = 0;
+            TimeRemaining = RoundSeconds;
+        }
+
+        ClearSavedSession();
+
         LastWordEntry = null;
-        TimeRemaining = RoundSeconds;
         _lastWordTime = float.NegativeInfinity;
         RoundActive = true;
         UpdateScoreUI();

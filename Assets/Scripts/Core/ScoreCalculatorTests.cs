@@ -14,6 +14,7 @@ public class ScoreCalculatorTests : MonoBehaviour
         TestComboWindow();
         TestGameManagerScoringAndCombo();
         TestGameManagerRoundEnd();
+        TestGameManagerSaveAndRestore();
         Cleanup();
         Debug.Log("All ScoreCalculator tests passed!");
     }
@@ -105,6 +106,63 @@ public class ScoreCalculatorTests : MonoBehaviour
         Assert(GameManager.LastFinalScore == 150, "LastFinalScore should persist for ResultScene");
 
         Assert(manager.RegisterWord("친구", 200f) == 0, "Words after round end should score 0");
+    }
+
+    void TestGameManagerSaveAndRestore()
+    {
+        GameManager manager = MakeManager();
+        
+        manager.RegisterWord("학교", 5f); // score = 150, words completed = 1
+        manager.Tick(10f); // TimeRemaining becomes GameManager.RoundSeconds - 10f
+        
+        float expectedTimeRemaining = manager.TimeRemaining;
+        int expectedScore = manager.Score;
+        int expectedWordsCompleted = manager.WordsCompleted;
+        GameMode expectedMode = manager.Mode;
+
+        // Save session state
+        manager.SaveSessionState();
+
+        Assert(GameManager.SavedTimeRemaining.HasValue && GameManager.SavedTimeRemaining.Value == expectedTimeRemaining, "SavedTimeRemaining should match actual TimeRemaining");
+        Assert(GameManager.SavedScore.HasValue && GameManager.SavedScore.Value == expectedScore, "SavedScore should match actual Score");
+        Assert(GameManager.SavedWordsCompleted.HasValue && GameManager.SavedWordsCompleted.Value == expectedWordsCompleted, "SavedWordsCompleted should match actual WordsCompleted");
+        Assert(GameManager.SavedMode.HasValue && GameManager.SavedMode.Value == expectedMode, "SavedMode should match actual Mode");
+
+        // Now destroy/cleanup current manager and create a new one to simulate scene reload
+        Cleanup();
+        
+        // Ensure the static saved state survives cleanup/destruction
+        Assert(GameManager.SavedTimeRemaining.HasValue && GameManager.SavedTimeRemaining.Value == expectedTimeRemaining, "Saved state must survive scene reload/destruction");
+
+        // Create new GameManager and start round with the same mode (Classic by default in GameSettings.Mode)
+        GameSettings.Mode = expectedMode;
+        GameManager newManager = MakeManager(); // MakeManager calls StartRound which consumes and clears the saved session
+
+        Assert(newManager.TimeRemaining == expectedTimeRemaining, $"Restored TimeRemaining should match, expected {expectedTimeRemaining}, got {newManager.TimeRemaining}");
+        Assert(newManager.Score == expectedScore, $"Restored Score should match, expected {expectedScore}, got {newManager.Score}");
+        Assert(newManager.WordsCompleted == expectedWordsCompleted, $"Restored WordsCompleted should match, expected {expectedWordsCompleted}, got {newManager.WordsCompleted}");
+        Assert(newManager.Mode == expectedMode, "Restored Mode should match");
+
+        // Verify saved session is cleared after being consumed
+        Assert(!GameManager.SavedTimeRemaining.HasValue, "Saved session must be cleared after being consumed");
+
+        // Test mode change in settings (should reset round)
+        GameManager manager2 = MakeManager();
+        manager2.RegisterWord("학교", 5f);
+        manager2.Tick(10f);
+        manager2.SaveSessionState();
+
+        // Change mode
+        GameSettings.Mode = GameMode.Zen;
+        GameManager manager3 = MakeManager(); // different mode
+
+        Assert(manager3.Score == 0, "Changing mode should start a fresh round with 0 score");
+        Assert(manager3.WordsCompleted == 0, "Changing mode should start a fresh round with 0 words");
+        Assert(manager3.Mode == GameMode.Zen, "New manager should use the new mode");
+        Assert(!GameManager.SavedTimeRemaining.HasValue, "Saved session must be cleared even if mode changed");
+
+        // Restore GameSettings.Mode back to default (Classic)
+        GameSettings.Mode = GameMode.Classic;
     }
 
     void Cleanup()

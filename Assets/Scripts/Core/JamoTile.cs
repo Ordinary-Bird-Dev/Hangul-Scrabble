@@ -65,7 +65,10 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         PlayBounce();
         AudioManager.TryPlayTileTap();
         TriggerMascotTileSelect();
+        MascotSleepController.TryRegisterTileTap(); // add this line
     }
+
+    
 
     public void Deselect()
     {

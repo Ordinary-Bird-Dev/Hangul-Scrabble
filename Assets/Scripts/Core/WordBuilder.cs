@@ -163,7 +163,7 @@ public class WordBuilder : MonoBehaviour
         UpdateWordText();
     }
 
-    private void OnWordConfirmPressed()
+    public void OnWordConfirmPressed()
     {
         ConfirmWord();
     }

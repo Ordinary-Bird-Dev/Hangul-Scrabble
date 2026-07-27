@@ -65,7 +65,13 @@ public static class SceneBootstrap
         // scene that ships without one.
         EnsureController<SyllableBuilderUI>();
 
-        WireButton("SettingsButton", () => SceneManager.LoadScene("SettingScene"));
+        WireButton("SettingsButton", () => {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SaveSessionState();
+            }
+            SceneManager.LoadScene("SettingScene");
+        });
     }
 
     private static void EnsureController<T>() where T : Component
