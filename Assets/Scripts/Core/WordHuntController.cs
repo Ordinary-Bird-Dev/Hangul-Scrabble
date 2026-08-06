@@ -84,21 +84,8 @@ public class WordHuntController : MonoBehaviour
     }
 
     // Every jamo needed to compose the word, in order.
-    public static List<string> RequiredJamoFor(string word)
-    {
-        var required = new List<string>();
-        if (string.IsNullOrEmpty(word)) return required;
-
-        foreach (char syllable in word)
-        {
-            if (!HangulComposer.TryDecompose(syllable.ToString(), out string cho, out string jung, out string jong))
-                continue;
-            required.Add(cho);
-            required.Add(jung);
-            if (jong != "") required.Add(jong);
-        }
-        return required;
-    }
+    public static List<string> RequiredJamoFor(string word) =>
+        TrayValidator.RequiredJamoFor(word);
 
     public void NextTarget()
     {
@@ -146,13 +133,8 @@ public class WordHuntController : MonoBehaviour
 
     // Multiset check: every jamo in required (with duplicates) must be
     // matched by a distinct jamo in available.
-    public static bool ContainsAll(IReadOnlyList<string> required, List<string> available)
-    {
-        var pool = new List<string>(available);
-        foreach (string jamo in required)
-            if (!pool.Remove(jamo)) return false;
-        return true;
-    }
+    public static bool ContainsAll(IReadOnlyList<string> required, List<string> available) =>
+        TrayValidator.ContainsAll(required, available);
 
     // Hint button: reveal the romanization at a 50-point penalty.
     public void UseHint()

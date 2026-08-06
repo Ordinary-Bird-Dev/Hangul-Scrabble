@@ -74,6 +74,10 @@ public class TileManager : MonoBehaviour
     {
         if (_initialized) return;
 
+        // The first DealAll validates against the word list; Load() is
+        // idempotent and may already have run in WordBuilder/WordHunt.
+        WordValidator.Load();
+
         if (_tileContainer == null)
         {
             GameObject tray = GameObject.Find("TileTray");
@@ -112,12 +116,66 @@ public class TileManager : MonoBehaviour
         DealAll();
     }
 
-    // Deals a fresh balanced hand to every tile in the tray.
+    // A fresh tray failing to contain any of the ~900 dictionary words
+    // is already rare with corpus-weighted deals; a handful of redeals
+    // makes it effectively impossible before the injection fallback.
+    private const int MaxDealAttempts = 5;
+
+    // Deals a fresh balanced hand to every tile in the tray, guaranteed
+    // to have at least one dictionary word buildable (when the word list
+    // is loaded — without it the plain balanced deal is used).
     public void DealAll()
     {
-        List<string> jamos = _dealer.Deal(_tiles.Count);
+        List<string> jamos = DealBuildable();
         for (int i = 0; i < _tiles.Count; i++)
             _tiles[i].SetJamo(jamos[i]);
+    }
+
+    private List<string> DealBuildable()
+    {
+        List<string> jamos = _dealer.Deal(_tiles.Count);
+
+        IReadOnlyCollection<WordEntry> entries = WordValidator.AllEntries;
+        if (entries.Count == 0) return jamos;
+
+        for (int attempt = 1; attempt < MaxDealAttempts; attempt++)
+        {
+            if (TrayValidator.AnyWordBuildable(jamos, entries)) return jamos;
+            jamos = _dealer.Deal(_tiles.Count);
+        }
+
+        if (!TrayValidator.AnyWordBuildable(jamos, entries))
+            InjectRandomWord(jamos, entries);
+        return jamos;
+    }
+
+    // Last-resort guarantee: overwrite random tray positions with the
+    // jamo of a randomly chosen dealable word (mirrors what Word Hunt
+    // does for its target). Draws only from the dealer's RNG, so seeded
+    // deals stay reproducible.
+    private void InjectRandomWord(List<string> jamos, IReadOnlyCollection<WordEntry> entries)
+    {
+        var candidates = new List<List<string>>();
+        foreach (WordEntry entry in entries)
+        {
+            List<string> required = TrayValidator.RequiredJamoFor(entry.word);
+            if (required.Count == 0 || required.Count > jamos.Count) continue;
+            if (!TrayValidator.AreAllJamoDealable(required)) continue;
+            candidates.Add(required);
+        }
+        if (candidates.Count == 0) return;
+
+        List<string> chosen = candidates[_dealer.NextIndex(candidates.Count)];
+
+        var indices = new List<int>(jamos.Count);
+        for (int i = 0; i < jamos.Count; i++) indices.Add(i);
+        for (int i = indices.Count - 1; i > 0; i--)
+        {
+            int j = _dealer.NextIndex(i + 1);
+            (indices[i], indices[j]) = (indices[j], indices[i]);
+        }
+        for (int i = 0; i < chosen.Count; i++)
+            jamos[indices[i]] = chosen[i];
     }
 
     // Deals a fresh hand guaranteed to contain the given jamo (Word Hunt:
