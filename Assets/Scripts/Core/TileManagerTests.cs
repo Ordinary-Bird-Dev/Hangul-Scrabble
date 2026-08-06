@@ -11,7 +11,10 @@ public class TileManagerTests : MonoBehaviour
         TestDealerBalancedHand();
         TestDealerDeterministicWithSeed();
         TestDealerWeightsFavorCommonJamo();
+        TestDealerNeverDealsAbsentVowel();
+        TestDealerRefillRestoresBalance();
         TestManagerAdoptsAndFillsTray();
+        TestManagerRefillRestoresBalance();
         TestManagerRefillsBelowThreshold();
         TestManagerNoRefillAtThreshold();
         Cleanup();
@@ -66,7 +69,34 @@ public class TileManagerTests : MonoBehaviour
             if (jamo == "ㅃ") rare++;
         }
         Assert(common > rare * 3,
-            $"ㅇ (weight 12) should appear far more often than ㅃ (weight 1): got {common} vs {rare}");
+            $"ㅇ (weight 74) should appear far more often than ㅃ (weight 5): got {common} vs {rare}");
+    }
+
+    void TestDealerNeverDealsAbsentVowel()
+    {
+        // ㅞ has zero occurrences in the TOPIK corpus, so its weight is 0.
+        var dealer = new TileDealer(123);
+        for (int i = 0; i < 5000; i++)
+            Assert(dealer.NextJungseong() != "ㅞ",
+                "ㅞ (absent from the corpus) should never be dealt");
+    }
+
+    void TestDealerRefillRestoresBalance()
+    {
+        // 5 consonants and 0 vowels survive on a 14-tray; the 9
+        // replacements must bring the tray back to 8 consonants, 6 vowels.
+        var dealer = new TileDealer(77);
+        List<string> refill = dealer.DealRefill(9, 5, 0);
+
+        Assert(refill.Count == 9, "DealRefill(9, ...) should return 9 jamo");
+        int consonants = 0, vowels = 0;
+        foreach (string jamo in refill)
+        {
+            if (HangulComposer.IsValidChoseong(jamo)) consonants++;
+            else if (HangulComposer.IsValidJungseong(jamo)) vowels++;
+        }
+        Assert(consonants == 3, $"Refill should add 3 consonants to reach 8, got {consonants}");
+        Assert(vowels == 6, $"Refill should add 6 vowels to reach 6, got {vowels}");
     }
 
     JamoTile MakeTile(Transform parent)
@@ -112,6 +142,26 @@ public class TileManagerTests : MonoBehaviour
             Assert(HangulComposer.IsValidChoseong(tile.Jamo) || HangulComposer.IsValidJungseong(tile.Jamo),
                 $"Dealt tile has invalid jamo '{tile.Jamo}'");
         }
+    }
+
+    void TestManagerRefillRestoresBalance()
+    {
+        TileManager manager = MakeManager(14, out _);
+
+        for (int i = 0; i < 9; i++)
+            manager.Tiles[i].Consume();
+        manager.RefillIfNeeded();
+
+        int consonants = 0, vowels = 0;
+        foreach (JamoTile tile in manager.Tiles)
+        {
+            if (HangulComposer.IsValidChoseong(tile.Jamo)) consonants++;
+            else if (HangulComposer.IsValidJungseong(tile.Jamo)) vowels++;
+        }
+        Assert(consonants == 8,
+            $"Refilled tray should hold 8 consonants regardless of what was consumed, got {consonants}");
+        Assert(vowels == 6,
+            $"Refilled tray should hold 6 vowels regardless of what was consumed, got {vowels}");
     }
 
     void TestManagerRefillsBelowThreshold()
