@@ -143,12 +143,25 @@ public class TileManager : MonoBehaviour
 
     // When fewer than _refillThreshold tiles remain playable,
     // consumed tiles are re-dealt so the tray returns to full.
+    // Replacements are dealt against the surviving tiles' composition so
+    // the full tray always lands back on the balanced consonant/vowel
+    // split instead of drifting vowel-starved over many refills.
     public void RefillIfNeeded()
     {
         if (ActiveTileCount >= _refillThreshold) return;
 
+        var consumed = new List<JamoTile>();
+        int activeConsonants = 0, activeVowels = 0;
         foreach (JamoTile tile in _tiles)
-            if (tile.IsConsumed)
-                tile.SetJamo(_dealer.NextJamo());
+        {
+            if (tile.IsConsumed) consumed.Add(tile);
+            else if (HangulComposer.IsValidChoseong(tile.Jamo)) activeConsonants++;
+            else if (HangulComposer.IsValidJungseong(tile.Jamo)) activeVowels++;
+        }
+        if (consumed.Count == 0) return;
+
+        List<string> jamos = _dealer.DealRefill(consumed.Count, activeConsonants, activeVowels);
+        for (int i = 0; i < consumed.Count; i++)
+            consumed[i].SetJamo(jamos[i]);
     }
 }

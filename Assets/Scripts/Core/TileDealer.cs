@@ -55,12 +55,21 @@ public class TileDealer
 
     // Deals a balanced hand: ~55% consonants, ~45% vowels, shuffled,
     // so a full tray always contains enough vowels to build syllables.
-    public List<string> Deal(int count)
-    {
-        int consonants = (int)System.Math.Round(count * ConsonantRatio);
-        var result = new List<string>(count);
+    public List<string> Deal(int count) => DealRefill(count, 0, 0);
 
-        for (int i = 0; i < consonants && i < count; i++)
+    // Deals `count` replacement jamo chosen so that the whole tray
+    // (replacements + surviving tiles) returns to the target consonant/
+    // vowel split. Per-tile coin flips would let the tray drift vowel-
+    // starved under the immediate-refill modes (Zen, Word Hunt).
+    public List<string> DealRefill(int count, int existingConsonants, int existingVowels)
+    {
+        int total = count + existingConsonants + existingVowels;
+        int targetConsonants = (int)System.Math.Round(total * ConsonantRatio);
+        int consonants = System.Math.Max(0,
+            System.Math.Min(count, targetConsonants - existingConsonants));
+
+        var result = new List<string>(count);
+        for (int i = 0; i < consonants; i++)
             result.Add(NextChoseong());
         while (result.Count < count)
             result.Add(NextJungseong());
