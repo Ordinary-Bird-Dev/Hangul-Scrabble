@@ -108,9 +108,10 @@ public class TileManager : MonoBehaviour
 
         _initialized = true;
 
-        // Zen and Word Hunt want tiles replaced the instant they're used,
-        // rather than waiting for a batch of several to be consumed first.
-        if (GameSettings.Mode == GameMode.Zen || GameSettings.Mode == GameMode.WordHunt)
+        // Zen wants tiles replaced the instant they're used, rather than
+        // waiting for a batch of several to be consumed first. Word Hunt
+        // never refills — it deals an exact puzzle set via DealExact.
+        if (GameSettings.Mode == GameMode.Zen)
             _refillThreshold = _tiles.Count;
 
         DealAll();
@@ -199,6 +200,30 @@ public class TileManager : MonoBehaviour
             _tiles[indices[i]].SetJamo(requiredJamo[i]);
     }
 
+    // Word Hunt: deals exactly the given jamo, shuffled, and blanks every
+    // remaining tile — the puzzle is sequencing the set, not searching a
+    // full tray. Shuffles with UnityEngine.Random rather than the seeded
+    // dealer, so these deals are not seed-reproducible.
+    public void DealExact(IReadOnlyList<string> requiredJamo)
+    {
+        if (_tiles.Count == 0) return;
+
+        var jamos = new List<string>();
+        if (requiredJamo != null) jamos.AddRange(requiredJamo);
+
+        for (int i = jamos.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (jamos[i], jamos[j]) = (jamos[j], jamos[i]);
+        }
+
+        int count = Mathf.Min(jamos.Count, _tiles.Count);
+        for (int i = 0; i < count; i++)
+            _tiles[i].SetJamo(jamos[i]);
+        for (int i = count; i < _tiles.Count; i++)
+            _tiles[i].SetEmpty();
+    }
+
     // When fewer than _refillThreshold tiles remain playable,
     // consumed tiles are re-dealt so the tray returns to full.
     // Replacements are dealt against the surviving tiles' composition so
@@ -206,6 +231,11 @@ public class TileManager : MonoBehaviour
     // split instead of drifting vowel-starved over many refills.
     public void RefillIfNeeded()
     {
+        // Word Hunt blanks most of the tray, so ActiveTileCount sits below
+        // any threshold from the first deal — refilling here would
+        // immediately bury the exact puzzle set under random tiles.
+        if (GameSettings.Mode == GameMode.WordHunt) return;
+
         if (ActiveTileCount >= _refillThreshold) return;
 
         var consumed = new List<JamoTile>();

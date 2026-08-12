@@ -91,6 +91,20 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         ApplyVisuals();
     }
 
+    // Word Hunt: blanks an unused tray slot. The tile keeps its place in
+    // the fixed 7x2 grid but renders greyed with no label and ignores taps.
+    public void SetEmpty()
+    {
+        Jamo = "";
+
+        if (_currentlySelected == this)
+            _currentlySelected = null;
+
+        State = TileState.Consumed;
+        if (_label != null) _label.text = "";
+        ApplyVisuals();
+    }
+
     public void SetJamo(string jamo, TextMeshProUGUI label)
     {
         _label = label;

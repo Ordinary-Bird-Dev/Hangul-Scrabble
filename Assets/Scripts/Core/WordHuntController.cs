@@ -34,7 +34,10 @@ public class WordHuntController : MonoBehaviour
     void OnDestroy()
     {
         if (_builder != null)
+        {
             _builder.WordCompleted -= HandleWordCompleted;
+            _builder.WordRejected -= HandleWordRejected;
+        }
     }
 
     public void Configure(WordBuilder builder)
@@ -54,7 +57,13 @@ public class WordHuntController : MonoBehaviour
         if (_builder == null)
             _builder = FindAnyObjectByType<WordBuilder>();
         if (_builder != null)
+        {
             _builder.WordCompleted += HandleWordCompleted;
+            _builder.WordRejected += HandleWordRejected;
+        }
+
+        if (_syllableBuilder == null)
+            _syllableBuilder = FindAnyObjectByType<SyllableBuilderUI>();
 
         BuildUI();
         NextTarget();
@@ -94,15 +103,21 @@ public class WordHuntController : MonoBehaviour
         UpdateClue();
 
         if (Target != null && TileManager.Instance != null)
-            TileManager.Instance.DealAllWithRequired(RequiredJamoFor(Target.word));
+        {
+            // Start order between this controller and TileManager (both on
+            // the GameController object) is not guaranteed; Initialize() is
+            // idempotent and ensures the tray exists before the exact deal.
+            TileManager.Instance.Initialize();
+            TileManager.Instance.DealExact(RequiredJamoFor(Target.word));
+        }
     }
 
-    // Word Hunt promises the target is always buildable, but consumed
-    // tiles refill with random jamo — so a slot/chain reset or a completed
-    // non-target word can leak a required jamo out of the tray for good.
+    // Word Hunt deals exactly the target's jamo, but a required jamo can
+    // still leak for good: WordResetButton throws away the chain without
+    // restoring its consumed tiles, and refill is disabled in this mode.
     // Jamo the player is still holding (in the syllable slot or the word
     // chain) count as available; when the tray + held jamo can no longer
-    // form the target, the tray is re-dealt with the required jamo.
+    // form the target, the exact set is re-dealt.
     private void EnsureTargetBuildable()
     {
         if (Target == null || TileManager.Instance == null) return;
@@ -128,7 +143,7 @@ public class WordHuntController : MonoBehaviour
         }
 
         if (ContainsAll(required, available)) return;
-        TileManager.Instance.DealAllWithRequired(required);
+        TileManager.Instance.DealExact(required);
     }
 
     // Multiset check: every jamo in required (with duplicates) must be
@@ -154,6 +169,28 @@ public class WordHuntController : MonoBehaviour
 
         RoundsCompleted++;
         NextTarget();
+    }
+
+    // A wrong submission wipes the attempt and re-deals the same exact
+    // tile set, so the player retries the sequencing puzzle from scratch.
+    public void HandleWordRejected(string word)
+    {
+        ResetPuzzle();
+    }
+
+    // Chain first, slot second: ResetSlot returns tiles still held
+    // mid-syllable to the tray before the re-deal overwrites everything.
+    private void ResetPuzzle()
+    {
+        if (Target == null) return;
+
+        if (_builder != null) _builder.ClearChain();
+        if (_syllableBuilder == null)
+            _syllableBuilder = FindAnyObjectByType<SyllableBuilderUI>();
+        if (_syllableBuilder != null) _syllableBuilder.ResetSlot();
+
+        if (TileManager.Instance != null)
+            TileManager.Instance.DealExact(RequiredJamoFor(Target.word));
     }
 
     private void UpdateClue()
