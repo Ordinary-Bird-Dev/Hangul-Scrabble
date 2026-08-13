@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 46f727b448582aa4ca2d7a0cfa6cd3f2
+guid: a1efbf89d0c857a4dacf6a0e3b4d89c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1925051069363800164
-    second: sitting_smiley_0
+      213: 7174411772222594171
+    second: monkey_sitting_falling_asleep_0
   - first:
-      213: -460299183097403110
-    second: sitting_smiley_1
+      213: 6357591858647963211
+    second: monkey_sitting_falling_asleep_1
   - first:
-      213: 8953868432310419117
-    second: sitting_smiley_2
+      213: 1153711307965687743
+    second: monkey_sitting_falling_asleep_2
   - first:
-      213: 1058239395274783080
-    second: sitting_smiley_3
+      213: 6150013541658611309
+    second: monkey_sitting_falling_asleep_3
   - first:
-      213: 8399981655619303944
-    second: sitting_smiley_4
+      213: -1873663958150541810
+    second: monkey_sitting_falling_asleep_4
+  - first:
+      213: -7448708589108535716
+    second: monkey_sitting_falling_asleep_5
+  - first:
+      213: -7064891692029159924
+    second: monkey_sitting_falling_asleep_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -151,13 +157,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sitting_smiley_0
+      name: monkey_sitting_falling_asleep_0
       rect:
         serializedVersion: 2
-        x: 107
+        x: 108
         y: 4
-        width: 83
-        height: 97
+        width: 78
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c97b5147048d845e0800000000000000
-      internalID: -1925051069363800164
+      spriteID: b7c55b3ce71a09360800000000000000
+      internalID: 7174411772222594171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_smiley_1
+      name: monkey_sitting_falling_asleep_1
       rect:
         serializedVersion: 2
-        x: 410
+        x: 413
         y: 4
-        width: 84
-        height: 97
+        width: 77
+        height: 108
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,19 +194,63 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a19a31de450bc99f0800000000000000
-      internalID: -460299183097403110
+      spriteID: b4690a98c14ba3850800000000000000
+      internalID: 6357591858647963211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_smiley_2
+      name: monkey_sitting_falling_asleep_2
       rect:
         serializedVersion: 2
-        x: 714
+        x: 716
         y: 4
-        width: 84
+        width: 78
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb765ac625ec20010800000000000000
+      internalID: 1153711307965687743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_sitting_falling_asleep_3
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 4
+        width: 148
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e47626bbc395550800000000000000
+      internalID: 6150013541658611309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_sitting_falling_asleep_4
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 4
+        width: 92
         height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -210,20 +260,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dae327946e7824c70800000000000000
-      internalID: 8953868432310419117
+      spriteID: e0e0cf1ae886ff5e0800000000000000
+      internalID: -1873663958150541810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_smiley_3
+      name: monkey_sitting_falling_asleep_5
       rect:
         serializedVersion: 2
-        x: 1018
+        x: 1621
         y: 4
-        width: 85
-        height: 97
+        width: 93
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +282,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8697daa8f1f9fae00800000000000000
-      internalID: 1058239395274783080
+      spriteID: c5ed8cec00fd0a890800000000000000
+      internalID: -7448708589108535716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_smiley_4
+      name: monkey_sitting_falling_asleep_6
       rect:
         serializedVersion: 2
-        x: 1322
+        x: 1925
         y: 4
-        width: 85
-        height: 99
+        width: 93
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,8 +304,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80a7cfe8fcab29470800000000000000
-      internalID: 8399981655619303944
+      spriteID: c065effff6674fd90800000000000000
+      internalID: -7064891692029159924
       vertices: []
       indices: 
       edges: []
@@ -274,11 +324,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sitting_smiley_0: -1925051069363800164
-      sitting_smiley_1: -460299183097403110
-      sitting_smiley_2: 8953868432310419117
-      sitting_smiley_3: 1058239395274783080
-      sitting_smiley_4: 8399981655619303944
+      monkey_sitting_falling_asleep_0: 7174411772222594171
+      monkey_sitting_falling_asleep_1: 6357591858647963211
+      monkey_sitting_falling_asleep_2: 1153711307965687743
+      monkey_sitting_falling_asleep_3: 6150013541658611309
+      monkey_sitting_falling_asleep_4: -1873663958150541810
+      monkey_sitting_falling_asleep_5: -7448708589108535716
+      monkey_sitting_falling_asleep_6: -7064891692029159924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

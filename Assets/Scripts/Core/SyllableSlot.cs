@@ -80,6 +80,33 @@ public class SyllableSlot : MonoBehaviour
         return true;
     }
 
+    public bool TryRemoveJong()
+    {
+        if (State != SlotState.Complete) return false;
+        _jong = "";
+        State = SlotState.ChoJungPlaced;
+        UpdatePreview();
+        return true;
+    }
+
+    public bool TryRemoveJung()
+    {
+        if (State != SlotState.ChoJungPlaced) return false;
+        _jung = "";
+        CurrentSyllable = null;
+        State = SlotState.ChoPlaced;
+        return true;
+    }
+
+    public bool TryRemoveCho()
+    {
+        if (State != SlotState.ChoPlaced) return false;
+        _cho = "";
+        CurrentSyllable = null;
+        State = SlotState.Empty;
+        return true;
+    }
+
     public bool TryComplete()
     {
         if (State != SlotState.ChoJungPlaced)

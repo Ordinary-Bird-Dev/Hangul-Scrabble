@@ -60,19 +60,30 @@ public class WordBuilder : MonoBehaviour
         if (_syllableBuilder != null)
             _syllableBuilder.SyllableConfirmed += AppendSyllable;
 
+        // Name-based lookups fail loudly: GameObject.Find cannot see
+        // inactive objects, so a deactivated button silently unwires — an
+        // inactive WordConfirmButton once masked a dead confirm for weeks.
         if (_wordText == null)
         {
             GameObject wordTextGo = GameObject.Find("WordText");
             if (wordTextGo != null) _wordText = wordTextGo.GetComponent<TMP_Text>();
         }
+        if (_wordText == null)
+            Debug.LogWarning("WordBuilder: WordText not found (or inactive) — the word bar display is disabled.");
 
         if (_wordText != null) _wordTextColor = _wordText.color;
 
         if (_wordConfirmButton == null) _wordConfirmButton = FindButton("WordConfirmButton");
-        if (_wordConfirmButton != null) _wordConfirmButton.onClick.AddListener(OnWordConfirmPressed);
+        if (_wordConfirmButton != null)
+            _wordConfirmButton.onClick.AddListener(OnWordConfirmPressed);
+        else
+            Debug.LogWarning("WordBuilder: WordConfirmButton not found (or inactive) — word confirm is disabled.");
 
         if (_wordResetButton == null) _wordResetButton = FindButton("WordResetButton");
-        if (_wordResetButton != null) _wordResetButton.onClick.AddListener(ResetChain);
+        if (_wordResetButton != null)
+            _wordResetButton.onClick.AddListener(ResetChain);
+        else
+            Debug.LogWarning("WordBuilder: WordResetButton not found (or inactive) — word reset is disabled.");
 
         if (_meaningCard == null)
         {
@@ -86,7 +97,10 @@ public class WordBuilder : MonoBehaviour
         }
 
         GameObject mascot = GameObject.Find("MascotImage");
-        if (mascot != null) _mascotAnimator = mascot.GetComponent<Animator>();
+        if (mascot != null)
+            _mascotAnimator = mascot.GetComponent<Animator>();
+        else
+            Debug.LogWarning("WordBuilder: MascotImage not found (or inactive) — celebrate/wrong animations are disabled.");
 
         _initialized = true;
         UpdateWordText();

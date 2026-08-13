@@ -2,9 +2,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Runtime wiring for Classic Mode: creates the controller objects each
-// scene needs so the scenes stay plain layout wireframes. If a scene
-// already contains a controller (added in the editor), nothing is added.
+// Runtime wiring: GameScene's controller stack normally comes from
+// Resources/GameController.prefab, instantiated here at scene load (a
+// controller authored into the scene in the editor is respected instead).
+// Mode-specific components — WordJournal for Zen, WordHuntController for
+// Word Hunt — are attached to that controller afterwards, on every load,
+// so they follow the mode chosen in Settings regardless of where the
+// controller came from. Result/Setting scenes get their controllers
+// spawned here too; scene objects are resolved with GameObject.Find.
 public static class SceneBootstrap
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -33,11 +38,18 @@ public static class SceneBootstrap
 
     private static void SetupGameScene()
     {
-        if (Object.FindAnyObjectByType<GameManager>() == null)
+        // Resolve the controller object first: found in the scene, or
+        // instantiated from the prefab, or built bare as a last resort.
+        GameManager existing = Object.FindAnyObjectByType<GameManager>();
+        GameObject controller;
+
+        if (existing != null)
+        {
+            controller = existing.gameObject;
+        }
+        else
         {
             GameObject prefab = Resources.Load<GameObject>("GameController");
-            GameObject controller;
-
             if (prefab != null)
             {
                 controller = Object.Instantiate(prefab);
@@ -52,12 +64,15 @@ public static class SceneBootstrap
                 controller.AddComponent<GameManager>();
                 controller.AddComponent<AudioManager>();
             }
-
-            if (GameSettings.Mode == GameMode.Zen)
-                controller.AddComponent<WordJournal>();
-            else if (GameSettings.Mode == GameMode.WordHunt)
-                controller.AddComponent<WordHuntController>();
         }
+
+        // Mode components must attach even when the controller already
+        // existed — a scene-authored controller once swallowed them and
+        // silently disabled Zen's journal and Word Hunt entirely.
+        if (GameSettings.Mode == GameMode.Zen && controller.GetComponent<WordJournal>() == null)
+            controller.AddComponent<WordJournal>();
+        else if (GameSettings.Mode == GameMode.WordHunt && controller.GetComponent<WordHuntController>() == null)
+            controller.AddComponent<WordHuntController>();
 
         // SyllableBuilderUI is deliberately not bundled with GameController:
         // it belongs on the scene's SyllableBuilder object with its
@@ -84,6 +99,9 @@ public static class SceneBootstrap
     {
         GameObject go = GameObject.Find(name);
         Button button = go != null ? go.GetComponent<Button>() : null;
-        if (button != null) button.onClick.AddListener(action);
+        if (button != null)
+            button.onClick.AddListener(action);
+        else
+            Debug.LogWarning($"SceneBootstrap: {name} not found (or inactive) — button is not wired.");
     }
 }

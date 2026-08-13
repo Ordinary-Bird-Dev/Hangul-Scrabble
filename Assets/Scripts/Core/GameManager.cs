@@ -203,12 +203,18 @@ public class GameManager : MonoBehaviour
     private void ResolveTopBarUI()
     {
         GameObject topBar = GameObject.Find("TopBar");
+        if (topBar == null)
+            Debug.LogWarning("GameManager: TopBar not found (or inactive) — timer/score labels cannot be created if the scene lacks them.");
 
         GameObject progressGo = GameObject.Find("ProgressBar");
         if (progressGo != null)
         {
             _progressScrollbar = progressGo.GetComponentInChildren<Scrollbar>(true);
             _progressSlider = progressGo.GetComponentInChildren<Slider>(true);
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: ProgressBar not found (or inactive) — the time gauge is disabled.");
         }
 
         if (_timerText == null)

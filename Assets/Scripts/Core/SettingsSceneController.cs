@@ -29,6 +29,8 @@ public class SettingsSceneController : MonoBehaviour
         Button backButton = back != null ? back.GetComponent<Button>() : null;
         if (backButton != null)
             backButton.onClick.AddListener(() => SceneManager.LoadScene("GameScene"));
+        else
+            Debug.LogWarning("SettingsSceneController: BackButton not found (or inactive) — back navigation is disabled.");
 
         BuildModeSelect();
     }
@@ -114,6 +116,9 @@ public class SettingsSceneController : MonoBehaviour
     private static Toggle FindToggle(string name)
     {
         GameObject go = GameObject.Find(name);
-        return go != null ? go.GetComponent<Toggle>() : null;
+        Toggle toggle = go != null ? go.GetComponent<Toggle>() : null;
+        if (toggle == null)
+            Debug.LogWarning($"SettingsSceneController: {name} not found (or inactive) — setting toggle is not wired.");
+        return toggle;
     }
 }

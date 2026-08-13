@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: dbe245dd93608a04ba8e4435130b31b5
+guid: d81d480a69e14cc48b5690ddf9769475
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8761264582202749459
-    second: sitting_frowny_2_0
+      213: -2433443816099196007
+    second: monkey_sitting_frowny_2_0
   - first:
-      213: -2456065057667836469
-    second: sitting_frowny_2_1
+      213: 5377779389917582338
+    second: monkey_sitting_frowny_2_1
   - first:
-      213: 3800974921062467122
-    second: sitting_frowny_2_2
+      213: 5979812768284828959
+    second: monkey_sitting_frowny_2_2
   - first:
-      213: -3487892570701047578
-    second: sitting_frowny_2_3
+      213: 8817448264467043339
+    second: monkey_sitting_frowny_2_3
   - first:
-      213: -6063575064606775128
-    second: sitting_frowny_2_4
+      213: -642357199787813244
+    second: monkey_sitting_frowny_2_4
   - first:
-      213: 5655200682519958972
-    second: sitting_frowny_2_5
+      213: -3894194368716138543
+    second: monkey_sitting_frowny_2_5
   - first:
-      213: 6819628460755042539
-    second: sitting_frowny_2_6
+      213: -5601291132468519424
+    second: monkey_sitting_frowny_2_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -157,12 +157,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sitting_frowny_2_0
+      name: monkey_sitting_frowny_2_0
       rect:
         serializedVersion: 2
-        x: 104
+        x: 105
         y: 4
-        width: 89
+        width: 87
         height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -172,19 +172,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ded089a184cb96680800000000000000
-      internalID: -8761264582202749459
+      spriteID: 99359800ebbaa3ed0800000000000000
+      internalID: -2433443816099196007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_1
+      name: monkey_sitting_frowny_2_1
       rect:
         serializedVersion: 2
-        x: 412
+        x: 413
         y: 4
-        width: 82
+        width: 81
         height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -194,19 +194,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc59574c7dd4aedd0800000000000000
-      internalID: -2456065057667836469
+      spriteID: 2045478ccd5b1aa40800000000000000
+      internalID: 5377779389917582338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_2
+      name: monkey_sitting_frowny_2_2
       rect:
         serializedVersion: 2
-        x: 714
+        x: 715
         y: 4
-        width: 83
+        width: 82
         height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 236c8126d86cfb430800000000000000
-      internalID: 3800974921062467122
+      spriteID: f1566f4c7009cf250800000000000000
+      internalID: 5979812768284828959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_3
+      name: monkey_sitting_frowny_2_3
       rect:
         serializedVersion: 2
         x: 1017
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e8d3a4cf24889fc0800000000000000
-      internalID: -3487892570701047578
+      spriteID: b0451fcca7edd5a70800000000000000
+      internalID: 8817448264467043339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_4
+      name: monkey_sitting_frowny_2_4
       rect:
         serializedVersion: 2
         x: 1322
@@ -260,14 +260,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a8623dda9ad9dba0800000000000000
-      internalID: -6063575064606775128
+      spriteID: 4869bb7b783e517f0800000000000000
+      internalID: -642357199787813244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_5
+      name: monkey_sitting_frowny_2_5
       rect:
         serializedVersion: 2
         x: 1625
@@ -282,19 +282,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb51627ee0f4b7e40800000000000000
-      internalID: 5655200682519958972
+      spriteID: 1d7195e9ada05f9c0800000000000000
+      internalID: -3894194368716138543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_2_6
+      name: monkey_sitting_frowny_2_6
       rect:
         serializedVersion: 2
         x: 1931
         y: 4
-        width: 83
+        width: 82
         height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -304,8 +304,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be0c27ff3ff24ae50800000000000000
-      internalID: 6819628460755042539
+      spriteID: 00e1ba554673442b0800000000000000
+      internalID: -5601291132468519424
       vertices: []
       indices: 
       edges: []
@@ -324,13 +324,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sitting_frowny_2_0: -8761264582202749459
-      sitting_frowny_2_1: -2456065057667836469
-      sitting_frowny_2_2: 3800974921062467122
-      sitting_frowny_2_3: -3487892570701047578
-      sitting_frowny_2_4: -6063575064606775128
-      sitting_frowny_2_5: 5655200682519958972
-      sitting_frowny_2_6: 6819628460755042539
+      monkey_sitting_frowny_2_0: -2433443816099196007
+      monkey_sitting_frowny_2_1: 5377779389917582338
+      monkey_sitting_frowny_2_2: 5979812768284828959
+      monkey_sitting_frowny_2_3: 8817448264467043339
+      monkey_sitting_frowny_2_4: -642357199787813244
+      monkey_sitting_frowny_2_5: -3894194368716138543
+      monkey_sitting_frowny_2_6: -5601291132468519424
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

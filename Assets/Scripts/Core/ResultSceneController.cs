@@ -84,6 +84,8 @@ public class ResultSceneController : MonoBehaviour
     private void TriggerMascotWin()
     {
         GameObject mascot = GameObject.Find("MascotImage");
+        if (mascot == null)
+            Debug.LogWarning("ResultSceneController: MascotImage not found (or inactive) — win animation is disabled.");
         Animator animator = mascot != null ? mascot.GetComponent<Animator>() : null;
         if (animator != null && animator.runtimeAnimatorController != null)
             animator.SetTrigger(MascotWinTrigger);

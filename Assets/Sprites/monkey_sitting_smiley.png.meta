@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: 78b89ea8699af6d48a34f69ccf2e80ea
+guid: a9341faaa51d9524d81d83f0d4f1f04d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4504047602671147887
-    second: sitting_waking_up_2_0
+      213: -6692085774982823937
+    second: monkey_sitting_smiley_0
   - first:
-      213: 5805446694384002070
-    second: sitting_waking_up_2_1
+      213: 2111006391559277963
+    second: monkey_sitting_smiley_1
   - first:
-      213: -6114398896388355375
-    second: sitting_waking_up_2_2
+      213: 8714013515286190855
+    second: monkey_sitting_smiley_2
   - first:
-      213: -8009946551692882823
-    second: sitting_waking_up_2_3
+      213: -4803417014220298923
+    second: monkey_sitting_smiley_3
   - first:
-      213: -4323573039329087307
-    second: sitting_waking_up_2_4
-  - first:
-      213: 7756428734730093453
-    second: sitting_waking_up_2_5
-  - first:
-      213: 96183748868298048
-    second: sitting_waking_up_2_6
-  - first:
-      213: -4355495834193921991
-    second: sitting_waking_up_2_7
+      213: 8418931754701972093
+    second: monkey_sitting_smiley_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -160,13 +151,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sitting_waking_up_2_0
+      name: monkey_sitting_smiley_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 9
-        width: 87
-        height: 100
+        x: 107
+        y: 4
+        width: 83
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +166,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 194265f91986e71c0800000000000000
-      internalID: -4504047602671147887
+      spriteID: fff34bf917fe023a0800000000000000
+      internalID: -6692085774982823937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_waking_up_2_1
+      name: monkey_sitting_smiley_1
       rect:
         serializedVersion: 2
         x: 410
         y: 4
         width: 83
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d4877e02dcb4d10800000000000000
+      internalID: 2111006391559277963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_sitting_smiley_2
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 4
+        width: 84
         height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -197,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 614693d8207119050800000000000000
-      internalID: 5805446694384002070
+      spriteID: 70b16929f156ee870800000000000000
+      internalID: 8714013515286190855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_waking_up_2_2
+      name: monkey_sitting_smiley_3
       rect:
         serializedVersion: 2
-        x: 713
+        x: 1018
         y: 4
         width: 84
-        height: 101
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,64 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1da4bb5699a452ba0800000000000000
-      internalID: -6114398896388355375
+      spriteID: 555e457dca5d65db0800000000000000
+      internalID: -4803417014220298923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_waking_up_2_3
-      rect:
-        serializedVersion: 2
-        x: 1012
-        y: 5
-        width: 101
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97c0b7cbc04f6d090800000000000000
-      internalID: -8009946551692882823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sitting_waking_up_2_4
+      name: monkey_sitting_smiley_4
       rect:
         serializedVersion: 2
         x: 1322
         y: 4
-        width: 83
-        height: 102
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b0755e5a359ff3c0800000000000000
-      internalID: -4323573039329087307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sitting_waking_up_2_5
-      rect:
-        serializedVersion: 2
-        x: 1625
-        y: 4
         width: 84
-        height: 102
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,52 +254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d834833c6de54ab60800000000000000
-      internalID: 7756428734730093453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sitting_waking_up_2_6
-      rect:
-        serializedVersion: 2
-        x: 1928
-        y: 4
-        width: 85
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 045d5782c96b55100800000000000000
-      internalID: 96183748868298048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sitting_waking_up_2_7
-      rect:
-        serializedVersion: 2
-        x: 2233
-        y: 4
-        width: 84
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9387d2e7d9b2e83c0800000000000000
-      internalID: -4355495834193921991
+      spriteID: d72644353dd06d470800000000000000
+      internalID: 8418931754701972093
       vertices: []
       indices: 
       edges: []
@@ -349,14 +274,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sitting_waking_up_2_0: -4504047602671147887
-      sitting_waking_up_2_1: 5805446694384002070
-      sitting_waking_up_2_2: -6114398896388355375
-      sitting_waking_up_2_3: -8009946551692882823
-      sitting_waking_up_2_4: -4323573039329087307
-      sitting_waking_up_2_5: 7756428734730093453
-      sitting_waking_up_2_6: 96183748868298048
-      sitting_waking_up_2_7: -4355495834193921991
+      monkey_sitting_smiley_0: -6692085774982823937
+      monkey_sitting_smiley_1: 2111006391559277963
+      monkey_sitting_smiley_2: 8714013515286190855
+      monkey_sitting_smiley_3: -4803417014220298923
+      monkey_sitting_smiley_4: 8418931754701972093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

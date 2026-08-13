@@ -22,6 +22,16 @@ public class SyllableBuilderUI : MonoBehaviour
     private TMP_Text _jungPreview;
     private TMP_Text _jongPreview;
 
+    private struct PlacedTile
+    {
+        public JamoTile Tile;
+        public string Jamo;
+    }
+
+    private PlacedTile? _choPlaced;
+    private PlacedTile? _jungPlaced;
+    private PlacedTile? _jongPlaced;
+
     public SyllableSlot Slot { get; private set; }
 
     private bool _initialized;
@@ -73,21 +83,23 @@ public class SyllableBuilderUI : MonoBehaviour
         UpdatePreviews();
     }
 
-    // TileSelectorButton handler: places the currently selected tile into
-    // whichever slot comes next (cho -> jung -> jong), so the player
-    // doesn't need to tap the specific slot box directly.
+    // Places the currently selected tile into whichever slot comes next
+    // (cho -> jung -> jong), so the player doesn't need to tap the
+    // specific slot box directly. Not wired to any button right now —
+    // kept for a future tile-place button. (The scene object once named
+    // TileSelectorButton was really the word confirm button and has been
+    // renamed WordConfirmButton.)
     public void PlaceSelectedTile()
     {
-        // Loud no-ops: this is the TileSelectorButton's only handler, so a
-        // press that does nothing should say why in the Console.
+        // Loud no-ops: a press that does nothing should say why.
         if (JamoTile.GetSelectedTile() == null)
         {
-            Debug.LogWarning("SyllableBuilderUI: TileSelectorButton pressed with no tile selected.");
+            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called with no tile selected.");
             return;
         }
         if (Slot.State == SyllableSlot.SlotState.Complete)
         {
-            Debug.LogWarning("SyllableBuilderUI: TileSelectorButton pressed but the syllable is already complete — confirm or reset it first.");
+            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called but the syllable is already complete — confirm or reset it first.");
             return;
         }
 
@@ -104,6 +116,12 @@ public class SyllableBuilderUI : MonoBehaviour
 
     public void OnSlotTapped(SlotRole role)
     {
+        if (IsRoleFilled(role))
+        {
+            RetractRole(role);
+            return;
+        }
+
         JamoTile tile = JamoTile.GetSelectedTile();
         if (tile == null) return;
 
@@ -126,15 +144,70 @@ public class SyllableBuilderUI : MonoBehaviour
 
         if (!placed) return;
 
+        var placedTile = new PlacedTile { Tile = tile, Jamo = tile.Jamo };
+        switch (role)
+        {
+            case SlotRole.Cho: _choPlaced = placedTile; break;
+            case SlotRole.Jung: _jungPlaced = placedTile; break;
+            case SlotRole.Jong: _jongPlaced = placedTile; break;
+        }
+
         tile.Consume();
         UpdatePreviews();
         PulseSlot(role);
 
-        // With auto-confirm on, a fully completed syllable (jongseong placed)
-        // advances immediately. A cho+jung syllable still waits for the
-        // ConfirmButton, since the player may want to add a jongseong.
         if (GameSettings.AutoConfirm && Slot.State == SyllableSlot.SlotState.Complete)
             ConfirmSyllable();
+    }
+
+    private bool IsRoleFilled(SlotRole role)
+    {
+        switch (role)
+        {
+            case SlotRole.Cho: return Slot.Cho != "";
+            case SlotRole.Jung: return Slot.Jung != "";
+            case SlotRole.Jong: return Slot.Jong != "";
+            default: return false;
+        }
+    }
+
+    // Only the topmost placed jamo can be retracted — SyllableSlot's
+    // TryRemove* methods enforce that same ordering, so an out-of-order
+    // tap (e.g. Cho while Jong is still placed) is just a silent no-op.
+    private void RetractRole(SlotRole role)
+    {
+        bool removed;
+        PlacedTile? placed;
+        switch (role)
+        {
+            case SlotRole.Jong:
+                removed = Slot.TryRemoveJong();
+                placed = _jongPlaced;
+                _jongPlaced = null;
+                break;
+            case SlotRole.Jung:
+                removed = Slot.TryRemoveJung();
+                placed = _jungPlaced;
+                _jungPlaced = null;
+                break;
+            case SlotRole.Cho:
+                removed = Slot.TryRemoveCho();
+                placed = _choPlaced;
+                _choPlaced = null;
+                break;
+            default:
+                removed = false;
+                placed = null;
+                break;
+        }
+
+        if (!removed) return;
+
+        if (placed.HasValue && placed.Value.Tile != null)
+            placed.Value.Tile.SetJamo(placed.Value.Jamo);
+
+        UpdatePreviews();
+        PulseSlot(role);
     }
 
     // ConfirmButton handler: completes a cho+jung syllable if needed,
@@ -148,6 +221,9 @@ public class SyllableBuilderUI : MonoBehaviour
 
         string syllable = Slot.CurrentSyllable;
         Slot.Reset();
+        _choPlaced = null;
+        _jungPlaced = null;
+        _jongPlaced = null;
         UpdatePreviews();
         AudioManager.TryPlaySyllableComplete();
         SyllableConfirmed?.Invoke(syllable);
@@ -155,8 +231,18 @@ public class SyllableBuilderUI : MonoBehaviour
 
     public void ResetSlot()
     {
+        RestorePlaced(ref _choPlaced);
+        RestorePlaced(ref _jungPlaced);
+        RestorePlaced(ref _jongPlaced);
         Slot.Reset();
         UpdatePreviews();
+    }
+
+    private void RestorePlaced(ref PlacedTile? placed)
+    {
+        if (placed.HasValue && placed.Value.Tile != null)
+            placed.Value.Tile.SetJamo(placed.Value.Jamo);
+        placed = null;
     }
 
     public void UpdatePreviews()

@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 8975ff9f08cb1db45a2ccc259e47f0dd
+guid: b37d8b982f28856468d5e7f829e9d25f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5400101728750049648
-    second: sitting_frowny_1_0
+      213: 6164110316761477909
+    second: monkey_vine_swing_sheet_1 (2)_0
   - first:
-      213: 5708618220889191868
-    second: sitting_frowny_1_1
+      213: -1572898765261838331
+    second: monkey_vine_swing_sheet_1 (2)_1
   - first:
-      213: -2958801013124689748
-    second: sitting_frowny_1_2
+      213: 7349428919711120358
+    second: monkey_vine_swing_sheet_1 (2)_2
   - first:
-      213: 5557356520843754914
-    second: sitting_frowny_1_3
+      213: -4593031479192557054
+    second: monkey_vine_swing_sheet_1 (2)_3
   - first:
-      213: 7755046902478342138
-    second: sitting_frowny_1_4
+      213: 2181966135574044505
+    second: monkey_vine_swing_sheet_1 (2)_4
+  - first:
+      213: -4498391640886974673
+    second: monkey_vine_swing_sheet_1 (2)_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -151,13 +154,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sitting_frowny_1_0
+      name: monkey_vine_swing_sheet_1 (2)_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 4
-        width: 86
-        height: 100
+        x: 20
+        y: 26
+        width: 80
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0799e1d49e301fa40800000000000000
-      internalID: 5400101728750049648
+      spriteID: 51373ea9ca15b8550800000000000000
+      internalID: 6164110316761477909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_1_1
+      name: monkey_vine_swing_sheet_1 (2)_1
       rect:
         serializedVersion: 2
-        x: 409
-        y: 4
+        x: 138
+        y: 22
         width: 87
-        height: 99
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb53c6eb606193f40800000000000000
-      internalID: 5708618220889191868
+      spriteID: 508eae418e0fb2ae0800000000000000
+      internalID: -1572898765261838331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_1_2
+      name: monkey_vine_swing_sheet_1 (2)_2
       rect:
         serializedVersion: 2
-        x: 713
-        y: 4
-        width: 87
-        height: 100
+        x: 260
+        y: 22
+        width: 84
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca013aba72a30f6d0800000000000000
-      internalID: -2958801013124689748
+      spriteID: 6eb3d5dd9aa6ef560800000000000000
+      internalID: 7349428919711120358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_1_3
+      name: monkey_vine_swing_sheet_1 (2)_3
       rect:
         serializedVersion: 2
-        x: 1017
-        y: 4
-        width: 86
-        height: 99
+        x: 378
+        y: 9
+        width: 90
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2adb713cf42bf1d40800000000000000
-      internalID: 5557356520843754914
+      spriteID: 20a6a8064364240c0800000000000000
+      internalID: -4593031479192557054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitting_frowny_1_4
+      name: monkey_vine_swing_sheet_1 (2)_4
       rect:
         serializedVersion: 2
-        x: 1319
-        y: 4
-        width: 95
-        height: 97
+        x: 496
+        y: 7
+        width: 97
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,8 +257,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: af707bed1167f9b60800000000000000
-      internalID: 7755046902478342138
+      spriteID: 95f92d6c3a6e74e10800000000000000
+      internalID: 2181966135574044505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_vine_swing_sheet_1 (2)_5
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 15
+        width: 107
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f276858d2a08291c0800000000000000
+      internalID: -4498391640886974673
       vertices: []
       indices: 
       edges: []
@@ -274,11 +299,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sitting_frowny_1_0: 5400101728750049648
-      sitting_frowny_1_1: 5708618220889191868
-      sitting_frowny_1_2: -2958801013124689748
-      sitting_frowny_1_3: 5557356520843754914
-      sitting_frowny_1_4: 7755046902478342138
+      monkey_vine_swing_sheet_1 (2)_0: 6164110316761477909
+      monkey_vine_swing_sheet_1 (2)_1: -1572898765261838331
+      monkey_vine_swing_sheet_1 (2)_2: 7349428919711120358
+      monkey_vine_swing_sheet_1 (2)_3: -4593031479192557054
+      monkey_vine_swing_sheet_1 (2)_4: 2181966135574044505
+      monkey_vine_swing_sheet_1 (2)_5: -4498391640886974673
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

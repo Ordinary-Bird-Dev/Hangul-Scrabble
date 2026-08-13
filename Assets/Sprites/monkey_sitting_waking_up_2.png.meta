@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 830741c3fcc47ee4fab8ad9de7646b15
+guid: d75fc94ee4c75894996c5243429be426
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2680742517123341003
-    second: monkey_vine_swing_sheet_1_0
+      213: -4627838494567770508
+    second: monkey_sitting_waking_up_2_0
   - first:
-      213: 2115398372284298023
-    second: monkey_vine_swing_sheet_1_1
+      213: 8784189213564567547
+    second: monkey_sitting_waking_up_2_1
   - first:
-      213: -4639836168317803855
-    second: monkey_vine_swing_sheet_1_2
+      213: -3703475381287918285
+    second: monkey_sitting_waking_up_2_2
   - first:
-      213: 161822012249413372
-    second: monkey_vine_swing_sheet_1_3
+      213: 2288534665759934248
+    second: monkey_sitting_waking_up_2_3
   - first:
-      213: 1696058081822621536
-    second: monkey_vine_swing_sheet_1_4
+      213: 6050085578083332030
+    second: monkey_sitting_waking_up_2_4
   - first:
-      213: -6640974270014088140
-    second: monkey_vine_swing_sheet_1_5
+      213: -3287084811510863696
+    second: monkey_sitting_waking_up_2_5
+  - first:
+      213: -4170373390522107782
+    second: monkey_sitting_waking_up_2_6
+  - first:
+      213: 1536861686573300131
+    second: monkey_sitting_waking_up_2_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -154,13 +160,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_0
+      name: monkey_sitting_waking_up_2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 26
-        width: 80
-        height: 93
+        x: 104
+        y: 9
+        width: 86
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bca5c6bbd19e33520800000000000000
-      internalID: 2680742517123341003
+      spriteID: 476d865986d96cfb0800000000000000
+      internalID: -4627838494567770508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_1
+      name: monkey_sitting_waking_up_2_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 22
-        width: 87
-        height: 101
+        x: 410
+        y: 4
+        width: 83
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,18 +197,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 723f17a9c976b5d10800000000000000
-      internalID: 2115398372284298023
+      spriteID: bff75529c85b7e970800000000000000
+      internalID: 8784189213564567547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_2
+      name: monkey_sitting_waking_up_2_2
       rect:
         serializedVersion: 2
-        x: 260
-        y: 22
+        x: 713
+        y: 4
         width: 84
         height: 101
       alignment: 0
@@ -213,20 +219,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b2686b769dfb9fb0800000000000000
-      internalID: -4639836168317803855
+      spriteID: 335ede733cc9a9cc0800000000000000
+      internalID: -3703475381287918285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_3
+      name: monkey_sitting_waking_up_2_3
       rect:
         serializedVersion: 2
-        x: 378
-        y: 9
-        width: 90
-        height: 126
+        x: 1013
+        y: 11
+        width: 85
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +241,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf617f44348ee3200800000000000000
-      internalID: 161822012249413372
+      spriteID: 827c9c0472282cf10800000000000000
+      internalID: 2288534665759934248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_4
+      name: monkey_sitting_waking_up_2_4
       rect:
         serializedVersion: 2
-        x: 496
-        y: 7
-        width: 97
-        height: 130
+        x: 1322
+        y: 4
+        width: 83
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06fb77dd6db998710800000000000000
-      internalID: 1696058081822621536
+      spriteID: ebfee5e47c836f350800000000000000
+      internalID: 6050085578083332030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_vine_swing_sheet_1_5
+      name: monkey_sitting_waking_up_2_5
       rect:
         serializedVersion: 2
-        x: 612
-        y: 15
-        width: 107
-        height: 114
+        x: 1625
+        y: 4
+        width: 84
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +285,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43c1d49361586d3a0800000000000000
-      internalID: -6640974270014088140
+      spriteID: 0b8205797cde162d0800000000000000
+      internalID: -3287084811510863696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_sitting_waking_up_2_6
+      rect:
+        serializedVersion: 2
+        x: 1928
+        y: 4
+        width: 85
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7830353f7bdf16c0800000000000000
+      internalID: -4170373390522107782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_sitting_waking_up_2_7
+      rect:
+        serializedVersion: 2
+        x: 2233
+        y: 4
+        width: 84
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9fb11bf87045510800000000000000
+      internalID: 1536861686573300131
       vertices: []
       indices: 
       edges: []
@@ -299,12 +349,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      monkey_vine_swing_sheet_1_0: 2680742517123341003
-      monkey_vine_swing_sheet_1_1: 2115398372284298023
-      monkey_vine_swing_sheet_1_2: -4639836168317803855
-      monkey_vine_swing_sheet_1_3: 161822012249413372
-      monkey_vine_swing_sheet_1_4: 1696058081822621536
-      monkey_vine_swing_sheet_1_5: -6640974270014088140
+      monkey_sitting_waking_up_2_0: -4627838494567770508
+      monkey_sitting_waking_up_2_1: 8784189213564567547
+      monkey_sitting_waking_up_2_2: -3703475381287918285
+      monkey_sitting_waking_up_2_3: 2288534665759934248
+      monkey_sitting_waking_up_2_4: 6050085578083332030
+      monkey_sitting_waking_up_2_5: -3287084811510863696
+      monkey_sitting_waking_up_2_6: -4170373390522107782
+      monkey_sitting_waking_up_2_7: 1536861686573300131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
