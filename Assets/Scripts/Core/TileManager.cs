@@ -14,6 +14,12 @@ public class TileManager : MonoBehaviour
     private TileDealer _dealer = new TileDealer();
     private bool _initialized;
 
+    // GameSettings.IsGuided reads PlayerPrefs, and RefillIfNeeded runs every
+    // LateUpdate. Caching is safe because the mode is fixed for the scene's
+    // lifetime — SettingScene writes it, and it takes effect on the next
+    // GameScene load, never mid-round.
+    private bool _guided;
+
     public IReadOnlyList<JamoTile> Tiles => _tiles;
 
     public int ActiveTileCount
@@ -73,6 +79,8 @@ public class TileManager : MonoBehaviour
     public void Initialize()
     {
         if (_initialized) return;
+
+        _guided = GameSettings.IsGuided;
 
         // The first DealAll validates against the word list; Load() is
         // idempotent and may already have run in WordBuilder/ClassicModeController.
@@ -234,7 +242,7 @@ public class TileManager : MonoBehaviour
         // Classic blanks most of the tray, so ActiveTileCount sits below
         // any threshold from the first deal — refilling here would
         // immediately bury the exact puzzle set under random tiles.
-        if (GameSettings.IsGuided) return;
+        if (_guided) return;
 
         if (ActiveTileCount >= _refillThreshold) return;
 
