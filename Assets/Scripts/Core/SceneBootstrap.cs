@@ -5,8 +5,8 @@ using UnityEngine.UI;
 // Runtime wiring: GameScene's controller stack normally comes from
 // Resources/GameController.prefab, instantiated here at scene load (a
 // controller authored into the scene in the editor is respected instead).
-// Mode-specific components — WordJournal for Zen, WordHuntController for
-// Word Hunt — are attached to that controller afterwards, on every load,
+// Mode-specific components — WordJournal for Zen, ClassicModeController
+// for Classic — are attached to that controller afterwards, on every load,
 // so they follow the mode chosen in Settings regardless of where the
 // controller came from. Result/Setting scenes get their controllers
 // spawned here too; scene objects are resolved with GameObject.Find.
@@ -68,11 +68,11 @@ public static class SceneBootstrap
 
         // Mode components must attach even when the controller already
         // existed — a scene-authored controller once swallowed them and
-        // silently disabled Zen's journal and Word Hunt entirely.
+        // silently disabled Zen's journal and Classic's guided puzzle entirely.
         if (GameSettings.Mode == GameMode.Zen && controller.GetComponent<WordJournal>() == null)
             controller.AddComponent<WordJournal>();
-        else if (GameSettings.Mode == GameMode.WordHunt && controller.GetComponent<WordHuntController>() == null)
-            controller.AddComponent<WordHuntController>();
+        else if (GameSettings.IsGuided && controller.GetComponent<ClassicModeController>() == null)
+            controller.AddComponent<ClassicModeController>();
 
         // SyllableBuilderUI is deliberately not bundled with GameController:
         // it belongs on the scene's SyllableBuilder object with its

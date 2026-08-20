@@ -62,7 +62,7 @@ public class TileDealer
     // Deals `count` replacement jamo chosen so that the whole tray
     // (replacements + surviving tiles) returns to the target consonant/
     // vowel split. Per-tile coin flips would let the tray drift vowel-
-    // starved under the immediate-refill modes (Zen, Word Hunt).
+    // starved under Zen, the one mode that refills on every consumed tile.
     public List<string> DealRefill(int count, int existingConsonants, int existingVowels)
     {
         int total = count + existingConsonants + existingVowels;

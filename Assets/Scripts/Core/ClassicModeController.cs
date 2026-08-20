@@ -3,11 +3,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Word Hunt Mode: an English meaning clue is shown and the player must
+// Classic Mode: an English meaning clue is shown and the player must
 // build the matching Korean word. The tray is dealt so the target word
 // is always buildable. One hint per word (romanization) costs 50 points.
 // The meaning card still appears via WordBuilder on success.
-public class WordHuntController : MonoBehaviour
+public class ClassicModeController : MonoBehaviour
 {
     public const int HintPenalty = 50;
 
@@ -121,7 +121,7 @@ public class WordHuntController : MonoBehaviour
         }
     }
 
-    // Word Hunt deals exactly the target's jamo, but a required jamo can
+    // Classic deals exactly the target's jamo, but a required jamo can
     // still leak for good: WordResetButton throws away the chain without
     // restoring its consumed tiles, and refill is disabled in this mode.
     // Jamo the player is still holding (in the syllable slot or the word
@@ -235,7 +235,7 @@ public class WordHuntController : MonoBehaviour
         TMP_Text donor = FindAnyObjectByType<TMP_Text>(FindObjectsInactive.Include);
         TMP_FontAsset font = donor != null ? donor.font : null;
 
-        var banner = new GameObject("WordHuntClue", typeof(RectTransform));
+        var banner = new GameObject("ClueBanner", typeof(RectTransform));
         banner.transform.SetParent(canvas.transform, false);
         var bannerRect = (RectTransform)banner.transform;
         bannerRect.anchorMin = new Vector2(0.5f, 1f);

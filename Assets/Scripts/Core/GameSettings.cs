@@ -1,5 +1,10 @@
 using UnityEngine;
 
+// The integers are persisted in PlayerPrefs and must stay put. The names
+// denote the CURRENT player-facing modes: Classic is the guided puzzle
+// (meaning clue + exact tile deal), Word Hunt is free-form building from
+// a random tray. These two labels were swapped in August 2026 — ask
+// GameSettings.IsGuided rather than comparing against a member.
 public enum GameMode
 {
     Classic = 0,
@@ -28,11 +33,19 @@ public static class GameSettings
         set { PlayerPrefs.SetInt(AutoConfirmKey, value ? 1 : 0); PlayerPrefs.Save(); }
     }
 
-    // Which game loop the next GameScene load runs: Classic (timed),
-    // Zen (no timer, word journal), or Word Hunt (meaning clues).
+    // Which game loop the next GameScene load runs: Classic (timed, guided
+    // by a meaning clue), Zen (no timer, word journal), or Word Hunt
+    // (timed, free-form building from a random tray).
     public static GameMode Mode
     {
         get => (GameMode)PlayerPrefs.GetInt(GameModeKey, 0);
         set { PlayerPrefs.SetInt(GameModeKey, (int)value); PlayerPrefs.Save(); }
     }
+
+    // The single definition of "guided mode": clue banner, hint button,
+    // exact tile deal, refill disabled, re-deal on a wrong answer. This is
+    // the ONLY place a mode is compared against a GameMode member — call
+    // sites ask this instead, so they cannot drift apart or be silently
+    // inverted the next time the player-facing labels move.
+    public static bool IsGuided => Mode == GameMode.Classic;
 }

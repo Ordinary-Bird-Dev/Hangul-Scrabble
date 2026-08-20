@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Pure scoring rules for Classic Mode:
+// Pure scoring rules, shared by every mode:
 //   2-syllable word = 100, 3-syllable = 200, 4+ = 350
 //   +50 per 받침 (jongseong) used
 //   x1.5 combo when two words land within 30 seconds

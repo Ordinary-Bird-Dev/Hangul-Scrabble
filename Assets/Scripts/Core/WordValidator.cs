@@ -117,12 +117,12 @@ public static class WordValidator
     }
 
     // All loaded entries (every sense of every word), for modes that pick
-    // target words (Word Hunt).
+    // target words (Classic).
     public static IReadOnlyCollection<WordEntry> AllEntries =>
         _allEntries != null ? (IReadOnlyCollection<WordEntry>)_allEntries : System.Array.Empty<WordEntry>();
 
     // Entries belonging to one word set — the hook for difficulty/DLC
-    // scoping of the Word Hunt target pool.
+    // scoping of the Classic target pool.
     public static IReadOnlyList<WordEntry> EntriesFor(string source)
     {
         if (_allEntries == null) return System.Array.Empty<WordEntry>();

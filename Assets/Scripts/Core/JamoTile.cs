@@ -91,7 +91,7 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         ApplyVisuals();
     }
 
-    // Word Hunt: blanks an unused tray slot. The tile keeps its place in
+    // Classic (guided): blanks an unused tray slot. The tile keeps its place in
     // the fixed 7x2 grid but renders greyed with no label and ignores taps.
     public void SetEmpty()
     {

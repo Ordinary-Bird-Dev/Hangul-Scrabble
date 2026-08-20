@@ -5,8 +5,18 @@ public class TileManagerTests : MonoBehaviour
 {
     private readonly List<GameObject> _spawned = new List<GameObject>();
 
+    // The tray tests below exercise free-form play (random deal + refill),
+    // which is Word Hunt since the Aug 2026 label swap. The mode is set
+    // explicitly because the ambient default is Classic, whose guided
+    // puzzle suppresses refill outright — leaving the refill assertions
+    // silently vacuous rather than failing.
+    private GameMode _originalMode;
+
     void Start()
     {
+        _originalMode = GameSettings.Mode;
+        GameSettings.Mode = GameMode.WordHunt;
+
         TestDealerProducesValidJamo();
         TestDealerBalancedHand();
         TestDealerDeterministicWithSeed();
@@ -17,6 +27,7 @@ public class TileManagerTests : MonoBehaviour
         TestManagerRefillRestoresBalance();
         TestManagerRefillsBelowThreshold();
         TestManagerNoRefillAtThreshold();
+        TestManagerGuidedModeSuppressesRefill();
         Cleanup();
         Debug.Log("All TileManager tests passed!");
     }
@@ -193,8 +204,28 @@ public class TileManagerTests : MonoBehaviour
             "Refill should not trigger while active tiles are at the threshold");
     }
 
+    // The guided-mode refill guard is the one guided behavior keyed off the
+    // mode rather than off ClassicModeController's presence, so it is the
+    // site that can silently desync from SceneBootstrap. Pin it.
+    void TestManagerGuidedModeSuppressesRefill()
+    {
+        GameSettings.Mode = GameMode.Classic;
+        TileManager manager = MakeManager(14, out _);
+
+        for (int i = 0; i < 9; i++)
+            manager.Tiles[i].Consume();
+        Assert(manager.ActiveTileCount == 5, "Nine consumed tiles should leave 5 active");
+
+        manager.RefillIfNeeded();
+        Assert(manager.ActiveTileCount == 5,
+            $"Guided mode must not refill over the exact puzzle set, got {manager.ActiveTileCount} active");
+
+        GameSettings.Mode = GameMode.WordHunt;
+    }
+
     void Cleanup()
     {
+        GameSettings.Mode = _originalMode;
         JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             Destroy(go);

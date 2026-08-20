@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 // Pure logic (no UnityEngine): decides whether a tray of jamo tiles can
 // build dictionary words. Used by TileManager to guarantee every fresh
-// deal has at least one buildable word, and by Word Hunt to keep its
+// deal has at least one buildable word, and by Classic to keep its
 // target reachable.
 public static class TrayValidator
 {
@@ -48,7 +48,7 @@ public static class TrayValidator
     }
 
     // True when every jamo is one the random dealer can produce — i.e.
-    // no compound finals, which exist only as Word Hunt required tiles.
+    // no compound finals, which exist only as Classic required tiles.
     public static bool AreAllJamoDealable(IReadOnlyList<string> jamos)
     {
         foreach (string jamo in jamos)

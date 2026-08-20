@@ -75,7 +75,7 @@ public class TileManager : MonoBehaviour
         if (_initialized) return;
 
         // The first DealAll validates against the word list; Load() is
-        // idempotent and may already have run in WordBuilder/WordHunt.
+        // idempotent and may already have run in WordBuilder/ClassicModeController.
         WordValidator.Load();
 
         if (_tileContainer == null)
@@ -109,7 +109,7 @@ public class TileManager : MonoBehaviour
         _initialized = true;
 
         // Zen wants tiles replaced the instant they're used, rather than
-        // waiting for a batch of several to be consumed first. Word Hunt
+        // waiting for a batch of several to be consumed first. Classic
         // never refills — it deals an exact puzzle set via DealExact.
         if (GameSettings.Mode == GameMode.Zen)
             _refillThreshold = _tiles.Count;
@@ -151,7 +151,7 @@ public class TileManager : MonoBehaviour
     }
 
     // Last-resort guarantee: overwrite random tray positions with the
-    // jamo of a randomly chosen dealable word (mirrors what Word Hunt
+    // jamo of a randomly chosen dealable word (mirrors what Classic
     // does for its target). Draws only from the dealer's RNG, so seeded
     // deals stay reproducible.
     private void InjectRandomWord(List<string> jamos, IReadOnlyCollection<WordEntry> entries)
@@ -179,7 +179,7 @@ public class TileManager : MonoBehaviour
             jamos[indices[i]] = chosen[i];
     }
 
-    // Deals a fresh hand guaranteed to contain the given jamo (Word Hunt:
+    // Deals a fresh hand guaranteed to contain the given jamo (Classic:
     // the target word must be buildable). Required jamo overwrite random
     // tray positions after the normal balanced deal.
     public void DealAllWithRequired(IReadOnlyList<string> requiredJamo)
@@ -200,7 +200,7 @@ public class TileManager : MonoBehaviour
             _tiles[indices[i]].SetJamo(requiredJamo[i]);
     }
 
-    // Word Hunt: deals exactly the given jamo, shuffled, and blanks every
+    // Classic (guided): deals exactly the given jamo, shuffled, and blanks every
     // remaining tile — the puzzle is sequencing the set, not searching a
     // full tray. Shuffles with UnityEngine.Random rather than the seeded
     // dealer, so these deals are not seed-reproducible.
@@ -231,10 +231,10 @@ public class TileManager : MonoBehaviour
     // split instead of drifting vowel-starved over many refills.
     public void RefillIfNeeded()
     {
-        // Word Hunt blanks most of the tray, so ActiveTileCount sits below
+        // Classic blanks most of the tray, so ActiveTileCount sits below
         // any threshold from the first deal — refilling here would
         // immediately bury the exact puzzle set under random tiles.
-        if (GameSettings.Mode == GameMode.WordHunt) return;
+        if (GameSettings.IsGuided) return;
 
         if (ActiveTileCount >= _refillThreshold) return;
 

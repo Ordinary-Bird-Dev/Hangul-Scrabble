@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Classic Mode round controller: 3-minute countdown in the TopBar,
-// scoring with combo multiplier, and transition to ResultScene.
+// Round controller for the timed modes (Classic and Word Hunt):
+// 3-minute countdown in the TopBar, scoring with the combo multiplier,
+// and transition to ResultScene. Zen runs without a countdown.
 public class GameManager : MonoBehaviour
 {
     public const float RoundSeconds = 180f;
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
         return points;
     }
 
-    // Direct score adjustment (e.g. Word Hunt hint penalty). Never below 0.
+    // Direct score adjustment (e.g. Classic's hint penalty). Never below 0.
     public void AddPoints(int delta)
     {
         Score = Mathf.Max(0, Score + delta);

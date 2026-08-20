@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WordHuntControllerTests : MonoBehaviour
+public class ClassicModeControllerTests : MonoBehaviour
 {
     private readonly List<GameObject> _spawned = new List<GameObject>();
 
@@ -13,17 +13,17 @@ public class WordHuntControllerTests : MonoBehaviour
         TestDealWithRequiredGuaranteesJamo();
         TestTargetAdvancesOnMatch();
         Cleanup();
-        Debug.Log("All WordHuntController tests passed!");
+        Debug.Log("All ClassicModeController tests passed!");
     }
 
     void TestRequiredJamoFor()
     {
-        List<string> jamo = WordHuntController.RequiredJamoFor("학교");
+        List<string> jamo = ClassicModeController.RequiredJamoFor("학교");
         Assert(jamo.Count == 5, $"학교 should need 5 jamo (ㅎㅏㄱ + ㄱㅛ), got {jamo.Count}");
         Assert(jamo[0] == "ㅎ" && jamo[1] == "ㅏ" && jamo[2] == "ㄱ", "학 should decompose to ㅎㅏㄱ");
         Assert(jamo[3] == "ㄱ" && jamo[4] == "ㅛ", "교 should decompose to ㄱㅛ with no jongseong");
 
-        Assert(WordHuntController.RequiredJamoFor("").Count == 0, "Empty word needs no jamo");
+        Assert(ClassicModeController.RequiredJamoFor("").Count == 0, "Empty word needs no jamo");
     }
 
     void TestPickTargetFiltersAndIsSeeded()
@@ -39,16 +39,16 @@ public class WordHuntControllerTests : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            WordEntry pick = WordHuntController.PickTarget(entries, new System.Random(i));
+            WordEntry pick = ClassicModeController.PickTarget(entries, new System.Random(i));
             Assert(pick != null && (pick.word == "학교" || pick.word == "바나나"),
                 $"Only 2-3 syllable words with meanings qualify, got {pick?.word}");
         }
 
-        WordEntry a = WordHuntController.PickTarget(entries, new System.Random(7));
-        WordEntry b = WordHuntController.PickTarget(entries, new System.Random(7));
+        WordEntry a = ClassicModeController.PickTarget(entries, new System.Random(7));
+        WordEntry b = ClassicModeController.PickTarget(entries, new System.Random(7));
         Assert(a.word == b.word, "Same seed should pick the same target");
 
-        Assert(WordHuntController.PickTarget(new List<WordEntry>(), new System.Random(1)) == null,
+        Assert(ClassicModeController.PickTarget(new List<WordEntry>(), new System.Random(1)) == null,
             "No candidates should yield a null target");
     }
 
@@ -60,11 +60,11 @@ public class WordHuntControllerTests : MonoBehaviour
         manager.Configure(loadResultSceneOnEnd: false);
         manager.StartRound();
 
-        manager.AddPoints(-WordHuntController.HintPenalty);
+        manager.AddPoints(-ClassicModeController.HintPenalty);
         Assert(manager.Score == 0, "Score should never go below zero from a hint");
 
         manager.RegisterWord("학교", 10f); // 150 points
-        manager.AddPoints(-WordHuntController.HintPenalty);
+        manager.AddPoints(-ClassicModeController.HintPenalty);
         Assert(manager.Score == 100, $"150 - 50 hint should leave 100, got {manager.Score}");
     }
 
@@ -86,7 +86,7 @@ public class WordHuntControllerTests : MonoBehaviour
         manager.SetSeed(11);
         manager.Initialize();
 
-        List<string> required = WordHuntController.RequiredJamoFor("학교");
+        List<string> required = ClassicModeController.RequiredJamoFor("학교");
         manager.DealAllWithRequired(required);
 
         var trayCounts = new Dictionary<string, int>();
@@ -117,11 +117,11 @@ public class WordHuntControllerTests : MonoBehaviour
 
         var go = new GameObject("TestHuntController");
         _spawned.Add(go);
-        var hunt = go.AddComponent<WordHuntController>();
+        var hunt = go.AddComponent<ClassicModeController>();
         hunt.SetSeed(3);
         hunt.Initialize();
 
-        Assert(hunt.Target != null, "Word Hunt should pick a target from the dictionary");
+        Assert(hunt.Target != null, "Classic mode should pick a target from the dictionary");
         Assert(hunt.Target.syllable_count >= 2 && hunt.Target.syllable_count <= 3,
             "Target should be a 2-3 syllable word");
 
