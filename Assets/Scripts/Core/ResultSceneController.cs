@@ -77,6 +77,7 @@ public class ResultSceneController : MonoBehaviour
     }
 
     private const string MascotWinTrigger = "Win";
+    private const string MascotLoseTrigger = "Lose";
     private const float SwingRangeX = 300f;   // pixels each direction
     private const float SwingSpeed = 0.6f;    // cycles per second
     private const float SwingTiltDegrees = 12f;

@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: b8516662903452d418f42b59ea020b6d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -716392210205967375
+    second: monkey_fall_spritesheet_1024x512_0
+  - first:
+      213: 1061504832166430664
+    second: monkey_fall_spritesheet_1024x512_1
+  - first:
+      213: 5342125622358392021
+    second: monkey_fall_spritesheet_1024x512_2
+  - first:
+      213: -5130765357017139423
+    second: monkey_fall_spritesheet_1024x512_3
+  - first:
+      213: 9129216972281097308
+    second: monkey_fall_spritesheet_1024x512_4
+  - first:
+      213: 1634936414620340544
+    second: monkey_fall_spritesheet_1024x512_5
+  - first:
+      213: -281938267935291949
+    second: monkey_fall_spritesheet_1024x512_6
+  - first:
+      213: -6706417146749979588
+    second: monkey_fall_spritesheet_1024x512_7
+  - first:
+      213: 113454691381863936
+    second: monkey_fall_spritesheet_1024x512_8
+  - first:
+      213: 189126348510488638
+    second: monkey_fall_spritesheet_1024x512_9
+  - first:
+      213: 6912742009885999880
+    second: monkey_fall_spritesheet_1024x512_10
+  - first:
+      213: -1660743592964427794
+    second: monkey_fall_spritesheet_1024x512_11
+  - first:
+      213: 8339626094173037950
+    second: monkey_fall_spritesheet_1024x512_12
+  - first:
+      213: 6515687091951386218
+    second: monkey_fall_spritesheet_1024x512_13
+  - first:
+      213: -4689931195518935670
+    second: monkey_fall_spritesheet_1024x512_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_0
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 287
+        width: 125
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fbf0d6941dde06f0800000000000000
+      internalID: -716392210205967375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_1
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 316
+        width: 167
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c704a055093bbe00800000000000000
+      internalID: 1061504832166430664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_2
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 300
+        width: 146
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dc3f2223fa032a40800000000000000
+      internalID: 5342125622358392021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_3
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 463
+        width: 56
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127fc1d771cdbc8b0800000000000000
+      internalID: -5130765357017139423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_4
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 468
+        width: 39
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c2846b77e71be70800000000000000
+      internalID: 9129216972281097308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_5
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 458
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 041dbcfb10670b610800000000000000
+      internalID: 1634936414620340544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_6
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 300
+        width: 153
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5c02b93aa561cf0800000000000000
+      internalID: -281938267935291949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_7
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 443
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c34f06c13250ee2a0800000000000000
+      internalID: -6706417146749979588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_8
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 184
+        width: 79
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 006eae1d072139100800000000000000
+      internalID: 113454691381863936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_9
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 202
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3862a47969ef9200800000000000000
+      internalID: 189126348510488638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_10
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 188
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 803cc239b3efeef50800000000000000
+      internalID: 6912742009885999880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_11
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 26
+        width: 167
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef695e408ad3f8e0800000000000000
+      internalID: -1660743592964427794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_12
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 2
+        width: 158
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7523c65fbd4cb370800000000000000
+      internalID: 8339626094173037950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_13
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 2
+        width: 154
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e3c5773ee5c6a50800000000000000
+      internalID: 6515687091951386218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_fall_spritesheet_1024x512_14
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 7
+        width: 134
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8d121e0d640aeeb0800000000000000
+      internalID: -4689931195518935670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bcf1850c6264022459a7fbc0463c6b95
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      monkey_fall_spritesheet_1024x512_0: -716392210205967375
+      monkey_fall_spritesheet_1024x512_1: 1061504832166430664
+      monkey_fall_spritesheet_1024x512_10: 6912742009885999880
+      monkey_fall_spritesheet_1024x512_11: -1660743592964427794
+      monkey_fall_spritesheet_1024x512_12: 8339626094173037950
+      monkey_fall_spritesheet_1024x512_13: 6515687091951386218
+      monkey_fall_spritesheet_1024x512_14: -4689931195518935670
+      monkey_fall_spritesheet_1024x512_2: 5342125622358392021
+      monkey_fall_spritesheet_1024x512_3: -5130765357017139423
+      monkey_fall_spritesheet_1024x512_4: 9129216972281097308
+      monkey_fall_spritesheet_1024x512_5: 1634936414620340544
+      monkey_fall_spritesheet_1024x512_6: -281938267935291949
+      monkey_fall_spritesheet_1024x512_7: -6706417146749979588
+      monkey_fall_spritesheet_1024x512_8: 113454691381863936
+      monkey_fall_spritesheet_1024x512_9: 189126348510488638
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

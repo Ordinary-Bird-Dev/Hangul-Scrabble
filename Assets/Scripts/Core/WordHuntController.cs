@@ -13,9 +13,15 @@ public class WordHuntController : MonoBehaviour
 
     private WordBuilder _builder;
     private SyllableBuilderUI _syllableBuilder;
+    private MeaningCardUI _meaningCard;
     private TMP_Text _clueText;
     private System.Random _rng = new System.Random();
     private bool _hintUsed;
+
+    // Word-set id to draw targets from (see WordValidator's registry);
+    // null draws from every loaded set. The hook for difficulty/DLC
+    // scoping of the target pool.
+    public string TargetSource { get; set; }
 
     public WordEntry Target { get; private set; }
     public int RoundsCompleted { get; private set; }
@@ -98,7 +104,10 @@ public class WordHuntController : MonoBehaviour
 
     public void NextTarget()
     {
-        Target = PickTarget(WordValidator.AllEntries, _rng, Target != null ? Target.word : null);
+        IEnumerable<WordEntry> pool = TargetSource == null
+            ? WordValidator.AllEntries
+            : WordValidator.EntriesFor(TargetSource);
+        Target = PickTarget(pool, _rng, Target != null ? Target.word : null);
         _hintUsed = false;
         UpdateClue();
 
@@ -167,8 +176,24 @@ public class WordHuntController : MonoBehaviour
         if (Target == null || entry == null) return;
         if (entry.word != Target.word) return;
 
+        // WordBuilder shows the card for the word's primary sense; when
+        // the clue was a different homonym sense (사과 "apology" vs the
+        // primary "apple"), re-show the card with the Target so it
+        // matches what the player was asked to find.
+        if (!ReferenceEquals(entry, Target))
+            ShowTargetCard();
+
         RoundsCompleted++;
         NextTarget();
+    }
+
+    private void ShowTargetCard()
+    {
+        // The card is runtime-built by WordBuilder and inactive while
+        // hidden, so the lookup must include inactive objects.
+        if (_meaningCard == null)
+            _meaningCard = FindAnyObjectByType<MeaningCardUI>(FindObjectsInactive.Include);
+        if (_meaningCard != null) _meaningCard.Show(Target);
     }
 
     // A wrong submission wipes the attempt and re-deals the same exact

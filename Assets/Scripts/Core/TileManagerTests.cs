@@ -11,7 +11,7 @@ public class TileManagerTests : MonoBehaviour
         TestDealerBalancedHand();
         TestDealerDeterministicWithSeed();
         TestDealerWeightsFavorCommonJamo();
-        TestDealerNeverDealsAbsentVowel();
+        TestDealerDealsRareVowel();
         TestDealerRefillRestoresBalance();
         TestManagerAdoptsAndFillsTray();
         TestManagerRefillRestoresBalance();
@@ -72,13 +72,16 @@ public class TileManagerTests : MonoBehaviour
             $"ㅇ (weight 74) should appear far more often than ㅃ (weight 5): got {common} vs {rare}");
     }
 
-    void TestDealerNeverDealsAbsentVowel()
+    void TestDealerDealsRareVowel()
     {
-        // ㅞ has zero occurrences in the TOPIK corpus, so its weight is 0.
+        // ㅞ was weight 0 (absent from topik1) but the vocabB/vocabC sets
+        // have ㅞ words, so it now carries a small weight and must show up
+        // in random deals. Weight 2 of ~426 total: ~23 expected in 5000.
         var dealer = new TileDealer(123);
-        for (int i = 0; i < 5000; i++)
-            Assert(dealer.NextJungseong() != "ㅞ",
-                "ㅞ (absent from the corpus) should never be dealt");
+        bool seen = false;
+        for (int i = 0; i < 5000 && !seen; i++)
+            seen = dealer.NextJungseong() == "ㅞ";
+        Assert(seen, "ㅞ (weight 2) should be dealt at least once in 5000 draws");
     }
 
     void TestDealerRefillRestoresBalance()

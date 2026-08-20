@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8382991, b: 0.3433963, a: 1}
+  m_Color: {r: 1, g: 0.8156863, b: 0.6, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -228,6 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _background: {fileID: 4452759652090931687}
   _label: {fileID: 2690910587647944477}
-  _normalColor: {r: 1, g: 0.9713464, b: 0.42264152, a: 1}
+  _normalColor: {r: 0.96981126, g: 0.73085666, b: 0.29277322, a: 1}
   _selectedColor: {r: 0.33138475, g: 1, b: 0.26415092, a: 1}
   _consumedColor: {r: 0.6, g: 0.6, b: 0.6, a: 0.35}
