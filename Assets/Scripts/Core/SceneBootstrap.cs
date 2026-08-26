@@ -33,6 +33,14 @@ public static class SceneBootstrap
             case "SettingsScene":
                 EnsureController<SettingsSceneController>();
                 break;
+            case "TitleScene":
+                EnsureController<TitlePageController>();
+                break;
+            case "HowToPlayScene":
+            case "HangulBasicsScene":
+                EnsureController<InfoPageController>();
+                break;
+
         }
     }
 
@@ -85,7 +93,7 @@ public static class SceneBootstrap
             {
                 GameManager.Instance.SaveSessionState();
             }
-            SceneManager.LoadScene("SettingScene");
+            SceneRouter.OpenSettings(SceneRouter.GameScene);
         });
     }
 

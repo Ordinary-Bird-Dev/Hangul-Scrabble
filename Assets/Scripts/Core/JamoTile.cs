@@ -20,6 +20,8 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _background;
     [SerializeField] private TextMeshProUGUI _label;
     [SerializeField] private Color _normalColor = new Color(0.9f, 0.9f, 0.9f, 1f);
+    [SerializeField] private Color _vowelColor = new Color(0.72f, 0.86f, 1f, 1f);      // add
+    [SerializeField] private Color _consonantColor = new Color(1f, 0.93f, 0.7f, 1f);   // add
     [SerializeField] private Color _selectedColor = new Color(1f, 0.85f, 0.3f, 1f);
     [SerializeField] private Color _consumedColor = new Color(0.6f, 0.6f, 0.6f, 0.35f);
 
@@ -56,19 +58,15 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     {
         if (State == TileState.Consumed) return;
 
-        if (_currentlySelected != null && _currentlySelected != this)
-            _currentlySelected.Deselect();
-
-        _currentlySelected = this;
-        State = TileState.Selected;
-        ApplyVisuals();
         PlayBounce();
         AudioManager.TryPlayTileTap();
         TriggerMascotTileSelect();
-        MascotSleepController.TryRegisterTileTap(); // add this line
+        MascotSleepController.TryRegisterTileTap();
+
+        SyllableBuilderUI.TryAutoPlaceTile(this);
     }
 
-    
+
 
     public void Deselect()
     {
@@ -193,10 +191,19 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
                 _background.color = _consumedColor;
                 break;
             default:
-                _background.color = _normalColor;
+                _background.color = ColorForJamo();
                 break;
         }
 
         _background.raycastTarget = State != TileState.Consumed;
+    }
+
+    // Vowels and consonants are disjoint in Hangul, so the jungseong test
+    // is a clean classifier. Falls back to _normalColor for an empty or
+    // unrecognised jamo rather than guessing.
+    private Color ColorForJamo()
+    {
+        if (string.IsNullOrEmpty(Jamo)) return _normalColor;
+        return HangulComposer.IsValidJungseong(Jamo) ? _vowelColor : _consonantColor;
     }
 }

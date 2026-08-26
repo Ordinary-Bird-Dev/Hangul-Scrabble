@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 569639a73fce425449246c7f65b3be0f
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 13e1675dd76ea244583c8e492ff141a5
   - enabled: 1
@@ -17,6 +20,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/HangulBasicsScene.unity
+    guid: 4bfffeea85cc8c342a23a9f74ebd29ac
+  - enabled: 1
+    path: Assets/Scenes/HowToPlayScene.unity
+    guid: ce90f5fde826af244a3565acc164ae6a
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

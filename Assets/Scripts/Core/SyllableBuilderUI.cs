@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 // Bridges the SyllableSlot state machine to the on-screen
 // ChoSlot / Jungslot / Jongslot objects in SyllableBuilder.
-// Tapping a slot places the currently selected JamoTile into that
-// position, and each slot's PreviewText updates live.
+// Tapping a jamo tile auto-routes it to whichever slot the syllable
+// needs next; tapping a filled slot retracts that jamo back to the tray.
+// Each slot's PreviewText updates live.
 public class SyllableBuilderUI : MonoBehaviour
 {
     public enum SlotRole { Cho, Jung, Jong }
 
     public event System.Action<string> SyllableConfirmed;
+
+    public static SyllableBuilderUI Instance { get; private set; }
 
     [SerializeField] private GameObject _choSlotRoot;
     [SerializeField] private GameObject _jungSlotRoot;
@@ -38,6 +41,7 @@ public class SyllableBuilderUI : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         Slot = GetComponent<SyllableSlot>();
         if (Slot == null) Slot = gameObject.AddComponent<SyllableSlot>();
     }
@@ -45,6 +49,11 @@ public class SyllableBuilderUI : MonoBehaviour
     void Start()
     {
         Initialize();
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     public void Configure(GameObject choRoot, GameObject jungRoot, GameObject jongRoot, Button confirmButton = null)
@@ -83,37 +92,9 @@ public class SyllableBuilderUI : MonoBehaviour
         UpdatePreviews();
     }
 
-    // Places the currently selected tile into whichever slot comes next
-    // (cho -> jung -> jong), so the player doesn't need to tap the
-    // specific slot box directly. Not wired to any button right now —
-    // kept for a future tile-place button. (The scene object once named
-    // TileSelectorButton was really the word confirm button and has been
-    // renamed WordConfirmButton.)
-    public void PlaceSelectedTile()
-    {
-        // Loud no-ops: a press that does nothing should say why.
-        if (JamoTile.GetSelectedTile() == null)
-        {
-            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called with no tile selected.");
-            return;
-        }
-        if (Slot.State == SyllableSlot.SlotState.Complete)
-        {
-            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called but the syllable is already complete — confirm or reset it first.");
-            return;
-        }
-
-        SlotRole nextRole = Slot.State switch
-        {
-            SyllableSlot.SlotState.Empty => SlotRole.Cho,
-            SyllableSlot.SlotState.ChoPlaced => SlotRole.Jung,
-            SyllableSlot.SlotState.ChoJungPlaced => SlotRole.Jong,
-            _ => SlotRole.Cho
-        };
-
-        OnSlotTapped(nextRole);
-    }
-
+    // Slot tap. A filled slot retracts its jamo back to the tray; an empty
+    // slot places the currently selected tile (legacy select-then-tap path,
+    // largely superseded by direct tile taps via TryAutoPlace).
     public void OnSlotTapped(SlotRole role)
     {
         if (IsRoleFilled(role))
@@ -125,24 +106,65 @@ public class SyllableBuilderUI : MonoBehaviour
         JamoTile tile = JamoTile.GetSelectedTile();
         if (tile == null) return;
 
+        PlaceTileInto(tile, role);
+    }
+
+    // Direct tile tap: route the jamo to whichever slot the syllable
+    // needs next. Returns false if the tap doesn't fit the current state
+    // (e.g. a vowel when the syllable still needs its 초성).
+    public bool TryAutoPlace(JamoTile tile)
+    {
+        if (tile == null || tile.IsConsumed) return false;
+
+        SlotRole? role = NextRoleFor(tile.Jamo);
+        if (role == null) return false;
+
+        return PlaceTileInto(tile, role.Value);
+    }
+
+    // Hangul fills strictly cho -> jung -> jong, so the slot state decides
+    // the destination and the jamo type decides whether the tap is legal
+    // right now. Vowels and consonants are disjoint sets, so the jungseong
+    // test is a clean classifier.
+    private SlotRole? NextRoleFor(string jamo)
+    {
+        if (string.IsNullOrEmpty(jamo)) return null;
+        bool isVowel = HangulComposer.IsValidJungseong(jamo);
+
+        switch (Slot.State)
+        {
+            case SyllableSlot.SlotState.Empty:
+                return isVowel ? null : (SlotRole?)SlotRole.Cho;
+            case SyllableSlot.SlotState.ChoPlaced:
+                return isVowel ? (SlotRole?)SlotRole.Jung : null;
+            case SyllableSlot.SlotState.ChoJungPlaced:
+                return isVowel ? null : (SlotRole?)SlotRole.Jong;
+            default:
+                return null; // Complete — needs confirming or resetting first
+        }
+    }
+
+    // Convenience for callers: no-ops when no builder exists
+    // (e.g. in unit test scenes).
+    public static bool TryAutoPlaceTile(JamoTile tile)
+    {
+        return Instance != null && Instance.TryAutoPlace(tile);
+    }
+
+    // Shared by direct tile taps and slot taps so PlacedTile tracking,
+    // pulse feedback, and auto-confirm behave identically either way.
+    private bool PlaceTileInto(JamoTile tile, SlotRole role)
+    {
         bool placed;
         switch (role)
         {
-            case SlotRole.Cho:
-                placed = Slot.TryPlaceCho(tile.Jamo);
-                break;
-            case SlotRole.Jung:
-                placed = Slot.TryPlaceJung(tile.Jamo);
-                break;
-            case SlotRole.Jong:
-                placed = Slot.TryPlaceJong(tile.Jamo);
-                break;
-            default:
-                placed = false;
-                break;
+            case SlotRole.Cho: placed = Slot.TryPlaceCho(tile.Jamo); break;
+            case SlotRole.Jung: placed = Slot.TryPlaceJung(tile.Jamo); break;
+            case SlotRole.Jong: placed = Slot.TryPlaceJong(tile.Jamo); break;
+            default: return false;
         }
 
-        if (!placed) return;
+        if (!placed) return false;
 
         var placedTile = new PlacedTile { Tile = tile, Jamo = tile.Jamo };
         switch (role)
@@ -158,6 +180,31 @@ public class SyllableBuilderUI : MonoBehaviour
 
         if (GameSettings.AutoConfirm && Slot.State == SyllableSlot.SlotState.Complete)
             ConfirmSyllable();
+
+        return true;
+    }
+
+    // Places the currently selected tile into whichever slot comes next.
+    // Superseded by direct tile taps; kept for a possible future
+    // tile-place button. (The scene object once named TileSelectorButton
+    // was really the word confirm button and has been renamed.)
+    public void PlaceSelectedTile()
+    {
+        JamoTile tile = JamoTile.GetSelectedTile();
+        if (tile == null)
+        {
+            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called with no tile selected.");
+            return;
+        }
+
+        SlotRole? role = NextRoleFor(tile.Jamo);
+        if (role == null)
+        {
+            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called but the selected jamo doesn't fit the current slot state.");
+            return;
+        }
+
+        PlaceTileInto(tile, role.Value);
     }
 
     private bool IsRoleFilled(SlotRole role)

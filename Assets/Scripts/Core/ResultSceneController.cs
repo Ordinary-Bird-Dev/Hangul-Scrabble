@@ -20,8 +20,11 @@ public class ResultSceneController : MonoBehaviour
 
         if (GameManager.LastWordsCompleted > 0) TriggerMascotWin();
 
-        WireButton("PlayAgainButton");
-        WireButton("TryAgainButton");
+        // Play Again / Try Again start a fresh round. Returning to the
+        // title is a separate, always-visible route.
+        WireButton("PlayAgainButton", SceneRouter.GameScene);
+        WireButton("TryAgainButton", SceneRouter.GameScene);
+        WireMenuButton();
     }
 
     // Pure panel/score logic, separated for unit testing.
@@ -58,12 +61,77 @@ public class ResultSceneController : MonoBehaviour
         return go != null ? go.GetComponent<TMP_Text>() : null;
     }
 
-    private static void WireButton(string name)
+    private static void WireButton(string name, string targetScene)
     {
         GameObject go = FindAnywhere(name);
         Button button = go != null ? go.GetComponent<Button>() : null;
         if (button != null)
-            button.onClick.AddListener(() => SceneManager.LoadScene("GameScene"));
+            button.onClick.AddListener(() => SceneManager.LoadScene(targetScene));
+        else
+            Debug.LogWarning($"ResultSceneController: '{name}' not found or has no Button — that route is dead.");
+    }
+
+    private const string MenuButtonName = "MenuButton";
+    private static readonly Color MenuButtonColor = new Color(0.25f, 0.25f, 0.32f, 1f);
+
+    // PlayAgainButton lives in SuccessPanel and TryAgainButton in FailPanel,
+    // so exactly one of them is ever visible. The route back to the title
+    // must show in both states, so it is parented to the Canvas root rather
+    // than to either panel.
+    //
+    // An object named "MenuButton" authored in the scene wins; the runtime
+    // build below is only the fallback for a ResultScene that ships without
+    // one, and its placement is a plain bottom-centre guess worth tuning in
+    // the editor.
+    private void WireMenuButton()
+    {
+        GameObject existing = FindAnywhere(MenuButtonName);
+        Button existingButton = existing != null ? existing.GetComponent<Button>() : null;
+        if (existingButton != null)
+        {
+            existingButton.onClick.AddListener(() => SceneManager.LoadScene(SceneRouter.TitleScene));
+            return;
+        }
+
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogWarning("ResultSceneController: no Canvas in ResultScene — the main-menu route could not be built.");
+            return;
+        }
+
+        var buttonGo = new GameObject(MenuButtonName, typeof(RectTransform));
+        buttonGo.transform.SetParent(canvas.transform, false);
+
+        var rect = (RectTransform)buttonGo.transform;
+        rect.anchorMin = new Vector2(0.5f, 0f);
+        rect.anchorMax = new Vector2(0.5f, 0f);
+        rect.pivot = new Vector2(0.5f, 0f);
+        rect.anchoredPosition = new Vector2(0f, 60f);
+        rect.sizeDelta = new Vector2(360f, 96f);
+
+        Image background = buttonGo.AddComponent<Image>();
+        background.color = MenuButtonColor;
+
+        Button button = buttonGo.AddComponent<Button>();
+        button.onClick.AddListener(() => SceneManager.LoadScene(SceneRouter.TitleScene));
+
+        var labelGo = new GameObject("Label", typeof(RectTransform));
+        labelGo.transform.SetParent(buttonGo.transform, false);
+        var labelRect = (RectTransform)labelGo.transform;
+        labelRect.anchorMin = Vector2.zero;
+        labelRect.anchorMax = Vector2.one;
+        labelRect.offsetMin = Vector2.zero;
+        labelRect.offsetMax = Vector2.zero;
+
+        var label = labelGo.AddComponent<TextMeshProUGUI>();
+        label.text = "Main Menu";
+        label.fontSize = 34f;
+        label.alignment = TextAlignmentOptions.Center;
+        label.raycastTarget = false;
+
+        TMP_Text donor = FindAnyObjectByType<TMP_Text>(FindObjectsInactive.Include);
+        if (donor != null && donor.font != null) label.font = donor.font;
     }
 
     // GameObject.Find skips inactive objects (FailPanel starts inactive),

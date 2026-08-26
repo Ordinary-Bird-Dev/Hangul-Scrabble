@@ -27,8 +27,10 @@ public class SettingsSceneController : MonoBehaviour
 
         GameObject back = GameObject.Find("BackButton");
         Button backButton = back != null ? back.GetComponent<Button>() : null;
+        // Back returns to whoever opened Settings — the title screen or a
+        // live round — via SceneRouter, never unconditionally to GameScene.
         if (backButton != null)
-            backButton.onClick.AddListener(() => SceneManager.LoadScene("GameScene"));
+            backButton.onClick.AddListener(() => SceneManager.LoadScene(SceneRouter.ReturnScene));
         else
             Debug.LogWarning("SettingsSceneController: BackButton not found (or inactive) — back navigation is disabled.");
 
