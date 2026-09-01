@@ -10,6 +10,13 @@ public class WordBuilder : MonoBehaviour
     public event System.Action<WordEntry> WordCompleted;
     public event System.Action<string> WordRejected;
 
+    // Optional extra gate a mode can install on top of the dictionary
+    // check. Null (Zen, Word Hunt) means every valid word is accepted;
+    // Classic sets it so only the clue's answer counts. See ConfirmWord
+    // for why the gate has to run here rather than in a WordCompleted
+    // subscriber.
+    public System.Func<WordEntry, bool> AcceptWord { get; set; }
+
     [SerializeField] private SyllableBuilderUI _syllableBuilder;
     [SerializeField] private TMP_Text _wordText;
     [SerializeField] private Button _wordConfirmButton;
@@ -122,16 +129,20 @@ public class WordBuilder : MonoBehaviour
 
         WordValidator.Load();
         if (!WordValidator.IsValid(word))
-        {
-            FlashRejection();
-            AudioManager.TryPlayWordError();
-            if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
-                _mascotAnimator.SetTrigger(MascotWrongTrigger);
-            WordRejected?.Invoke(word);
-            return false;
-        }
+            return Reject(word);
 
         WordEntry entry = WordValidator.GetEntry(word);
+
+        // A guided mode's gate runs BEFORE WordCompleted fires, not in a
+        // subscriber. GameManager scores off that event, and it cannot
+        // re-check the target afterwards: ClassicModeController advances to
+        // the next target inside its own handler, and the two subscribe in
+        // Start order that is not guaranteed — so a post-hoc check would
+        // compare the answer against whichever target happened to be
+        // current and could reject a correct word.
+        if (AcceptWord != null && !AcceptWord(entry))
+            return Reject(word);
+
         PlayWordBurst(word);
         AudioManager.TryPlayWordSuccess();
         ClearChain();
@@ -144,6 +155,18 @@ public class WordBuilder : MonoBehaviour
         if (_meaningCard != null) _meaningCard.Show(entry);
         WordCompleted?.Invoke(entry);
         return true;
+    }
+
+    // The single rejection path: wrong dictionary word, or a real word a
+    // guided mode did not ask for. Both look identical to the player.
+    private bool Reject(string word)
+    {
+        FlashRejection();
+        AudioManager.TryPlayWordError();
+        if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
+            _mascotAnimator.SetTrigger(MascotWrongTrigger);
+        WordRejected?.Invoke(word);
+        return false;
     }
 
     // Success feedback: a ghost copy of the completed word scales out

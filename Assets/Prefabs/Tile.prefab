@@ -166,7 +166,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1387527282764706408}
   m_Father: {fileID: 0}
@@ -174,7 +174,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 130}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3551400877587516497
 CanvasRenderer:
@@ -229,7 +229,7 @@ MonoBehaviour:
   _background: {fileID: 4452759652090931687}
   _label: {fileID: 2690910587647944477}
   _normalColor: {r: 1, g: 0.8597314, b: 0.4188679, a: 1}
-  _vowelColor: {r: 0.46792454, g: 0.73021525, b: 1, a: 1}
-  _consonantColor: {r: 1, g: 0.6667451, b: 0.41509438, a: 1}
+  _vowelColor: {r: 0.34901962, g: 0.9294118, b: 0.9960785, a: 1}
+  _consonantColor: {r: 0.47450984, g: 0.9490197, b: 0.31764707, a: 1}
   _selectedColor: {r: 0.33138475, g: 1, b: 0.26415092, a: 1}
   _consumedColor: {r: 0.6, g: 0.6, b: 0.6, a: 0.35}

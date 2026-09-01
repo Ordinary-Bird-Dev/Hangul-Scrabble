@@ -18,6 +18,39 @@ public class ClassicModeController : MonoBehaviour
     private System.Random _rng = new System.Random();
     private bool _hintUsed;
 
+    private Button _hintButton;
+    private Image _hintBackground;
+    private bool? _hintShownEnabled;
+
+    private static readonly Color HintEnabledColor = new Color(0.5f, 0.4f, 0.1f, 0.9f);
+    private static readonly Color HintDisabledColor = new Color(0.3f, 0.28f, 0.2f, 0.45f);
+
+    // Sizing for the RUNTIME FALLBACK banner only — the one BuildClueBanner
+    // creates when GameScene has no ClueBanner of its own. Once the banner
+    // is authored in the scene, the Inspector owns all of this and these
+    // constants stop applying — the hint line is styled relative to
+    // ClueText, so it follows the Inspector too.
+    // The fallback banner grows downward from a fixed top edge, so raising
+    // BannerHeight never pushes it into the TopBar.
+    private const float BannerTopEdge = -165f;
+    private const float BannerHeight = 160f;
+    private const float BannerWidth = 920f;
+    private const float ClueFontSize = 55f;
+    // The hint line is styled RELATIVE to whatever ClueText is set to in
+    // the Inspector, and inherits its colour. An absolute size and a fixed
+    // colour here would fight the scene: a 72pt scene clue made a 36pt
+    // hint look like a footnote, and a pale hint colour vanished against a
+    // light banner. Bold plus a size step is enough to separate it.
+    private const int HintSizePercent = 85;
+
+    // A hint is offered only when this word has not had one AND the round
+    // still has penalty budget left. Without the second half the penalty
+    // is free at the floor, which is the bug this replaced.
+    public bool CanUseHint =>
+        !_hintUsed
+        && Target != null
+        && (GameManager.Instance == null || GameManager.Instance.CanAffordPenalty);
+
     // Word-set id to draw targets from (see WordValidator's registry);
     // null draws from every loaded set. The hook for difficulty/DLC
     // scoping of the target pool.
@@ -35,6 +68,7 @@ public class ClassicModeController : MonoBehaviour
     void Update()
     {
         EnsureTargetBuildable();
+        RefreshHintButton();
     }
 
     void OnDestroy()
@@ -43,6 +77,10 @@ public class ClassicModeController : MonoBehaviour
         {
             _builder.WordCompleted -= HandleWordCompleted;
             _builder.WordRejected -= HandleWordRejected;
+            // Leaving Classic must restore the free-form modes: the gate
+            // lives on WordBuilder, which outlives this controller.
+            if (_builder.AcceptWord == (System.Func<WordEntry, bool>)IsTarget)
+                _builder.AcceptWord = null;
         }
     }
 
@@ -66,12 +104,13 @@ public class ClassicModeController : MonoBehaviour
         {
             _builder.WordCompleted += HandleWordCompleted;
             _builder.WordRejected += HandleWordRejected;
+            _builder.AcceptWord = IsTarget;
         }
 
         if (_syllableBuilder == null)
             _syllableBuilder = FindAnyObjectByType<SyllableBuilderUI>();
 
-        BuildUI();
+        ResolveUI();
         NextTarget();
     }
 
@@ -110,6 +149,7 @@ public class ClassicModeController : MonoBehaviour
         Target = PickTarget(pool, _rng, Target != null ? Target.word : null);
         _hintUsed = false;
         UpdateClue();
+        RefreshHintButton();
 
         if (Target != null && TileManager.Instance != null)
         {
@@ -160,16 +200,50 @@ public class ClassicModeController : MonoBehaviour
     public static bool ContainsAll(IReadOnlyList<string> required, List<string> available) =>
         TrayValidator.ContainsAll(required, available);
 
-    // Hint button: reveal the romanization at a 50-point penalty.
+    // Hint button: reveal the romanization at a 50-point penalty, while
+    // the round can still pay for it.
     public void UseHint()
     {
-        if (_hintUsed || Target == null) return;
+        if (!CanUseHint) return;
 
         _hintUsed = true;
         if (GameManager.Instance != null)
             GameManager.Instance.AddPoints(-HintPenalty);
         UpdateClue();
+        RefreshHintButton();
     }
+
+    // Greys the button out rather than hiding it, so the hint stays
+    // discoverable and its absence reads as "spent", not "missing".
+    //
+    // interactable is the only thing touched on a scene-authored button —
+    // its ColorBlock's Disabled Color, set in the Inspector, does the
+    // greying. _hintBackground is non-null only for the runtime fallback,
+    // which has no Inspector to configure.
+    //
+    // Cached: this runs every frame, and reassigning an unchanged colour
+    // dirties the Graphic.
+    private void RefreshHintButton()
+    {
+        if (_hintButton == null) return;
+
+        bool enabled = CanUseHint;
+        if (_hintShownEnabled == enabled) return;
+        _hintShownEnabled = enabled;
+
+        _hintButton.interactable = enabled;
+        if (_hintBackground != null)
+            _hintBackground.color = enabled ? HintEnabledColor : HintDisabledColor;
+    }
+
+    // The scoring gate for guided mode: only the word the clue asked for
+    // is accepted, so a real dictionary word built from the same tiles no
+    // longer earns points or counts toward WordsCompleted. Fails open when
+    // no target has been picked yet, so a setup gap cannot make the game
+    // unwinnable. Compares by word, not reference, so a homonym entry for
+    // the same spelling still counts.
+    public bool IsTarget(WordEntry entry) =>
+        Target == null || (entry != null && entry.word == Target.word);
 
     public void HandleWordCompleted(WordEntry entry)
     {
@@ -222,26 +296,87 @@ public class ClassicModeController : MonoBehaviour
     {
         if (_clueText == null || Target == null) return;
 
-        string hint = _hintUsed ? $"\n<size=70%><i>{Target.romanization}</i></size>" : "";
+        string hint = _hintUsed
+            ? $"\n<size={HintSizePercent}%><b>{Target.romanization}</b></size>"
+            : "";
         _clueText.text = $"Find: <b>{Target.english}</b>{hint}";
     }
 
-    // Clue banner under the TopBar plus a hint button.
-    private void BuildUI()
+    // Scene objects win over the runtime fallbacks below. Author these in
+    // GameScene to control size, colour, font and placement from the
+    // Inspector:
+    //
+    //   ClueBanner        Image (the panel background)
+    //   └── ClueText      TextMeshProUGUI — the script only sets .text
+    //   HintButton        Image + Button (Inspector's Disabled Color is
+    //   └── Label         what greys it out; leave the label text alone,
+    //                     the script does not overwrite it)
+    //
+    // Do NOT add UseHint to HintButton's OnClick list in the Inspector —
+    // this wires it in code, and both would fire (harmless, but it makes
+    // the penalty look doubled the first time you read the score).
+    //
+    // Anything missing is built at runtime instead, so a scene without
+    // them still plays. Search includes inactive objects: GameObject.Find
+    // cannot see them, which is how WordConfirmButton hid for months.
+    private void ResolveUI()
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
-        if (canvas == null) return;
+
+        // Switched off by SceneBootstrap outside Classic, so switch them
+        // back on here rather than relying on load order. Self-sufficient:
+        // this controller only exists in Classic, so anything it finds
+        // should be visible.
+        GameObject bannerGo = FindInScene("ClueBanner");
+        if (bannerGo != null) bannerGo.SetActive(true);
+
+        GameObject clueGo = FindInScene("ClueText");
+        _clueText = clueGo != null ? clueGo.GetComponent<TMP_Text>() : null;
+
+        GameObject hintGo = FindInScene("HintButton");
+        if (hintGo != null) hintGo.SetActive(true);
+        _hintButton = hintGo != null ? hintGo.GetComponent<Button>() : null;
+        if (hintGo != null && _hintButton == null)
+            Debug.LogWarning("ClassicModeController: 'HintButton' exists but has no Button component — the hint is not clickable.");
+        if (_hintButton != null)
+        {
+            _hintBackground = null;   // scene-authored: its ColorBlock owns the tint
+            _hintButton.onClick.AddListener(UseHint);
+        }
+
+        if (canvas == null)
+        {
+            if (_clueText == null || _hintButton == null)
+                Debug.LogWarning("ClassicModeController: no Canvas in GameScene — missing clue/hint UI cannot be built.");
+            return;
+        }
 
         TMP_Text donor = FindAnyObjectByType<TMP_Text>(FindObjectsInactive.Include);
         TMP_FontAsset font = donor != null ? donor.font : null;
 
+        if (_clueText == null) BuildClueBanner(canvas, font);
+        if (_hintButton == null) BuildHintButton(canvas, font);
+    }
+
+    private static GameObject FindInScene(string name)
+    {
+        foreach (GameObject root in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+            foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+                if (t.name == name) return t.gameObject;
+        return null;
+    }
+
+    // Runtime fallback: clue banner under the TopBar.
+    private void BuildClueBanner(Canvas canvas, TMP_FontAsset font)
+    {
         var banner = new GameObject("ClueBanner", typeof(RectTransform));
         banner.transform.SetParent(canvas.transform, false);
         var bannerRect = (RectTransform)banner.transform;
         bannerRect.anchorMin = new Vector2(0.5f, 1f);
         bannerRect.anchorMax = new Vector2(0.5f, 1f);
-        bannerRect.anchoredPosition = new Vector2(0f, -215f);
-        bannerRect.sizeDelta = new Vector2(920f, 100f);
+        // Centre pivot, so the offset is derived from the fixed top edge.
+        bannerRect.anchoredPosition = new Vector2(0f, BannerTopEdge - BannerHeight * 0.5f);
+        bannerRect.sizeDelta = new Vector2(BannerWidth, BannerHeight);
 
         Image bannerBg = banner.AddComponent<Image>();
         bannerBg.color = new Color(0.1f, 0.3f, 0.2f, 0.85f);
@@ -256,23 +391,34 @@ public class ClassicModeController : MonoBehaviour
         clueRect.offsetMax = new Vector2(-20f, -8f);
 
         _clueText = clueGo.AddComponent<TextMeshProUGUI>();
-        _clueText.fontSize = 38f;
+        _clueText.fontSize = ClueFontSize;
         _clueText.alignment = TextAlignmentOptions.Center;
         _clueText.raycastTarget = false;
+        // Deliberately NOT auto-sized: the hint line sets an absolute
+        // <size=> and TMP's auto-sizing interacts badly with absolute size
+        // tags. The banner is instead tall enough for a wrapped clue plus
+        // the hint line — raise BannerHeight if a gloss ever overflows.
         if (font != null) _clueText.font = font;
+    }
 
+    // Runtime fallback: hint button in the top-right.
+    private void BuildHintButton(Canvas canvas, TMP_FontAsset font)
+    {
         var hintGo = new GameObject("HintButton", typeof(RectTransform));
         hintGo.transform.SetParent(canvas.transform, false);
         var hintRect = (RectTransform)hintGo.transform;
         hintRect.anchorMin = new Vector2(1f, 1f);
         hintRect.anchorMax = new Vector2(1f, 1f);
-        hintRect.anchoredPosition = new Vector2(-130f, -330f);
-        hintRect.sizeDelta = new Vector2(220f, 70f);
+        hintRect.anchoredPosition = new Vector2(-140f, -370f);
+        hintRect.sizeDelta = new Vector2(250f, 84f);
 
-        Image hintBg = hintGo.AddComponent<Image>();
-        hintBg.color = new Color(0.5f, 0.4f, 0.1f, 0.9f);
-        Button hintButton = hintGo.AddComponent<Button>();
-        hintButton.onClick.AddListener(UseHint);
+        _hintBackground = hintGo.AddComponent<Image>();
+        _hintBackground.color = HintEnabledColor;
+        _hintButton = hintGo.AddComponent<Button>();
+        // AddComponent does not assign targetGraphic the way the Inspector
+        // does, so without this the button's tint never changes.
+        _hintButton.targetGraphic = _hintBackground;
+        _hintButton.onClick.AddListener(UseHint);
 
         var hintLabelGo = new GameObject("Label", typeof(RectTransform));
         hintLabelGo.transform.SetParent(hintGo.transform, false);
@@ -284,7 +430,7 @@ public class ClassicModeController : MonoBehaviour
 
         var hintLabel = hintLabelGo.AddComponent<TextMeshProUGUI>();
         hintLabel.text = $"Hint (-{HintPenalty})";
-        hintLabel.fontSize = 30f;
+        hintLabel.fontSize = 34f;
         hintLabel.alignment = TextAlignmentOptions.Center;
         hintLabel.raycastTarget = false;
         if (font != null) hintLabel.font = font;

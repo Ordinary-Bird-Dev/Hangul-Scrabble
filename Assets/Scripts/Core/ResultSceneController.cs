@@ -16,7 +16,7 @@ public class ResultSceneController : MonoBehaviour
         TMP_Text resultText = FindText("ResultText");
 
         Apply(GameManager.LastFinalScore, GameManager.LastWordsCompleted, successPanel, failPanel, scoreText, resultText);
-        FillMeaningCard(GameManager.LastWordEntry);
+        
 
         if (GameManager.LastWordsCompleted > 0) TriggerMascotWin();
 
@@ -39,21 +39,9 @@ public class ResultSceneController : MonoBehaviour
         if (resultText != null) resultText.text = success ? "SUCCESS!" : "FAIL!";
     }
 
-    private void FillMeaningCard(WordEntry entry)
-    {
-        if (entry == null) return;
 
-        SetText("WordText", entry.word);
-        SetText("MeaningText", entry.english);
-        SetText("RomanizationText", entry.romanization);
-        SetText("ExampleText", entry.example);
-    }
 
-    private static void SetText(string name, string value)
-    {
-        TMP_Text text = FindText(name);
-        if (text != null && !string.IsNullOrEmpty(value)) text.text = value;
-    }
+    
 
     private static TMP_Text FindText(string name)
     {
@@ -146,10 +134,12 @@ public class ResultSceneController : MonoBehaviour
 
     private const string MascotWinTrigger = "Win";
     private const string MascotLoseTrigger = "Lose";
-    private const float SwingRangeX = 300f;   // pixels each direction
-    private const float SwingSpeed = 0.6f;    // cycles per second
-    private const float SwingTiltDegrees = 12f;
 
+    // The mascot celebrates in place via its Animator "Win" state. It used
+    // to also be driven across the screen by a SwingMascot coroutine that
+    // overwrote anchoredPosition and localRotation every frame; that was
+    // removed deliberately. Anything that needs the mascot to move belongs
+    // in the animation clip, not in a coroutine fighting the RectTransform.
     private void TriggerMascotWin()
     {
         GameObject mascot = GameObject.Find("MascotImage");
@@ -158,22 +148,5 @@ public class ResultSceneController : MonoBehaviour
         Animator animator = mascot != null ? mascot.GetComponent<Animator>() : null;
         if (animator != null && animator.runtimeAnimatorController != null)
             animator.SetTrigger(MascotWinTrigger);
-
-        RectTransform rect = mascot != null ? mascot.GetComponent<RectTransform>() : null;
-        if (rect != null) StartCoroutine(SwingMascot(rect));
-    }
-
-    private System.Collections.IEnumerator SwingMascot(RectTransform rect)
-    {
-        Vector2 basePos = rect.anchoredPosition;
-        float t = 0f;
-        while (true)
-        {
-            t += Time.deltaTime * SwingSpeed;
-            float wave = Mathf.Sin(t * Mathf.PI * 2f);
-            rect.anchoredPosition = basePos + new Vector2(wave * SwingRangeX, 0f);
-            rect.localRotation = Quaternion.Euler(0f, 0f, -wave * SwingTiltDegrees);
-            yield return null;
-        }
     }
 }

@@ -82,6 +82,13 @@ public static class SceneBootstrap
         else if (GameSettings.IsGuided && controller.GetComponent<ClassicModeController>() == null)
             controller.AddComponent<ClassicModeController>();
 
+        // Classic's clue banner and hint button are authored in GameScene,
+        // so they exist in every mode — unlike the runtime-built versions
+        // they replaced, which only appeared because ClassicModeController
+        // created them. Zen and Word Hunt have to switch them off.
+        SetActiveByName("ClueBanner", GameSettings.IsGuided);
+        SetActiveByName("HintButton", GameSettings.IsGuided);
+
         // SyllableBuilderUI is deliberately not bundled with GameController:
         // it belongs on the scene's SyllableBuilder object with its
         // serialized ConfirmButton reference. This guard only covers a
@@ -95,6 +102,28 @@ public static class SceneBootstrap
             }
             SceneRouter.OpenSettings(SceneRouter.GameScene);
         });
+    }
+
+    // Note the inactive-inclusive search: once this switches an object
+    // off, GameObject.Find can never see it again, so the next Classic
+    // round could not switch it back on.
+    private static void SetActiveByName(string name, bool active)
+    {
+        GameObject go = FindIncludingInactive(name);
+        if (go == null)
+        {
+            Debug.LogWarning($"SceneBootstrap: '{name}' not found in GameScene — it cannot be hidden outside Classic.");
+            return;
+        }
+        go.SetActive(active);
+    }
+
+    private static GameObject FindIncludingInactive(string name)
+    {
+        foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
+            foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+                if (t.name == name) return t.gameObject;
+        return null;
     }
 
     private static void EnsureController<T>() where T : Component

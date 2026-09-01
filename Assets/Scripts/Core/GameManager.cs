@@ -10,6 +10,17 @@ public class GameManager : MonoBehaviour
 {
     public const float RoundSeconds = 180f;
 
+    // How far into the red a round may go. Penalties (currently only
+    // Classic's hint) stop biting at this floor, and whoever charges them
+    // is expected to stop offering the purchase once Score reaches it —
+    // otherwise the penalty silently becomes free, which is exactly what
+    // a clamp at 0 used to do. Score resets to 0 each round, so this
+    // doubles as a per-round hint budget of two hints.
+    public const int MinScore = -100;
+
+    // False once the round has spent its full penalty budget.
+    public bool CanAffordPenalty => Score > MinScore;
+
     public static GameManager Instance { get; private set; }
 
     // Carried across the scene load so ResultScene can display them.
@@ -173,10 +184,12 @@ public class GameManager : MonoBehaviour
         return points;
     }
 
-    // Direct score adjustment (e.g. Classic's hint penalty). Never below 0.
+    // Direct score adjustment (e.g. Classic's hint penalty). Never below
+    // MinScore. A caller that keeps spending past the floor gets charged
+    // nothing, so callers must gate on CanAffordPenalty.
     public void AddPoints(int delta)
     {
-        Score = Mathf.Max(0, Score + delta);
+        Score = Mathf.Max(MinScore, Score + delta);
         UpdateScoreUI();
     }
 

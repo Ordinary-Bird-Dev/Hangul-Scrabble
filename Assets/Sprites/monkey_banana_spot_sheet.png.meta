@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 3c60db6acd69ecc4f96b0d9883448d94
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -732891191870445772
+    second: monkey_banana_spot_sheet_0
+  - first:
+      213: -8309878697079997196
+    second: monkey_banana_spot_sheet_1
+  - first:
+      213: 6120627870767104327
+    second: monkey_banana_spot_sheet_2
+  - first:
+      213: -7321918498563630118
+    second: monkey_banana_spot_sheet_3
+  - first:
+      213: 7800121107294890600
+    second: monkey_banana_spot_sheet_4
+  - first:
+      213: 5305929490110097508
+    second: monkey_banana_spot_sheet_5
+  - first:
+      213: 2400335621764991237
+    second: monkey_banana_spot_sheet_6
+  - first:
+      213: 7231218199774117596
+    second: monkey_banana_spot_sheet_7
+  - first:
+      213: -1876545590031436317
+    second: monkey_banana_spot_sheet_8
+  - first:
+      213: -4580630778637459841
+    second: monkey_banana_spot_sheet_9
+  - first:
+      213: -5451726140955279344
+    second: monkey_banana_spot_sheet_10
+  - first:
+      213: 6667441494424879394
+    second: monkey_banana_spot_sheet_11
+  - first:
+      213: 4604763120959824515
+    second: monkey_banana_spot_sheet_12
+  - first:
+      213: -8583204862432617890
+    second: monkey_banana_spot_sheet_13
+  - first:
+      213: -848914124163386990
+    second: monkey_banana_spot_sheet_14
+  - first:
+      213: 9091304590598887592
+    second: monkey_banana_spot_sheet_15
+  - first:
+      213: 1082913306955524437
+    second: monkey_banana_spot_sheet_16
+  - first:
+      213: -5627757026773451595
+    second: monkey_banana_spot_sheet_17
+  - first:
+      213: -3698247188846813103
+    second: monkey_banana_spot_sheet_18
+  - first:
+      213: -4763434333522346636
+    second: monkey_banana_spot_sheet_19
+  - first:
+      213: 6313360727243369893
+    second: monkey_banana_spot_sheet_20
+  - first:
+      213: -2057689834917171527
+    second: monkey_banana_spot_sheet_21
+  - first:
+      213: -6249213217792770691
+    second: monkey_banana_spot_sheet_22
+  - first:
+      213: 3395115547275915158
+    second: monkey_banana_spot_sheet_23
+  - first:
+      213: -5461439997624648003
+    second: monkey_banana_spot_sheet_24
+  - first:
+      213: -4537017130090500626
+    second: monkey_banana_spot_sheet_25
+  - first:
+      213: -2957056128151085866
+    second: monkey_banana_spot_sheet_26
+  - first:
+      213: 5718609495995268343
+    second: monkey_banana_spot_sheet_27
+  - first:
+      213: 4896878707535649529
+    second: monkey_banana_spot_sheet_28
+  - first:
+      213: 8311324989951247134
+    second: monkey_banana_spot_sheet_29
+  - first:
+      213: -3127181163972940575
+    second: monkey_banana_spot_sheet_30
+  - first:
+      213: 7643977768237043193
+    second: monkey_banana_spot_sheet_31
+  - first:
+      213: 3571443762858588159
+    second: monkey_banana_spot_sheet_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 437ac81185f34d5f0800000000000000
+      internalID: -732891191870445772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fcf5f54a516dac80800000000000000
+      internalID: -8309878697079997196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741cd67be96d0f450800000000000000
+      internalID: 6120627870767104327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adbd0c23be1536a90800000000000000
+      internalID: -7321918498563630118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86aa65df1d89f3c60800000000000000
+      internalID: 7800121107294890600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468284d52c272a940800000000000000
+      internalID: 5305929490110097508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509c40dc784bf4120800000000000000
+      internalID: 2400335621764991237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde30ead3a27a5460800000000000000
+      internalID: 7231218199774117596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5b95d6abb25f5e0800000000000000
+      internalID: -1876545590031436317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7ed71873945e60c0800000000000000
+      internalID: -4580630778637459841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01046a395f39754b0800000000000000
+      internalID: -5451726140955279344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monkey_banana_spot_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 0
+        width: 194
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22105eba6b2878c50800000000000000
+      internalID: 6667441494424879394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 78cbcf0f393eb854ebc098a8264e4697
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":12.0,"y":1.0},"gridSpriteSize":{"x":194.0,"y":190.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      monkey_banana_spot_sheet_0: -732891191870445772
+      monkey_banana_spot_sheet_1: -8309878697079997196
+      monkey_banana_spot_sheet_10: -5451726140955279344
+      monkey_banana_spot_sheet_11: 6667441494424879394
+      monkey_banana_spot_sheet_2: 6120627870767104327
+      monkey_banana_spot_sheet_3: -7321918498563630118
+      monkey_banana_spot_sheet_4: 7800121107294890600
+      monkey_banana_spot_sheet_5: 5305929490110097508
+      monkey_banana_spot_sheet_6: 2400335621764991237
+      monkey_banana_spot_sheet_7: 7231218199774117596
+      monkey_banana_spot_sheet_8: -1876545590031436317
+      monkey_banana_spot_sheet_9: -4580630778637459841
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
