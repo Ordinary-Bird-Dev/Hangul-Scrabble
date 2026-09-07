@@ -53,10 +53,14 @@ public class SettingsSceneController : MonoBehaviour
         var rowGo = new GameObject("ModeSelect", typeof(RectTransform));
         rowGo.transform.SetParent(canvas.transform, false);
 
+        // Anchored to the TOP, not the centre: every other control on this
+        // screen is top-anchored, so a centre-anchored row drifts away from
+        // its own "Game Mode" heading as the canvas height changes. -700
+        // puts it directly under that label, which sits at -540.
         var rowRect = (RectTransform)rowGo.transform;
-        rowRect.anchorMin = new Vector2(0.5f, 0.5f);
-        rowRect.anchorMax = new Vector2(0.5f, 0.5f);
-        rowRect.anchoredPosition = new Vector2(0f, -320f);
+        rowRect.anchorMin = new Vector2(0.5f, 1f);
+        rowRect.anchorMax = new Vector2(0.5f, 1f);
+        rowRect.anchoredPosition = new Vector2(0f, -700f);
         rowRect.sizeDelta = new Vector2(920f, 110f);
 
         var layout = rowGo.AddComponent<HorizontalLayoutGroup>();

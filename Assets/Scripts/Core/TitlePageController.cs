@@ -7,9 +7,11 @@ public class TitlePageController : MonoBehaviour
 {
     void Start()
     {
-        WireButton("PlayButton", () => SceneManager.LoadScene("GameScene"));
-        WireButton("HangulBasicsButton", () => SceneManager.LoadScene("HangulBasicsScene"));
-        WireButton("HowToPlayButton", () => SceneManager.LoadScene("HowToPlayScene"));
+        // Hangul Basics is deliberately NOT here: it is reached from inside
+        // How to Play, so the title keeps two real choices plus the gear.
+        // InfoPageController owns that link.
+        WireButton("PlayButton", () => SceneManager.LoadScene(SceneRouter.GameScene));
+        WireButton("HowToPlayButton", () => SceneManager.LoadScene(SceneRouter.HowToPlayScene));
         WireButton("SettingsButton", () => SceneRouter.OpenSettings(SceneRouter.TitleScene));
     }
 

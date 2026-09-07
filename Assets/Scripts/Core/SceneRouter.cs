@@ -15,6 +15,8 @@ public static class SceneRouter
     public const string TitleScene = "TitleScene";
     public const string GameScene = "GameScene";
     public const string SettingScene = "SettingScene";
+    public const string HowToPlayScene = "HowToPlayScene";
+    public const string HangulBasicsScene = "HangulBasicsScene";
 
     // Set this immediately before loading SettingScene. Defaults to the
     // title so an unset route can never strand the player mid-round.
