@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: 7d8f6118d816ab04cbf0bf6f5d7b6431
+guid: c31653f925f7ba74295f847534a26b13
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5607854746472339178
-    second: monkey_laugh_clap_sheet_0
+      213: -8403631987309810465
+    second: six_cutout_native_0
   - first:
-      213: 44797571080525265
-    second: monkey_laugh_clap_sheet_1
+      213: 6323127541414434565
+    second: six_cutout_native_1
   - first:
-      213: 8440467903685498845
-    second: monkey_laugh_clap_sheet_2
+      213: -8475072174594669281
+    second: six_cutout_native_2
   - first:
-      213: 530516164910467303
-    second: monkey_laugh_clap_sheet_3
+      213: -4148103302283271234
+    second: six_cutout_native_3
   - first:
-      213: 5825456613339050795
-    second: monkey_laugh_clap_sheet_4
+      213: -7287335852361250305
+    second: six_cutout_native_4
   - first:
-      213: 487824509978836106
-    second: monkey_laugh_clap_sheet_5
+      213: -7469720637011283829
+    second: six_cutout_native_5
   - first:
-      213: 251485118542198572
-    second: monkey_laugh_clap_sheet_6
+      213: 6913838215087597017
+    second: six_cutout_native_6
   - first:
-      213: 7843969996078198355
-    second: monkey_laugh_clap_sheet_7
+      213: 7871073457662622957
+    second: six_cutout_native_7
+  - first:
+      213: -4823862034549965813
+    second: six_cutout_native_8
+  - first:
+      213: -3197163915166385786
+    second: six_cutout_native_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -160,13 +166,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_0
+      name: six_cutout_native_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
-        width: 82
-        height: 103
+        x: 85
+        y: 125
+        width: 107
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae6d8732e2a13dd40800000000000000
-      internalID: 5607854746472339178
+      spriteID: fdce94d5b3d406b80800000000000000
+      internalID: -8403631987309810465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_1
+      name: six_cutout_native_1
       rect:
         serializedVersion: 2
-        x: 99
-        y: 0
-        width: 88
-        height: 102
+        x: 226
+        y: 125
+        width: 79
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,130 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d51e0f47272f9000800000000000000
-      internalID: 44797571080525265
+      spriteID: 5071f7f5ff240c750800000000000000
+      internalID: 6323127541414434565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_2
+      name: six_cutout_native_2
       rect:
         serializedVersion: 2
-        x: 194
-        y: 0
-        width: 88
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd79241c6d0922570800000000000000
-      internalID: 8440467903685498845
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_3
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 0
-        width: 81
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e8471524a5cc5700800000000000000
-      internalID: 530516164910467303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_4
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 0
-        width: 86
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b23368cdced28d050800000000000000
-      internalID: 5825456613339050795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_5
-      rect:
-        serializedVersion: 2
-        x: 478
-        y: 0
-        width: 88
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8c7406aec915c600800000000000000
-      internalID: 487824509978836106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 572
-        y: 0
-        width: 89
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c27310502647d7300800000000000000
-      internalID: 251485118542198572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monkey_laugh_clap_sheet_7
-      rect:
-        serializedVersion: 2
-        x: 668
-        y: 0
+        x: 340
+        y: 130
         width: 91
-        height: 102
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,8 +225,162 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35e201df6216bdc60800000000000000
-      internalID: 7843969996078198355
+      spriteID: f15cc7392ce726a80800000000000000
+      internalID: -8475072174594669281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 200
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb3e7cf260afe66c0800000000000000
+      internalID: -4148103302283271234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_4
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 204
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff90a09f6ae2eda90800000000000000
+      internalID: -7287335852361250305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_5
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 130
+        width: 103
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80b98b28a8365890800000000000000
+      internalID: -7469720637011283829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_6
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 128
+        width: 87
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d521dcb933e2ff50800000000000000
+      internalID: 6913838215087597017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_7
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 120
+        width: 113
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec7cf46b9bab3d60800000000000000
+      internalID: 7871073457662622957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_8
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 125
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0cf72999033e0db0800000000000000
+      internalID: -4823862034549965813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: six_cutout_native_9
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 121
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6897fc3cb5461a3d0800000000000000
+      internalID: -3197163915166385786
       vertices: []
       indices: 
       edges: []
@@ -349,14 +399,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      monkey_laugh_clap_sheet_0: 5607854746472339178
-      monkey_laugh_clap_sheet_1: 44797571080525265
-      monkey_laugh_clap_sheet_2: 8440467903685498845
-      monkey_laugh_clap_sheet_3: 530516164910467303
-      monkey_laugh_clap_sheet_4: 5825456613339050795
-      monkey_laugh_clap_sheet_5: 487824509978836106
-      monkey_laugh_clap_sheet_6: 251485118542198572
-      monkey_laugh_clap_sheet_7: 7843969996078198355
+      six_cutout_native_0: -8403631987309810465
+      six_cutout_native_1: 6323127541414434565
+      six_cutout_native_2: -8475072174594669281
+      six_cutout_native_3: -4148103302283271234
+      six_cutout_native_4: -7287335852361250305
+      six_cutout_native_5: -7469720637011283829
+      six_cutout_native_6: 6913838215087597017
+      six_cutout_native_7: 7871073457662622957
+      six_cutout_native_8: -4823862034549965813
+      six_cutout_native_9: -3197163915166385786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

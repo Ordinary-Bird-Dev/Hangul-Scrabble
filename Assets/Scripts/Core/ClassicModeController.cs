@@ -35,7 +35,7 @@ public class ClassicModeController : MonoBehaviour
     private const float BannerTopEdge = -165f;
     private const float BannerHeight = 160f;
     private const float BannerWidth = 920f;
-    private const float ClueFontSize = 55f;
+    private const float ClueFontSize = 65f;
     // The hint line is styled RELATIVE to whatever ClueText is set to in
     // the Inspector, and inherits its colour. An absolute size and a fixed
     // colour here would fight the scene: a 72pt scene clue made a 36pt
