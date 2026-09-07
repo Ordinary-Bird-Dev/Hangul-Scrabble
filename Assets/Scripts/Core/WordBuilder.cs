@@ -219,7 +219,7 @@ public class WordBuilder : MonoBehaviour
 
     private System.Collections.IEnumerator FlashRoutine()
     {
-        _wordText.color = new Color(0.9f, 0.25f, 0.25f);
+        _wordText.color = Palette.Reject;
         yield return new WaitForSeconds(0.4f);
         _wordText.color = _wordTextColor;
         _flashRoutine = null;

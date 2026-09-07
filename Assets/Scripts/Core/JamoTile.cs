@@ -19,11 +19,14 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Image _background;
     [SerializeField] private TextMeshProUGUI _label;
-    [SerializeField] private Color _normalColor = new Color(0.9f, 0.9f, 0.9f, 1f);
-    [SerializeField] private Color _vowelColor = new Color(0.72f, 0.86f, 1f, 1f);      // add
-    [SerializeField] private Color _consonantColor = new Color(1f, 0.93f, 0.7f, 1f);   // add
-    [SerializeField] private Color _selectedColor = new Color(1f, 0.85f, 0.3f, 1f);
-    [SerializeField] private Color _consumedColor = new Color(0.6f, 0.6f, 0.6f, 0.35f);
+    // DEFAULTS for a freshly added component only. The live values are
+    // serialized on the Tile prefab, so editing them here does NOT move the
+    // prefab — set those two fields in the Inspector to match Palette.
+    [SerializeField] private Color _normalColor = Palette.SurfaceMuted;
+    [SerializeField] private Color _vowelColor = Palette.Vowel;
+    [SerializeField] private Color _consonantColor = Palette.Consonant;
+    [SerializeField] private Color _selectedColor = Palette.Action;
+    [SerializeField] private Color _consumedColor = Palette.TileConsumed;
 
     public string Jamo { get; private set; } = "";
     public TileState State { get; private set; } = TileState.Normal;

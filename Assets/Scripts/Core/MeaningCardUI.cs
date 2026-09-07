@@ -38,7 +38,7 @@ public class MeaningCardUI : MonoBehaviour, IPointerClickHandler
         rect.sizeDelta = new Vector2(900f, 320f);
 
         Image bg = cardGo.AddComponent<Image>();
-        bg.color = new Color(0.13f, 0.13f, 0.2f, 0.95f);
+        bg.color = Palette.Surface;
 
         var textGo = new GameObject("CardText", typeof(RectTransform));
         textGo.transform.SetParent(cardGo.transform, false);
@@ -50,6 +50,9 @@ public class MeaningCardUI : MonoBehaviour, IPointerClickHandler
 
         var text = textGo.AddComponent<TextMeshProUGUI>();
         if (font != null) text.font = font;
+        // Explicit: the card is now a white Surface, so TMP's default white
+        // would render the whole card blank.
+        text.color = Palette.Ink;
         text.fontSize = 44f;
         text.alignment = TextAlignmentOptions.Center;
         text.raycastTarget = false; // taps land on the card background

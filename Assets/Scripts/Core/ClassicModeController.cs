@@ -22,8 +22,8 @@ public class ClassicModeController : MonoBehaviour
     private Image _hintBackground;
     private bool? _hintShownEnabled;
 
-    private static readonly Color HintEnabledColor = new Color(0.5f, 0.4f, 0.1f, 0.9f);
-    private static readonly Color HintDisabledColor = new Color(0.3f, 0.28f, 0.2f, 0.45f);
+    private static readonly Color HintEnabledColor = Palette.Action;
+    private static readonly Color HintDisabledColor = Palette.ActionMuted;
 
     // Sizing for the RUNTIME FALLBACK banner only — the one BuildClueBanner
     // creates when GameScene has no ClueBanner of its own. Once the banner
@@ -379,7 +379,7 @@ public class ClassicModeController : MonoBehaviour
         bannerRect.sizeDelta = new Vector2(BannerWidth, BannerHeight);
 
         Image bannerBg = banner.AddComponent<Image>();
-        bannerBg.color = new Color(0.1f, 0.3f, 0.2f, 0.85f);
+        bannerBg.color = Palette.Surface;
         bannerBg.raycastTarget = false;
 
         var clueGo = new GameObject("ClueText", typeof(RectTransform));
@@ -391,6 +391,10 @@ public class ClassicModeController : MonoBehaviour
         clueRect.offsetMax = new Vector2(-20f, -8f);
 
         _clueText = clueGo.AddComponent<TextMeshProUGUI>();
+        // Explicit: the fallback banner is now a white Surface, so TMP's
+        // default white would render the clue invisible. The hint line
+        // inherits this colour via its relative <size> tag.
+        _clueText.color = Palette.Ink;
         _clueText.fontSize = ClueFontSize;
         _clueText.alignment = TextAlignmentOptions.Center;
         _clueText.raycastTarget = false;
@@ -430,6 +434,9 @@ public class ClassicModeController : MonoBehaviour
 
         var hintLabel = hintLabelGo.AddComponent<TextMeshProUGUI>();
         hintLabel.text = $"Hint (-{HintPenalty})";
+        // Explicit: Action is a light orange, so a default-white label on it
+        // fails contrast badly.
+        hintLabel.color = Palette.OnAction;
         hintLabel.fontSize = 34f;
         hintLabel.alignment = TextAlignmentOptions.Center;
         hintLabel.raycastTarget = false;

@@ -229,7 +229,7 @@ MonoBehaviour:
   _background: {fileID: 4452759652090931687}
   _label: {fileID: 2690910587647944477}
   _normalColor: {r: 1, g: 0.8597314, b: 0.4188679, a: 1}
-  _vowelColor: {r: 0.34901962, g: 0.9294118, b: 0.9960785, a: 1}
-  _consonantColor: {r: 0.47450984, g: 0.9490197, b: 0.31764707, a: 1}
+  _vowelColor: {r: 0.3372549, g: 0.68235296, b: 0.7882353, a: 1}
+  _consonantColor: {r: 0.4862745, g: 0.7490196, b: 0.30980393, a: 1}
   _selectedColor: {r: 0.33138475, g: 1, b: 0.26415092, a: 1}
   _consumedColor: {r: 0.6, g: 0.6, b: 0.6, a: 0.35}

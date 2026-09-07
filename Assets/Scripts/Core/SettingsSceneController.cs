@@ -37,8 +37,8 @@ public class SettingsSceneController : MonoBehaviour
         BuildModeSelect();
     }
 
-    private static readonly Color ModeNormal = new Color(0.25f, 0.25f, 0.32f, 1f);
-    private static readonly Color ModeSelected = new Color(0.2f, 0.55f, 0.35f, 1f);
+    private static readonly Color ModeNormal = Palette.SurfaceMuted;
+    private static readonly Color ModeSelected = Palette.Action;
 
     private readonly List<(GameMode mode, Image background)> _modeButtons =
         new List<(GameMode, Image)>();
@@ -99,6 +99,9 @@ public class SettingsSceneController : MonoBehaviour
 
         var text = labelGo.AddComponent<TextMeshProUGUI>();
         text.text = label;
+        // Explicit, because TMP defaults to white: both chip states are now
+        // light, so an unset colour would render the label invisible.
+        text.color = Palette.Ink;
         text.fontSize = 34f;
         text.alignment = TextAlignmentOptions.Center;
         text.raycastTarget = false;

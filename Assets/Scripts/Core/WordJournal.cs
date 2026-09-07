@@ -93,7 +93,9 @@ public class WordJournal : MonoBehaviour
         rect.sizeDelta = new Vector2(400f, 560f);
 
         Image bg = panelGo.AddComponent<Image>();
-        bg.color = new Color(0f, 0f, 0f, 0.25f);
+        // Stays a scrim, not a Surface: the journal overlays live gameplay,
+        // so a solid white panel would hide the board behind it.
+        bg.color = Palette.Scrim;
         bg.raycastTarget = false;
 
         var textGo = new GameObject("JournalText", typeof(RectTransform));
@@ -105,6 +107,7 @@ public class WordJournal : MonoBehaviour
         textRect.offsetMax = new Vector2(-16f, -12f);
 
         var text = textGo.AddComponent<TextMeshProUGUI>();
+        text.color = Palette.OnJungle;
         text.fontSize = 30f;
         text.alignment = TextAlignmentOptions.TopLeft;
         text.raycastTarget = false;

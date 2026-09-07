@@ -60,7 +60,7 @@ public class ResultSceneController : MonoBehaviour
     }
 
     private const string MenuButtonName = "MenuButton";
-    private static readonly Color MenuButtonColor = new Color(0.25f, 0.25f, 0.32f, 1f);
+    private static readonly Color MenuButtonColor = Palette.Surface;
 
     // PlayAgainButton lives in SuccessPanel and TryAgainButton in FailPanel,
     // so exactly one of them is ever visible. The route back to the title
@@ -114,6 +114,9 @@ public class ResultSceneController : MonoBehaviour
 
         var label = labelGo.AddComponent<TextMeshProUGUI>();
         label.text = "Main Menu";
+        // Explicit: the button is now a white Surface, and TMP's default
+        // white would leave this label invisible.
+        label.color = Palette.Ink;
         label.fontSize = 34f;
         label.alignment = TextAlignmentOptions.Center;
         label.raycastTarget = false;
