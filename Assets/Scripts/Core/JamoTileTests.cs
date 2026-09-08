@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// NOTE: these are MonoBehaviour tests, not NUnit — they only run when this
+// component is attached to a GameObject in a scene that is played. No scene
+// attaches it today, so nothing here executes unless you add it deliberately.
 public class JamoTileTests : MonoBehaviour
 {
     private readonly List<GameObject> _spawned = new List<GameObject>();
@@ -8,10 +11,8 @@ public class JamoTileTests : MonoBehaviour
     void Start()
     {
         TestSetJamo();
-        TestSelectEnforcesSingleSelection();
-        TestTapTogglesSelection();
-        TestConsumeClearsSelectionAndBlocksReselect();
-        TestClearSelection();
+        TestTapDoesNotChangeStateWithoutABuilder();
+        TestConsumeBlocksFurtherTaps();
         TestSetJamoRevivesConsumedTile();
         TestTryPlaceIntoComposesSyllable();
         TestTryPlaceIntoRejectsInvalidJamo();
@@ -30,74 +31,40 @@ public class JamoTileTests : MonoBehaviour
 
     void TestSetJamo()
     {
-        JamoTile.ClearSelection();
         JamoTile tile = MakeTile("ㄱ");
 
         Assert(tile.Jamo == "ㄱ", "SetJamo should store the jamo string");
         Assert(tile.State == JamoTile.TileState.Normal, "A freshly dealt tile should be in Normal state");
     }
 
-    void TestSelectEnforcesSingleSelection()
+    // A tile is only spent when a builder actually accepts its jamo. With no
+    // SyllableBuilderUI in the scene, TryAutoPlaceTile no-ops and the tile
+    // must stay available — otherwise a tap would silently burn a tile.
+    void TestTapDoesNotChangeStateWithoutABuilder()
     {
-        JamoTile.ClearSelection();
-        JamoTile a = MakeTile("ㄴ");
-        JamoTile b = MakeTile("ㅏ");
-
-        a.Select();
-        Assert(JamoTile.GetSelectedTile() == a, "Tile A should be the selected tile after Select()");
-
-        b.Select();
-        Assert(JamoTile.GetSelectedTile() == b, "Selecting tile B should replace tile A as selection");
-        Assert(a.State == JamoTile.TileState.Normal, "Tile A should return to Normal when B is selected");
-        Assert(b.State == JamoTile.TileState.Selected, "Tile B should be in Selected state");
-    }
-
-    void TestTapTogglesSelection()
-    {
-        JamoTile.ClearSelection();
         JamoTile tile = MakeTile("ㄷ");
 
         tile.OnPointerClick(null);
-        Assert(tile.State == JamoTile.TileState.Selected, "First tap should select the tile");
+        Assert(tile.State == JamoTile.TileState.Normal, "A tap with no builder present should leave the tile Normal");
 
         tile.OnPointerClick(null);
-        Assert(tile.State == JamoTile.TileState.Normal, "Second tap should deselect the tile");
-        Assert(JamoTile.GetSelectedTile() == null, "No tile should be selected after toggling off");
+        Assert(tile.State == JamoTile.TileState.Normal, "Repeated taps should not toggle a tile into any other state");
     }
 
-    void TestConsumeClearsSelectionAndBlocksReselect()
+    void TestConsumeBlocksFurtherTaps()
     {
-        JamoTile.ClearSelection();
         JamoTile tile = MakeTile("ㄹ");
 
-        tile.Select();
         tile.Consume();
-
         Assert(tile.State == JamoTile.TileState.Consumed, "Consume should set Consumed state");
-        Assert(JamoTile.GetSelectedTile() == null, "Consuming the selected tile should clear the selection");
+        Assert(tile.IsConsumed, "IsConsumed should agree with the Consumed state");
 
-        tile.Select();
-        Assert(tile.State == JamoTile.TileState.Consumed, "A consumed tile should refuse Select()");
-
-        tile.OnPointerClick(null);
-        Assert(JamoTile.GetSelectedTile() == null, "Tapping a consumed tile should not select it");
-    }
-
-    void TestClearSelection()
-    {
-        JamoTile.ClearSelection();
-        JamoTile tile = MakeTile("ㅁ");
-
-        tile.Select();
-        JamoTile.ClearSelection();
-
-        Assert(JamoTile.GetSelectedTile() == null, "ClearSelection should leave no tile selected");
-        Assert(tile.State == JamoTile.TileState.Normal, "ClearSelection should return the tile to Normal");
+        tile.Tap();
+        Assert(tile.State == JamoTile.TileState.Consumed, "A consumed tile should ignore taps");
     }
 
     void TestSetJamoRevivesConsumedTile()
     {
-        JamoTile.ClearSelection();
         JamoTile tile = MakeTile("ㅂ");
 
         tile.Consume();
@@ -109,7 +76,6 @@ public class JamoTileTests : MonoBehaviour
 
     void TestTryPlaceIntoComposesSyllable()
     {
-        JamoTile.ClearSelection();
         var slotGo = new GameObject("TestSlot");
         _spawned.Add(slotGo);
         SyllableSlot slot = slotGo.AddComponent<SyllableSlot>();
@@ -129,7 +95,6 @@ public class JamoTileTests : MonoBehaviour
 
     void TestTryPlaceIntoRejectsInvalidJamo()
     {
-        JamoTile.ClearSelection();
         var slotGo = new GameObject("TestSlot2");
         _spawned.Add(slotGo);
         SyllableSlot slot = slotGo.AddComponent<SyllableSlot>();
@@ -142,7 +107,6 @@ public class JamoTileTests : MonoBehaviour
 
     void Cleanup()
     {
-        JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             Destroy(go);
         _spawned.Clear();

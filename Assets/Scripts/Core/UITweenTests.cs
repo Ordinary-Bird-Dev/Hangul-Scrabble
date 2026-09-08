@@ -70,17 +70,15 @@ public class UITweenTests : MonoBehaviour
         JamoTile tile = go.AddComponent<JamoTile>();
         tile.SetJamo("ㄱ");
 
-        tile.Select();
+        tile.Tap();
         yield return new WaitForSeconds(0.35f);
 
         Assert(Vector3.Distance(go.transform.localScale, Vector3.one) < 0.001f,
             $"Tile bounce should settle back at scale 1, got {go.transform.localScale}");
-        JamoTile.ClearSelection();
     }
 
     void Cleanup()
     {
-        JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             if (go != null) Destroy(go);
         _spawned.Clear();

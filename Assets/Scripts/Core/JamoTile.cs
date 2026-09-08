@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// A tray tile. Tapping one routes its jamo straight into whichever slot the
+// syllable needs next — there is no select-then-place step, so a tile is
+// either available (Normal) or spent (Consumed) and nothing in between.
 public class JamoTile : MonoBehaviour, IPointerClickHandler
 {
     public enum TileState
     {
         Normal,
-        Selected,
         Consumed
     }
 
-    // Tap-to-select: only one tile may be selected at a time.
-    private static JamoTile _currentlySelected;
     private static Animator _mascotAnimator;
     private const string MascotTileSelectTrigger = "TileSelect";
 
@@ -21,11 +21,10 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI _label;
     // DEFAULTS for a freshly added component only. The live values are
     // serialized on the Tile prefab, so editing them here does NOT move the
-    // prefab — set those two fields in the Inspector to match Palette.
+    // prefab — set those fields in the Inspector to match Palette.
     [SerializeField] private Color _normalColor = Palette.SurfaceMuted;
     [SerializeField] private Color _vowelColor = Palette.Vowel;
     [SerializeField] private Color _consonantColor = Palette.Consonant;
-    [SerializeField] private Color _selectedColor = Palette.Action;
     [SerializeField] private Color _consumedColor = Palette.TileConsumed;
 
     public string Jamo { get; private set; } = "";
@@ -41,23 +40,15 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         ApplyVisuals();
     }
 
-    void OnDestroy()
-    {
-        if (_currentlySelected == this)
-            _currentlySelected = null;
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (State == TileState.Consumed) return;
-
-        if (State == TileState.Selected)
-            Deselect();
-        else
-            Select();
+        Tap();
     }
 
-    public void Select()
+    // Feedback fires on every tap, including one that doesn't fit the slot
+    // state: the bounce and the sound are how the player learns the tap
+    // registered but the jamo isn't legal there yet.
+    public void Tap()
     {
         if (State == TileState.Consumed) return;
 
@@ -69,25 +60,8 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         SyllableBuilderUI.TryAutoPlaceTile(this);
     }
 
-
-
-    public void Deselect()
-    {
-        if (_currentlySelected == this)
-            _currentlySelected = null;
-
-        if (State == TileState.Selected)
-        {
-            State = TileState.Normal;
-            ApplyVisuals();
-        }
-    }
-
     public void Consume()
     {
-        if (_currentlySelected == this)
-            _currentlySelected = null;
-
         State = TileState.Consumed;
         ApplyVisuals();
     }
@@ -97,10 +71,6 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     public void SetEmpty()
     {
         Jamo = "";
-
-        if (_currentlySelected == this)
-            _currentlySelected = null;
-
         State = TileState.Consumed;
         if (_label != null) _label.text = "";
         ApplyVisuals();
@@ -117,10 +87,6 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     public void SetJamo(string jamo)
     {
         Jamo = jamo;
-
-        if (_currentlySelected == this)
-            _currentlySelected = null;
-
         State = TileState.Normal;
         if (_label != null) _label.text = jamo;
         ApplyVisuals();
@@ -153,15 +119,7 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
         return placed;
     }
 
-    public static JamoTile GetSelectedTile() => _currentlySelected;
-
-    public static void ClearSelection()
-    {
-        if (_currentlySelected != null)
-            _currentlySelected.Deselect();
-    }
-
-    // Tap-to-select bounce. Scale is reset first so rapid taps never drift.
+    // Tap bounce. Scale is reset first so rapid taps never drift.
     private void PlayBounce()
     {
         if (!isActiveAndEnabled) return;
@@ -185,18 +143,9 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     {
         if (_background == null) return;
 
-        switch (State)
-        {
-            case TileState.Selected:
-                _background.color = _selectedColor;
-                break;
-            case TileState.Consumed:
-                _background.color = _consumedColor;
-                break;
-            default:
-                _background.color = ColorForJamo();
-                break;
-        }
+        _background.color = State == TileState.Consumed
+            ? _consumedColor
+            : ColorForJamo();
 
         _background.raycastTarget = State != TileState.Consumed;
     }

@@ -93,20 +93,12 @@ public class SyllableBuilderUI : MonoBehaviour
     }
 
     // Slot tap. A filled slot retracts its jamo back to the tray; an empty
-    // slot places the currently selected tile (legacy select-then-tap path,
-    // largely superseded by direct tile taps via TryAutoPlace).
+    // slot has nothing to do, because jamo arrive by tapping the tile
+    // itself (TryAutoPlace), not by tapping a destination.
     public void OnSlotTapped(SlotRole role)
     {
         if (IsRoleFilled(role))
-        {
             RetractRole(role);
-            return;
-        }
-
-        JamoTile tile = JamoTile.GetSelectedTile();
-        if (tile == null) return;
-
-        PlaceTileInto(tile, role);
     }
 
     // Direct tile tap: route the jamo to whichever slot the syllable
@@ -182,29 +174,6 @@ public class SyllableBuilderUI : MonoBehaviour
             ConfirmSyllable();
 
         return true;
-    }
-
-    // Places the currently selected tile into whichever slot comes next.
-    // Superseded by direct tile taps; kept for a possible future
-    // tile-place button. (The scene object once named TileSelectorButton
-    // was really the word confirm button and has been renamed.)
-    public void PlaceSelectedTile()
-    {
-        JamoTile tile = JamoTile.GetSelectedTile();
-        if (tile == null)
-        {
-            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called with no tile selected.");
-            return;
-        }
-
-        SlotRole? role = NextRoleFor(tile.Jamo);
-        if (role == null)
-        {
-            Debug.LogWarning("SyllableBuilderUI: PlaceSelectedTile called but the selected jamo doesn't fit the current slot state.");
-            return;
-        }
-
-        PlaceTileInto(tile, role.Value);
     }
 
     private bool IsRoleFilled(SlotRole role)

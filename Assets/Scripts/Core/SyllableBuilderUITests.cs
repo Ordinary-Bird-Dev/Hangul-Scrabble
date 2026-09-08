@@ -2,15 +2,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// NOTE: MonoBehaviour tests, not NUnit — they only run when this component is
+// attached to a GameObject in a scene that is played.
+//
+// These exercise the direct-tap model: a jamo reaches a slot by tapping the
+// TILE (TryAutoPlace), and tapping a SLOT only ever retracts what is already
+// in it. There is no select-then-place step.
 public class SyllableBuilderUITests : MonoBehaviour
 {
     private readonly List<GameObject> _spawned = new List<GameObject>();
 
     void Start()
     {
-        TestTapPlacesSelectedTile();
+        TestAutoPlaceRoutesToChoSlot();
         TestInvalidJamoRejectedAndTileKept();
-        TestNoSelectionDoesNothing();
+        TestTappingEmptySlotDoesNothing();
+        TestTappingFilledSlotRetractsTile();
         TestConfirmFlowRaisesEventAndResets();
         TestConfirmWithoutJongseong();
         TestAutoConfirmAdvancesOnJong();
@@ -42,29 +49,26 @@ public class SyllableBuilderUITests : MonoBehaviour
         return root;
     }
 
-    JamoTile MakeSelectedTile(string jamo)
+    JamoTile MakeTile(string jamo)
     {
         var go = new GameObject($"TestTile_{jamo}");
         _spawned.Add(go);
         var tile = go.AddComponent<JamoTile>();
         tile.SetJamo(jamo);
-        tile.Select();
         return tile;
     }
 
     TMP_Text Preview(GameObject slotRoot) =>
         slotRoot.transform.Find("PreviewText").GetComponent<TMP_Text>();
 
-    void TestTapPlacesSelectedTile()
+    void TestAutoPlaceRoutesToChoSlot()
     {
-        JamoTile.ClearSelection();
         SyllableBuilderUI builder = MakeBuilder();
-        JamoTile tile = MakeSelectedTile("ㅎ");
+        JamoTile tile = MakeTile("ㅎ");
 
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
-
+        Assert(builder.TryAutoPlace(tile), "A consonant into an empty slot should be accepted");
         Assert(builder.Slot.State == SyllableSlot.SlotState.ChoPlaced,
-            "Tapping the cho slot with ㅎ selected should place it");
+            "ㅎ should land in the cho slot");
         Assert(tile.State == JamoTile.TileState.Consumed,
             "The placed tile should be consumed");
         Assert(builder.Slot.Cho == "ㅎ", "Slot should hold ㅎ as choseong");
@@ -72,43 +76,51 @@ public class SyllableBuilderUITests : MonoBehaviour
 
     void TestInvalidJamoRejectedAndTileKept()
     {
-        JamoTile.ClearSelection();
         SyllableBuilderUI builder = MakeBuilder();
-        JamoTile tile = MakeSelectedTile("ㅏ");
+        JamoTile tile = MakeTile("ㅏ");
 
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
-
+        Assert(!builder.TryAutoPlace(tile), "A vowel has no legal home in an empty slot");
         Assert(builder.Slot.State == SyllableSlot.SlotState.Empty,
-            "A vowel tapped into the cho slot should be rejected");
-        Assert(tile.State == JamoTile.TileState.Selected,
-            "A rejected tile should stay selected, not consumed");
+            "A rejected placement should leave the slot Empty");
+        Assert(tile.State == JamoTile.TileState.Normal,
+            "A rejected tile should stay available, not be consumed");
     }
 
-    void TestNoSelectionDoesNothing()
+    void TestTappingEmptySlotDoesNothing()
     {
-        JamoTile.ClearSelection();
         SyllableBuilderUI builder = MakeBuilder();
 
         builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
 
         Assert(builder.Slot.State == SyllableSlot.SlotState.Empty,
-            "Tapping a slot with no tile selected should do nothing");
+            "Tapping an empty slot should do nothing — jamo arrive via tile taps");
+    }
+
+    void TestTappingFilledSlotRetractsTile()
+    {
+        SyllableBuilderUI builder = MakeBuilder();
+        JamoTile tile = MakeTile("ㅎ");
+        builder.TryAutoPlace(tile);
+
+        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
+
+        Assert(builder.Slot.State == SyllableSlot.SlotState.Empty,
+            "Tapping a filled slot should empty it");
+        Assert(tile.State == JamoTile.TileState.Normal,
+            "The retracted tile should return to the tray as Normal");
+        Assert(tile.Jamo == "ㅎ", "The retracted tile should keep its jamo");
     }
 
     void TestConfirmFlowRaisesEventAndResets()
     {
-        JamoTile.ClearSelection();
         SyllableBuilderUI builder = MakeBuilder();
 
         string confirmed = null;
         builder.SyllableConfirmed += s => confirmed = s;
 
-        MakeSelectedTile("ㅎ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
-        MakeSelectedTile("ㅏ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Jung);
-        MakeSelectedTile("ㄱ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Jong);
+        builder.TryAutoPlace(MakeTile("ㅎ"));
+        builder.TryAutoPlace(MakeTile("ㅏ"));
+        builder.TryAutoPlace(MakeTile("ㄱ"));
 
         Assert(confirmed == null, "Syllable should not be confirmed before ConfirmSyllable (auto-confirm off)");
 
@@ -121,16 +133,13 @@ public class SyllableBuilderUITests : MonoBehaviour
 
     void TestConfirmWithoutJongseong()
     {
-        JamoTile.ClearSelection();
         SyllableBuilderUI builder = MakeBuilder();
 
         string confirmed = null;
         builder.SyllableConfirmed += s => confirmed = s;
 
-        MakeSelectedTile("ㅇ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
-        MakeSelectedTile("ㅣ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Jung);
+        builder.TryAutoPlace(MakeTile("ㅇ"));
+        builder.TryAutoPlace(MakeTile("ㅣ"));
         builder.ConfirmSyllable();
 
         Assert(confirmed == "이", $"Cho+jung confirm should produce 이, got {confirmed}");
@@ -138,7 +147,6 @@ public class SyllableBuilderUITests : MonoBehaviour
 
     void TestAutoConfirmAdvancesOnJong()
     {
-        JamoTile.ClearSelection();
         bool originalAutoConfirm = GameSettings.AutoConfirm;
         GameSettings.AutoConfirm = true;
 
@@ -146,12 +154,9 @@ public class SyllableBuilderUITests : MonoBehaviour
         string confirmed = null;
         builder.SyllableConfirmed += s => confirmed = s;
 
-        MakeSelectedTile("ㅅ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Cho);
-        MakeSelectedTile("ㅏ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Jung);
-        MakeSelectedTile("ㄴ");
-        builder.OnSlotTapped(SyllableBuilderUI.SlotRole.Jong);
+        builder.TryAutoPlace(MakeTile("ㅅ"));
+        builder.TryAutoPlace(MakeTile("ㅏ"));
+        builder.TryAutoPlace(MakeTile("ㄴ"));
 
         Assert(confirmed == "산", $"Auto-confirm should advance 산 on jong placement, got {confirmed}");
         Assert(builder.Slot.State == SyllableSlot.SlotState.Empty,
@@ -162,7 +167,6 @@ public class SyllableBuilderUITests : MonoBehaviour
 
     void Cleanup()
     {
-        JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             Destroy(go);
         _spawned.Clear();

@@ -226,7 +226,6 @@ public class TileManagerTests : MonoBehaviour
     void Cleanup()
     {
         GameSettings.Mode = _originalMode;
-        JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             Destroy(go);
         _spawned.Clear();

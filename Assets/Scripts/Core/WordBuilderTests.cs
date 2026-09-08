@@ -138,7 +138,6 @@ public class WordBuilderTests : MonoBehaviour
 
     void Cleanup()
     {
-        JamoTile.ClearSelection();
         foreach (GameObject go in _spawned)
             Destroy(go);
         _spawned.Clear();

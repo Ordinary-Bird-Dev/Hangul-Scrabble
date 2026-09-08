@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     // Carried across the scene load so ResultScene can display them.
     public static int LastFinalScore { get; private set; }
     public static int LastWordsCompleted { get; private set; }
-    public static WordEntry LastWordEntry { get; private set; }
 
     public static float? SavedTimeRemaining { get; private set; }
     public static int? SavedScore { get; private set; }
@@ -137,7 +136,6 @@ public class GameManager : MonoBehaviour
 
         ClearSavedSession();
 
-        LastWordEntry = null;
         _lastWordTime = float.NegativeInfinity;
         RoundActive = true;
         UpdateScoreUI();
@@ -208,7 +206,6 @@ public class GameManager : MonoBehaviour
 
     private void OnWordCompleted(WordEntry entry)
     {
-        LastWordEntry = entry;
         RegisterWord(entry.word, Time.time);
     }
 
