@@ -33,6 +33,13 @@ public static class Palette
     public static readonly Color SurfaceMuted = Hex("FFFFFF", 0.90f);
     public static readonly Color SurfaceSunken = Hex("F4F2EC");  // insets on a Surface
     public static readonly Color SurfaceEdge = Hex("D8D4C8");    // drop edge for a Surface
+    public static readonly Color Divider = Hex("EDEAE2");        // hairline between rows on a Surface
+
+    // ---- Controls -----------------------------------------------------
+    // A pill toggle's track. "On" is just Action; only the off state needs
+    // its own value, and it is deliberately warmer than SurfaceEdge so an
+    // off switch reads as inert rather than as a shadow.
+    public static readonly Color TrackOff = Hex("DEDBD2");
 
     // ---- Text ---------------------------------------------------------
     public static readonly Color Ink = Hex("323232");

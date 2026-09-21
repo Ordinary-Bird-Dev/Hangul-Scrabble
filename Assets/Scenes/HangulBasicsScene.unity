@@ -201,8 +201,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215280318}
   m_HandleRect: {fileID: 1215280317}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0.62119544
+  m_Value: 1
+  m_Size: 0.4728707
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -384113891763495613, guid: b3a9d7157b4bf1b4397a112d42d1184f, type: 3}
+  m_Sprite: {fileID: 6372765840644191286, guid: d8ecf38b90475d24fb5d278292a23fe2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -450,11 +450,11 @@ RectTransform:
   - {fileID: 636205250}
   m_Father: {fileID: 1086223141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 300, y: 132}
-  m_Pivot: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -80}
+  m_SizeDelta: {x: 112, y: 112}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &688058888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 6a0762d5d442bac4e8de1c62537981c3, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -606,16 +606,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=140%><b>\uD55C\uAE00\uB180\uC774 \u2014 Hangulnoree</b></size>\r\n\r\nBuild
-    real Korean words from their smallest pieces. No prior Korean needed.\r\n\r\n\r\n<size=120%><b>The
-    Korean alphabet</b></size>\r\n\r\nKorean is written in <b>Hangul</b> (\uD55C\uAE00).
-    Its letters are called <b>jamo</b> (\uC790\uBAA8), and there are only 24 basic
-    ones \u2014 you can learn the whole set.\r\n\r\nUnlike English, jamo isn't written
-    in a straight line. They stack into square <b>syllable blocks</b>.\r\n\r\n\r\n<size=120%><b>Building
-    a syllable</b></size>\r\n\r\nEvery syllable block has two or three parts, always
-    in this order:\r\n\r\n<b>1. \uCD08\uC131 (choseong)</b> \u2014 a starting consonant\r\n<b>2.
-    \uC911\uC131 (jungseong)</b> \u2014 a vowel\r\n<b>3. \uC885\uC131 (jongseong)</b>
-    \u2014 an ending consonant (optional)\r\n"
+  m_text: "<size=120%><b>The Korean alphabet</b></size>\r\n\r\nKorean is written
+    in <b>Hangul</b> (\uD55C\uAE00). Its letters are called <b>jamo</b> (\uC790\uBAA8),
+    and there are only 24 basic ones \u2014 you can learn the whole set.\r\n\r\nUnlike
+    English, jamo isn't written in a straight line. They stack into square <b>syllable
+    blocks</b>.\r\n\r\n\r\n<size=120%><b>Building a syllable</b></size>\r\n\r\nEvery
+    syllable block has two or three parts, always in this order:\r\n\r\n<b>1. \uCD08\uC131
+    (choseong)</b> \u2014 a starting consonant\r\n<b>2. \uC911\uC131 (jungseong)</b>
+    \u2014 a vowel\r\n<b>3. \uC885\uC131 (jongseong)</b> \u2014 an ending consonant
+    (optional)\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1df3c7ddff326442935824dfd206057, type: 2}
   m_sharedMaterial: {fileID: -3569274828165914316, guid: f1df3c7ddff326442935824dfd206057, type: 2}
@@ -1329,7 +1328,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: "For example:\r\n\r\n\u314E + \u314F + \u3131 = <b>\uD559</b>  (hak)\r\n\u3131
     + \u315B = <b>\uAD50</b>  (gyo)\r\n\r\nPut those two blocks together and you
-    get <b>\uD559\uAD50</b> \u2014 <i>school</i>.\r\n\n<size=120%><b>Good to know</b></size>\n\n<b>\u3147
+    get <b>\uD559\uAD50</b> \u2014 <i>school</i>.\n\n<size=120%><b>Where the vowel
+    goes</b></size>\r\n\r\nA vowel drawn with a <b>tall</b> stroke sits to the <b>right</b>
+    of the consonant:\r\n\u314F \u3151 \u3153 \u3155 \u3163\r\n\r\n\uAC00 = \u3131
+    + \u314F\r\n\r\nA vowel drawn with a <b>flat</b> stroke sits <b>underneath</b>
+    it:\r\n\u3157 \u315B \u315C \u3160 \u3161\r\n\r\n\uACE0 = \u3131 + \u3157\r\n\r\nAn
+    ending consonant always goes on the bottom, whichever kind of vowel it is.\r\n\r\n\uACE1
+    = \u3131 + \u3157 + \u3131\r\n\n<size=120%><b>Good to know</b></size>\n\n<b>\u3147
     is silent at the start.</b> Every syllable needs a starting consonant, so when
     a syllable begins with a vowel sound, \u3147 fills the space and makes no sound
     of its own. That's why <b>\uC774</b> is written \u3147 + \u3163 but simply sounds
@@ -1450,8 +1455,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 140}
-  m_SizeDelta: {x: 912, y: 1496}
+  m_AnchoredPosition: {x: 0, y: -79.157}
+  m_SizeDelta: {x: 912, y: 1454.314}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902174339
 MonoBehaviour:

@@ -1,0 +1,47 @@
+Korean TTS, tutorial level, learning-hub navigation, and unified GameScene layout
+
+Speech:
+- KoreanTTS.jslib + SpeechManager wrap the Web Speech API, with an iOS
+  unlock primer fired from a user gesture.
+- Hint now speaks the word instead of printing romanization. First press
+  costs 50 points; every later press for the same word replays free until
+  it's solved.
+- Correct words are read back in all three modes, not just Classic.
+
+Tutorial:
+- TutorialController scripts ClassicModeController through five
+  one-syllable lessons (개 코 눈 물 별) inside GameScene rather than a
+  duplicate scene, so layout fixes only ever happen once.
+- No countdown, no score, no gauge. Skip exits to the title; finishing
+  all five goes straight into a real round.
+
+Navigation:
+- Title screen is down to Play + How to Play. How to Play is now the
+  learning hub and owns the links to Hangul Basics and the Tutorial.
+- InfoPageController routes Back contextually so Hangul Basics returns to
+  How to Play instead of stranding the player at the title.
+
+Layout:
+- GameScene rebuilt to the Unified mockup: 968-wide content band,
+  22/9 vertical rhythm, clue card, and edge-to-edge tile tray.
+- ResultScene mascot fixed to 900x660 with PreserveAspect, matching the
+  GameScene prefab it had drifted from.
+
+Fixes:
+- Word bar clears on a wrong word in Zen and Word Hunt, not just Classic.
+- Clue banner defers its next word until the meaning card has gone, so
+  the two no longer change under each other.
+- Reset button has a sound.
+- Progress gauge tracks words completed instead of time remaining.
+- Replaced GameObject.Find with inactive-inclusive lookups in GameManager
+  and InfoPageController.
+
+WebGL:
+- HangulFit template sets the canvas size from JS with !important and
+  re-asserts on resize, since Unity's loader writes inline styles that
+  beat any stylesheet rule.
+
+How to Play and Hangul Basics copy updated.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_019SWeFGGGLnyabdmniYKUgy

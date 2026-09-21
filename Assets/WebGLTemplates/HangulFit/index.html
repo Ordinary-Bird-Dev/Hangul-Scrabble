@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<!-- Unity WebGL template that pins the canvas to a fixed aspect ratio.
+
+     Why this is done in JavaScript and not CSS: Unity's framework writes
+     canvas.style.width and canvas.style.height inline, in pixels, sized
+     from whatever box the canvas is sitting in. An inline style beats a
+     stylesheet rule, so an `aspect-ratio` rule in <style> is silently
+     overwritten the moment the player loads, and the canvas ends up the
+     shape of the itch.io iframe instead of 9:16.
+
+     So we write the size inline ourselves, with !important (which an
+     ordinary inline write cannot override), and re-assert it whenever
+     anything changes. -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+<title>{{{ PRODUCT_NAME }}}</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0E1F14;
+  }
+
+  /* Fills the iframe. The canvas is placed inside it by fitCanvas(), so
+     the letterbox bars are just this element showing through. */
+  #unity-container {
+    position: fixed;
+    inset: 0;
+    background: #0E1F14;
+  }
+
+  #unity-canvas {
+    position: absolute;
+    display: block;
+    background: #0E1F14;
+  }
+
+  #unity-loading-bar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 320px;
+    height: 12px;
+    border-radius: 6px;
+    background: #24382B;
+    overflow: hidden;
+    display: none;
+    z-index: 2;
+  }
+
+  #unity-progress-bar-full {
+    width: 0%;
+    height: 100%;
+    background: #FD984D;
+    transition: width 0.15s linear;
+  }
+
+  #unity-warning {
+    position: absolute;
+    left: 50%;
+    top: 12px;
+    transform: translateX(-50%);
+    font: 14px/1.4 system-ui, sans-serif;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: none;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+
+<div id="unity-container">
+  <canvas id="unity-canvas" width="{{{ WIDTH }}}" height="{{{ HEIGHT }}}" tabindex="-1"></canvas>
+  <div id="unity-loading-bar"><div id="unity-progress-bar-full"></div></div>
+  <div id="unity-warning"></div>
+</div>
+
+<script>
+  var container = document.querySelector("#unity-container");
+  var canvas = document.querySelector("#unity-canvas");
+  var loadingBar = document.querySelector("#unity-loading-bar");
+  var progressBarFull = document.querySelector("#unity-progress-bar-full");
+  var warningBanner = document.querySelector("#unity-warning");
+
+  // The shape the game is designed in — this comes from Player Settings'
+  // default web canvas size, so changing it there changes it here too.
+  var ASPECT = {{{ WIDTH }}} / {{{ HEIGHT }}};
+
+  // Letterbox the canvas inside the frame at exactly ASPECT, centred.
+  //
+  // setProperty(..., "important") is the point of the whole exercise:
+  // Unity's own inline write carries no !important flag, so ours wins and
+  // the canvas cannot be stretched back to the frame's shape.
+  function fitCanvas() {
+    var cw = container.clientWidth || window.innerWidth;
+    var ch = container.clientHeight || window.innerHeight;
+    if (!cw || !ch) return;
+
+    var w = cw;
+    var h = Math.round(cw / ASPECT);
+    if (h > ch) {
+      h = ch;
+      w = Math.round(ch * ASPECT);
+    }
+
+    canvas.style.setProperty("width", w + "px", "important");
+    canvas.style.setProperty("height", h + "px", "important");
+    canvas.style.setProperty("left", Math.round((cw - w) / 2) + "px", "important");
+    canvas.style.setProperty("top", Math.round((ch - h) / 2) + "px", "important");
+  }
+
+  fitCanvas();
+  window.addEventListener("resize", fitCanvas);
+  window.addEventListener("orientationchange", fitCanvas);
+
+  // itch.io sizes its iframe after the document loads, and resizes it
+  // again on fullscreen, without always firing a window resize event.
+  // Watch the container itself where the browser allows it.
+  if (typeof ResizeObserver !== "undefined") {
+    new ResizeObserver(fitCanvas).observe(container);
+  }
+
+  function unityShowBanner(msg, type) {
+    warningBanner.style.display = "block";
+    warningBanner.innerText = msg;
+    if (type !== "error") setTimeout(function () { warningBanner.style.display = "none"; }, 5000);
+  }
+
+  var buildUrl = "Build";
+  var config = {
+    arguments: [],
+    dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+    frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+    codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if MEMORY_FILENAME
+    memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+    symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+    productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+    productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+    showBanner: unityShowBanner,
+  };
+
+  loadingBar.style.display = "block";
+
+  var script = document.createElement("script");
+  script.src = buildUrl + "/{{{ LOADER_FILENAME }}}";
+
+  script.onload = function () {
+    createUnityInstance(canvas, config, function (progress) {
+      // Unity sizes the canvas during startup, so keep correcting it
+      // while the load is still running.
+      fitCanvas();
+      progressBarFull.style.width = (100 * progress) + "%";
+    }).then(function () {
+      loadingBar.style.display = "none";
+      fitCanvas();
+
+      // The player writes the canvas size once more shortly after its
+      // first frames. A couple of seconds of late re-asserts costs
+      // nothing and closes that window for good.
+      var settle = 0;
+      var timer = setInterval(function () {
+        fitCanvas();
+        if (++settle > 20) clearInterval(timer);
+      }, 100);
+    }).catch(function (message) {
+      unityShowBanner(message, "error");
+    });
+  };
+
+  document.body.appendChild(script);
+</script>
+</body>
+</html>

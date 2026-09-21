@@ -50,6 +50,14 @@ public class JamoTile : MonoBehaviour, IPointerClickHandler
     // registered but the jamo isn't legal there yet.
     public void Tap()
     {
+        // Ahead of the Consumed guard on purpose: this has to run inside the
+        // gesture, and a tile tap is the earliest one guaranteed in a round.
+        // WebKit refuses to speak until one speak() has run synchronously
+        // inside a real user gesture, so without this the delayed success
+        // read-back stays silent on iPhone and iPad for any player who never
+        // presses Hint. No-ops everywhere else.
+        SpeechManager.Unlock();
+
         if (State == TileState.Consumed) return;
 
         PlayBounce();

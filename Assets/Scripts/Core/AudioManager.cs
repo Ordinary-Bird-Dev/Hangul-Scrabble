@@ -1,9 +1,9 @@
 using UnityEngine;
 
-// Central sound-effect player. Clips are assigned via the Inspector and
-// are intentionally left unassigned for now (audio assets not ready);
-// every Play method is safe to call with no clip and honors the
-// SoundOn setting from SettingScene.
+// Central sound-effect player. Clips are assigned via the Inspector on the
+// GameController prefab in Resources — a clip left empty simply makes that
+// effect silent, so every Play method is safe to call with no clip. All of
+// them honor the SoundOn setting from SettingScene.
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _syllableCompleteClip;
     [SerializeField] private AudioClip _wordSuccessClip;
     [SerializeField] private AudioClip _wordErrorClip;
+    [SerializeField] private AudioClip _hintClip;
+    [SerializeField] private AudioClip _resetClip;
 
     void Awake()
     {
@@ -46,6 +48,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayWordError() => Play(_wordErrorClip);
 
+    public void PlayHint() => Play(_hintClip);
+
+    public void PlayReset() => Play(_resetClip);
+
     private void Play(AudioClip clip)
     {
         if (clip == null || _source == null) return;
@@ -59,4 +65,6 @@ public class AudioManager : MonoBehaviour
     public static void TryPlaySyllableComplete() { if (Instance != null) Instance.PlaySyllableComplete(); }
     public static void TryPlayWordSuccess() { if (Instance != null) Instance.PlayWordSuccess(); }
     public static void TryPlayWordError() { if (Instance != null) Instance.PlayWordError(); }
+    public static void TryPlayHint() { if (Instance != null) Instance.PlayHint(); }
+    public static void TryPlayReset() { if (Instance != null) Instance.PlayReset(); }
 }

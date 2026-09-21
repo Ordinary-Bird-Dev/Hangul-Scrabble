@@ -25,8 +25,15 @@ public class WordBuilder : MonoBehaviour
 
     private readonly List<string> _syllables = new List<string>();
     private bool _initialized;
-    private Coroutine _flashRoutine;
+    private Coroutine _resetPunchRoutine;
     private Color _wordTextColor = Color.white;
+
+    // True while the bar is showing a word the dictionary refused. Stays
+    // true until the chain changes, so the warning cannot go stale.
+    private bool _rejectedWordShowing;
+
+    // Lets a mode ask whether the bar is currently holding a refused word.
+    public bool RejectedWordShowing => _rejectedWordShowing;
     private Animator _mascotAnimator;
 
     private const string MascotCelebrateTrigger = "Celebrate";
@@ -145,6 +152,15 @@ public class WordBuilder : MonoBehaviour
 
         PlayWordBurst(word);
         AudioManager.TryPlayWordSuccess();
+
+        // Read the word back in every mode. This is the one success path
+        // the whole game funnels through — Classic, Word Hunt and Zen all
+        // land here — so the read-back belongs here rather than in any one
+        // mode's handler. Delayed so the success chime above has room to
+        // finish first, and given `word` by value because ClearChain and
+        // the guided modes both move on while this is still waiting.
+        StartCoroutine(SpeakWordAfterChime(word));
+
         ClearChain();
 
         // Fires alongside _meaningCard.Show, whose Shown event swaps the
@@ -157,11 +173,21 @@ public class WordBuilder : MonoBehaviour
         return true;
     }
 
+    // Long enough for the success chime to clear, short enough that the
+    // spoken word still reads as part of the same beat.
+    private const float SuccessSpeechDelay = 0.45f;
+
+    private System.Collections.IEnumerator SpeakWordAfterChime(string word)
+    {
+        yield return new WaitForSeconds(SuccessSpeechDelay);
+        SpeechManager.Speak(word);
+    }
+
     // The single rejection path: wrong dictionary word, or a real word a
     // guided mode did not ask for. Both look identical to the player.
     private bool Reject(string word)
     {
-        FlashRejection();
+        MarkWordRejected();
         AudioManager.TryPlayWordError();
         if (_mascotAnimator != null && _mascotAnimator.runtimeAnimatorController != null)
             _mascotAnimator.SetTrigger(MascotWrongTrigger);
@@ -189,8 +215,14 @@ public class WordBuilder : MonoBehaviour
     }
 
     // WordResetButton handler: throws away the current chain.
+    //
+    // The sound lives here and NOT in ClearChain, which is also called on a
+    // successful word and by ClassicModeController's re-deal after a wrong
+    // answer. Both of those already have their own sound, and adding one to
+    // ClearChain would double up on every success.
     public void ResetChain()
     {
+        AudioManager.TryPlayReset();
         ClearChain();
     }
 
@@ -205,24 +237,53 @@ public class WordBuilder : MonoBehaviour
         ConfirmWord();
     }
 
+    // Every change to the chain clears the rejected mark, whoever made it:
+    // the player appending a syllable, the player pressing Reset, or
+    // Classic's ResetPuzzle. That is the whole state machine — there is no
+    // path that alters the word and leaves a stale warning behind.
     private void UpdateWordText()
     {
+        _rejectedWordShowing = false;
         if (_wordText != null) _wordText.text = CurrentWord;
+        ApplyWordColor();
     }
 
-    private void FlashRejection()
+    // Marks the chain as refused and LEAVES it marked.
+    //
+    // The old version was a 0.4s red blink that then restored the normal
+    // colour, which was the wrong signal for Zen and Word Hunt: those modes
+    // keep the chain after a rejection (deliberately — see WordBuilderTests
+    // and the fact that their tiles are already consumed and would be lost),
+    // so the bar went back to looking perfectly normal while holding a word
+    // the game had already refused. Confirming another syllable then
+    // appended to it, and 교학 quietly became 교학교.
+    //
+    // Classic is unaffected in practice: it clears the chain inside the same
+    // WordRejected call, so UpdateWordText unmarks it immediately and the
+    // player keeps getting the sound, the mascot and the re-deal.
+    private void MarkWordRejected()
     {
-        if (_wordText == null || !isActiveAndEnabled) return;
-        if (_flashRoutine != null) StopCoroutine(_flashRoutine);
-        _flashRoutine = StartCoroutine(FlashRoutine());
+        _rejectedWordShowing = true;
+        ApplyWordColor();
+        PunchResetButton();
     }
 
-    private System.Collections.IEnumerator FlashRoutine()
+    private void ApplyWordColor()
     {
-        _wordText.color = Palette.Reject;
-        yield return new WaitForSeconds(0.4f);
-        _wordText.color = _wordTextColor;
-        _flashRoutine = null;
+        if (_wordText == null) return;
+        _wordText.color = _rejectedWordShowing ? Palette.Reject : _wordTextColor;
+    }
+
+    // Draws the eye to the way out. The word bar says "this is wrong"; this
+    // says "here is what to press".
+    private void PunchResetButton()
+    {
+        if (_wordResetButton == null || !isActiveAndEnabled) return;
+
+        Transform target = _wordResetButton.transform;
+        target.localScale = Vector3.one;
+        if (_resetPunchRoutine != null) StopCoroutine(_resetPunchRoutine);
+        _resetPunchRoutine = StartCoroutine(UITween.PunchScale(target, 0.18f, 0.28f));
     }
 
     private static Button FindButton(string name)

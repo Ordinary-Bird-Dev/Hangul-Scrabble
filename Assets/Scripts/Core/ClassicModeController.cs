@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 // Classic Mode: an English meaning clue is shown and the player must
 // build the matching Korean word. The tray is dealt so the target word
-// is always buildable. One hint per word (romanization) costs 50 points.
+// is always buildable. One hint per word — the word spoken aloud — costs
+// 50 points.
 // The meaning card still appears via WordBuilder on success.
 public class ClassicModeController : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class ClassicModeController : MonoBehaviour
     private Image _hintBackground;
     private bool? _hintShownEnabled;
 
+    // A clue redraw requested while the meaning card was up, waiting for it
+    // to leave. See UpdateClue.
+    private bool _cluePending;
+
     private static readonly Color HintEnabledColor = Palette.Action;
     private static readonly Color HintDisabledColor = Palette.ActionMuted;
 
@@ -36,20 +41,29 @@ public class ClassicModeController : MonoBehaviour
     private const float BannerHeight = 160f;
     private const float BannerWidth = 920f;
     private const float ClueFontSize = 65f;
-    // The hint line is styled RELATIVE to whatever ClueText is set to in
-    // the Inspector, and inherits its colour. An absolute size and a fixed
-    // colour here would fight the scene: a 72pt scene clue made a 36pt
-    // hint look like a footnote, and a pale hint colour vanished against a
-    // light banner. Bold plus a size step is enough to separate it.
-    private const int HintSizePercent = 85;
 
-    // A hint is offered only when this word has not had one AND the round
-    // still has penalty budget left. Without the second half the penalty
-    // is free at the floor, which is the bug this replaced.
+    // True when pressing Hint would BUY one: this word has not had one yet
+    // AND the round still has penalty budget left. Without the second half
+    // the penalty is free at the floor, which is the bug this replaced.
     public bool CanUseHint =>
         !_hintUsed
         && Target != null
         && (GameManager.Instance == null || GameManager.Instance.CanAffordPenalty);
+
+    // True when pressing Hint would REPLAY the word it already paid for.
+    // Free and unlimited, because the 50 points bought the pronunciation
+    // rather than a single airing of it — a learner who did not catch the
+    // word the first time should not have to pay again to hear it.
+    //
+    // Deliberately not gated on CanAffordPenalty: there is nothing left to
+    // charge. Ends when NextTarget clears _hintUsed, i.e. when the word is
+    // solved and a new one is dealt. A WRONG answer does not clear it, so
+    // the replay survives a failed attempt at the same word.
+    public bool CanRepeatHint => _hintUsed && Target != null;
+
+    // What the button's interactable state follows: either press does
+    // something useful.
+    private bool HintButtonEnabled => CanUseHint || CanRepeatHint;
 
     // Word-set id to draw targets from (see WordValidator's registry);
     // null draws from every loaded set. The hook for difficulty/DLC
@@ -69,6 +83,17 @@ public class ClassicModeController : MonoBehaviour
     {
         EnsureTargetBuildable();
         RefreshHintButton();
+
+        // Release a clue that UpdateClue held back while the card was up.
+        //
+        // Polled rather than driven by MeaningCardUI.Hidden on purpose. The
+        // card is built at runtime by WordBuilder during Start, in an order
+        // Unity does not guarantee against this component, so an event
+        // subscribed here could attach after the first Show and miss its
+        // Hidden — leaving the banner stuck on a word the player already
+        // solved. A bool test that short-circuits on _cluePending cannot get
+        // stuck, and costs nothing on the frames where nothing is pending.
+        if (_cluePending && !MeaningCardVisible) RenderClue();
     }
 
     void OnDestroy()
@@ -97,6 +122,13 @@ public class ClassicModeController : MonoBehaviour
     public void Initialize()
     {
         WordValidator.Load();
+
+        // Level chooses the clue pool. Filled in only when nobody has set it,
+        // so tests can still pin a specific set by assigning TargetSource
+        // before Initialize runs, and so a future mode that wants its own
+        // pool is not overridden here.
+        if (TargetSource == null)
+            TargetSource = WordValidator.SourceForLevel(GameSettings.Level);
 
         if (_builder == null)
             _builder = FindAnyObjectByType<WordBuilder>();
@@ -141,8 +173,48 @@ public class ClassicModeController : MonoBehaviour
     public static List<string> RequiredJamoFor(string word) =>
         TrayValidator.RequiredJamoFor(word);
 
+    // A fixed word order, walked instead of drawing at random. The tutorial
+    // sets this; everything else leaves it null and keeps the random pool.
+    //
+    // Words are named rather than passed as WordEntry so the caller does not
+    // have to load the corpus first — NextTarget resolves them through
+    // WordValidator, which has run Load() by the time it gets here.
+    public IReadOnlyList<string> ScriptedWords { get; set; }
+
+    // Index of the word currently showing, or -1 before the first.
+    public int ScriptIndex { get; private set; } = -1;
+
+    // Raised instead of picking a word when the script runs out. Nothing is
+    // loaded here on purpose: whoever supplied the script decides what comes
+    // after it, and ClassicModeController has no business knowing.
+    public event System.Action ScriptCompleted;
+
+    // Optional second line under the clue. The tutorial uses it for
+    // coaching; Classic leaves it null and the banner is unchanged.
+    //
+    // Redraws on assignment so callers never have to remember a separate
+    // refresh call. Harmless before ResolveUI has found the banner —
+    // UpdateClue returns early, and the next NextTarget renders it.
+    private string _coachLine;
+    public string CoachLine
+    {
+        get => _coachLine;
+        set
+        {
+            if (_coachLine == value) return;
+            _coachLine = value;
+            UpdateClue();
+        }
+    }
+
     public void NextTarget()
     {
+        if (ScriptedWords != null)
+        {
+            NextScriptedTarget();
+            return;
+        }
+
         IEnumerable<WordEntry> pool = TargetSource == null
             ? WordValidator.AllEntries
             : WordValidator.EntriesFor(TargetSource);
@@ -156,6 +228,46 @@ public class ClassicModeController : MonoBehaviour
             // Start order between this controller and TileManager (both on
             // the GameController object) is not guaranteed; Initialize() is
             // idempotent and ensures the tray exists before the exact deal.
+            TileManager.Instance.Initialize();
+            TileManager.Instance.DealExact(RequiredJamoFor(Target.word));
+        }
+    }
+
+    // The scripted path. Same tail as the random one — reset the hint,
+    // redraw the clue, deal the exact tiles — but the word comes from the
+    // list rather than a draw, and running off the end ends the sequence
+    // instead of wrapping.
+    private void NextScriptedTarget()
+    {
+        ScriptIndex++;
+
+        if (ScriptIndex >= ScriptedWords.Count)
+        {
+            // Target is deliberately left pointing at the last word so the
+            // banner does not blank out during whatever transition the owner
+            // runs next.
+            ScriptCompleted?.Invoke();
+            return;
+        }
+
+        string word = ScriptedWords[ScriptIndex];
+        Target = WordValidator.GetEntry(word);
+
+        if (Target == null)
+        {
+            // A typo in a scripted list would otherwise be a blank clue and
+            // an empty tray, with nothing to say why.
+            Debug.LogError($"ClassicModeController: scripted word '{word}' is not in any loaded word set — skipping it.");
+            NextScriptedTarget();
+            return;
+        }
+
+        _hintUsed = false;
+        UpdateClue();
+        RefreshHintButton();
+
+        if (TileManager.Instance != null)
+        {
             TileManager.Instance.Initialize();
             TileManager.Instance.DealExact(RequiredJamoFor(Target.word));
         }
@@ -200,21 +312,54 @@ public class ClassicModeController : MonoBehaviour
     public static bool ContainsAll(IReadOnlyList<string> required, List<string> available) =>
         TrayValidator.ContainsAll(required, available);
 
-    // Hint button: reveal the romanization at a 50-point penalty, while
-    // the round can still pay for it.
+    // Hint button. The FIRST press for a word costs 50 points and speaks it;
+    // every press after that replays it free until the word is solved. So
+    // the charge is once per word, not once per press.
+    //
+    // Speech is the ENTIRE hint — nothing is written to the clue banner — so
+    // on a device with no Korean voice the player pays the 50 points and
+    // hears nothing. That is a deliberate trade for not handing over a
+    // readable answer; SpeechManager.HasKoreanVoice is there if this should
+    // ever warn instead.
     public void UseHint()
     {
+        // Replay first, and free. Once this word's hint is paid for, every
+        // later press just says it again — no second charge, no state change,
+        // so nothing here can accidentally re-bill a word.
+        if (CanRepeatHint)
+        {
+            AudioManager.TryPlayHint();
+            SpeechManager.Speak(Target.word);
+            return;
+        }
+
         if (!CanUseHint) return;
 
         _hintUsed = true;
+        // Behind both gates, so reaching this line always means "first hint
+        // for this word, points spent". An unaffordable hint can't get here
+        // anyway — RefreshHintButton sets interactable = false so onClick
+        // never fires — but keeping the check in this method means that
+        // guarantee lives here, not in the button's state.
+        AudioManager.TryPlayHint();
+
+        // Spoken straight away rather than on a delay: this call is still
+        // inside the click handler, and a user gesture is exactly what
+        // browsers require before they will speak at all.
+        SpeechManager.Speak(Target.word);
+
         if (GameManager.Instance != null)
             GameManager.Instance.AddPoints(-HintPenalty);
-        UpdateClue();
         RefreshHintButton();
     }
 
     // Greys the button out rather than hiding it, so the hint stays
-    // discoverable and its absence reads as "spent", not "missing".
+    // discoverable and its absence reads as unavailable, not missing.
+    //
+    // Note what greyed-out now means. It used to mean "spent"; a bought hint
+    // stays LIT because it still replays. So the only reasons it greys are
+    // no target yet, or the round is out of penalty budget and the word has
+    // not been bought.
     //
     // interactable is the only thing touched on a scene-authored button —
     // its ColorBlock's Disabled Color, set in the Inspector, does the
@@ -227,7 +372,7 @@ public class ClassicModeController : MonoBehaviour
     {
         if (_hintButton == null) return;
 
-        bool enabled = CanUseHint;
+        bool enabled = HintButtonEnabled;
         if (_hintShownEnabled == enabled) return;
         _hintShownEnabled = enabled;
 
@@ -257,17 +402,36 @@ public class ClassicModeController : MonoBehaviour
         if (!ReferenceEquals(entry, Target))
             ShowTargetCard();
 
+        // No read-back here: WordBuilder.ConfirmWord speaks every accepted
+        // word for every mode. Adding it again would say it twice.
+
         RoundsCompleted++;
         NextTarget();
     }
 
     private void ShowTargetCard()
     {
-        // The card is runtime-built by WordBuilder and inactive while
-        // hidden, so the lookup must include inactive objects.
+        ResolveMeaningCard();
+        if (_meaningCard != null) _meaningCard.Show(Target);
+    }
+
+    // The card is runtime-built by WordBuilder and inactive while hidden, so
+    // the lookup must include inactive objects. Re-searches while the field
+    // is still null because the card may not exist yet the first time we ask.
+    private void ResolveMeaningCard()
+    {
         if (_meaningCard == null)
             _meaningCard = FindAnyObjectByType<MeaningCardUI>(FindObjectsInactive.Include);
-        if (_meaningCard != null) _meaningCard.Show(Target);
+    }
+
+    // Whether a card is on screen right now. Drives the clue hold.
+    private bool MeaningCardVisible
+    {
+        get
+        {
+            ResolveMeaningCard();
+            return _meaningCard != null && _meaningCard.gameObject.activeInHierarchy;
+        }
     }
 
     // A wrong submission wipes the attempt and re-deals the same exact
@@ -292,14 +456,48 @@ public class ClassicModeController : MonoBehaviour
             TileManager.Instance.DealExact(RequiredJamoFor(Target.word));
     }
 
+    // Requests a clue redraw, held back while the meaning card is on screen.
+    //
+    // Without the hold, solving a word flips the banner to the NEXT clue in
+    // the same frame the card slides up explaining the word just solved —
+    // two unrelated things to read at once. Holding it means the banner still
+    // says "Find: dog" while the card explains 개, so the two agree, and the
+    // banner changes as its own beat once the card is gone.
+    //
+    // Only the TEXT waits. The target and the tray advance immediately, and
+    // they must: EnsureTargetBuildable runs every frame and compares the tray
+    // against Target.word, so leaving Target on a solved word whose tiles are
+    // spent would re-deal the tray every frame.
     private void UpdateClue()
     {
+        if (MeaningCardVisible)
+        {
+            _cluePending = true;
+            return;
+        }
+        RenderClue();
+    }
+
+    private void RenderClue()
+    {
+        _cluePending = false;
         if (_clueText == null || Target == null) return;
 
-        string hint = _hintUsed
-            ? $"\n<size={HintSizePercent}%><b>{Target.romanization}</b></size>"
-            : "";
-        _clueText.text = $"Find: <b>{Target.english}</b>{hint}";
+        // The clue is the English meaning and nothing else. The hint no
+        // longer writes anything here: it is spoken, and printing the
+        // romanization alongside gave the answer away in a form the player
+        // could read instead of listen to — which defeats the point of a
+        // pronunciation hint in a language-learning game.
+        //
+        // _hintUsed therefore no longer affects this text at all. It now
+        // only marks that this word's hint has been PAID for — see
+        // CanUseHint and CanRepeatHint.
+        // CoachLine is the tutorial's second line. Empty in Classic, so the
+        // banner renders exactly as before.
+        string coach = string.IsNullOrEmpty(CoachLine)
+            ? ""
+            : $"\n<size=55%>{CoachLine}</size>";
+        _clueText.text = $"Find: <b>{Target.english}</b>{coach}";
     }
 
     // Scene objects win over the runtime fallbacks below. Author these in

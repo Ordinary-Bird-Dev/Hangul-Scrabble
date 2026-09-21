@@ -18,6 +18,10 @@ public static class GameSettings
     private const string SoundKey = "sound_on";
     private const string AutoConfirmKey = "auto_confirm";
     private const string GameModeKey = "game_mode";
+    private const string LevelKey = "level";
+
+    public const int MinLevel = 1;
+    public const int MaxLevel = 3;
 
     public static bool SoundOn
     {
@@ -40,6 +44,25 @@ public static class GameSettings
     {
         get => (GameMode)PlayerPrefs.GetInt(GameModeKey, 0);
         set { PlayerPrefs.SetInt(GameModeKey, (int)value); PlayerPrefs.Save(); }
+    }
+
+    // Which vocabulary the Classic clue pool is drawn from: 1 is the TOPIK I
+    // core list, 2 and 3 the larger intermediate and advanced sets. Stored
+    // as a plain int rather than an enum so adding a level 4 needs no
+    // migration of saved values.
+    //
+    // Clamped on the way in AND on the way out. A player who reached level 3
+    // and then opened a build that shipped fewer levels would otherwise sit
+    // on a level with no word set behind it, and Classic would have nothing
+    // to ask for.
+    public static int Level
+    {
+        get => Mathf.Clamp(PlayerPrefs.GetInt(LevelKey, MinLevel), MinLevel, MaxLevel);
+        set
+        {
+            PlayerPrefs.SetInt(LevelKey, Mathf.Clamp(value, MinLevel, MaxLevel));
+            PlayerPrefs.Save();
+        }
     }
 
     // The single definition of "guided mode": clue banner, hint button,

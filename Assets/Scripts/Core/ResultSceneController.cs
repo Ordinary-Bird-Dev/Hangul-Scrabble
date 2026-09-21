@@ -15,10 +15,13 @@ public class ResultSceneController : MonoBehaviour
         TMP_Text scoreText = FindText("ScoreText");
         TMP_Text resultText = FindText("ResultText");
 
+        bool success = GameManager.LastWordsCompleted > 0;
         Apply(GameManager.LastFinalScore, GameManager.LastWordsCompleted, successPanel, failPanel, scoreText, resultText);
-        
 
-        if (GameManager.LastWordsCompleted > 0) TriggerMascotWin();
+        // Both outcomes animate. Firing only on success left the mascot
+        // sitting in Idle behind a "FAIL!" panel, which read as the screen
+        // being half-finished rather than as a loss.
+        TriggerMascot(success ? MascotWinTrigger : MascotLoseTrigger);
 
         // The two exits are split by outcome: after a successful round
         // Play Again starts another one, and after a failed round Try Again
@@ -74,18 +77,32 @@ public class ResultSceneController : MonoBehaviour
     private const string MascotWinTrigger = "Win";
     private const string MascotLoseTrigger = "Lose";
 
-    // The mascot celebrates in place via its Animator "Win" state. It used
-    // to also be driven across the screen by a SwingMascot coroutine that
-    // overwrote anchoredPosition and localRotation every frame; that was
+    // The mascot reacts in place via its Animator. MascotAnimator has an
+    // AnyState transition for each of these triggers, so the state it is
+    // currently sitting in does not matter.
+    //
+    // It used to also be driven across the screen by a SwingMascot coroutine
+    // that overwrote anchoredPosition and localRotation every frame; that was
     // removed deliberately. Anything that needs the mascot to move belongs
     // in the animation clip, not in a coroutine fighting the RectTransform.
-    private void TriggerMascotWin()
+    private void TriggerMascot(string trigger)
     {
-        GameObject mascot = GameObject.Find("MascotImage");
+        // FindAnywhere, not GameObject.Find: the latter skips inactive
+        // objects, and the mascot sits inside a panel that one outcome hides.
+        GameObject mascot = FindAnywhere("MascotImage");
         if (mascot == null)
-            Debug.LogWarning("ResultSceneController: MascotImage not found (or inactive) — win animation is disabled.");
-        Animator animator = mascot != null ? mascot.GetComponent<Animator>() : null;
-        if (animator != null && animator.runtimeAnimatorController != null)
-            animator.SetTrigger(MascotWinTrigger);
+        {
+            Debug.LogWarning($"ResultSceneController: MascotImage not found — the '{trigger}' animation is disabled.");
+            return;
+        }
+
+        Animator animator = mascot.GetComponent<Animator>();
+        if (animator == null || animator.runtimeAnimatorController == null)
+        {
+            Debug.LogWarning($"ResultSceneController: MascotImage has no Animator Controller — the '{trigger}' animation is disabled.");
+            return;
+        }
+
+        animator.SetTrigger(trigger);
     }
 }

@@ -28,4 +28,39 @@ public static class SceneRouter
         ReturnScene = string.IsNullOrEmpty(returnScene) ? TitleScene : returnScene;
         SceneManager.LoadScene(SettingScene);
     }
+
+    // True when GameScene should run the tutorial instead of a real round.
+    //
+    // Not a fourth GameMode and not PlayerPrefs, for the same reason
+    // ReturnScene is neither. GameSettings.Mode is the player's CHOSEN
+    // mode, shown by three rows in Settings; writing Tutorial into it would
+    // overwrite that choice and leave those rows describing something they
+    // never picked. This is where they are going next, not what they prefer.
+    public static bool TutorialRequested { get; private set; }
+
+    // The two ways into GameScene. Both set the flag explicitly rather than
+    // only one setting it true — a value left over from a previous visit
+    // would turn an ordinary round into a tutorial.
+    public static void StartTutorial()
+    {
+        TutorialRequested = true;
+        SceneManager.LoadScene(GameScene);
+    }
+
+    public static void StartGame()
+    {
+        TutorialRequested = false;
+        SceneManager.LoadScene(GameScene);
+    }
+
+    // Abandoning the tutorial via Skip. Goes to the title rather than into a
+    // round: a player who bailed out has not been taught anything yet, and
+    // dropping them straight into a timed game would be the opposite of what
+    // pressing Skip asked for. Finishing all the lessons goes to GameScene
+    // instead — see TutorialController.Finish, which calls StartGame.
+    public static void ExitTutorial()
+    {
+        TutorialRequested = false;
+        SceneManager.LoadScene(TitleScene);
+    }
 }

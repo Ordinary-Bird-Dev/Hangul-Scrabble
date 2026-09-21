@@ -39,6 +39,7 @@ public class AudioManagerTests : MonoBehaviour
         manager.PlaySyllableComplete();
         manager.PlayWordSuccess();
         manager.PlayWordError();
+        manager.PlayHint();
         Assert(true, "Play methods with unassigned clips should not throw");
     }
 
@@ -54,6 +55,7 @@ public class AudioManagerTests : MonoBehaviour
         AudioManager.TryPlaySyllableComplete();
         AudioManager.TryPlayWordSuccess();
         AudioManager.TryPlayWordError();
+        AudioManager.TryPlayHint();
         Assert(true, "Static Try helpers without an instance should not throw");
     }
 

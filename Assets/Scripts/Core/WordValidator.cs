@@ -18,6 +18,24 @@ public static class WordValidator
     // { "topik1" }, with the extra sets enabled by ownership/settings.
     private static readonly string[] DefaultSources = { "topik1", "vocabB", "vocabC" };
 
+    // Level -> word set, indexed from level 1. Registry above is the LOAD
+    // order, which decides whose gloss wins for a word two sets share; this
+    // is the player's difficulty ladder. Two separate lists on purpose, so
+    // reordering one cannot silently reorder the other.
+    //
+    // Every set still loads whatever the level, because a player may build
+    // any real Korean word and it should validate. Level narrows only the
+    // pool Classic draws its CLUES from — see ClassicModeController.
+    private static readonly string[] LevelSources = { "topik1", "vocabB", "vocabC" };
+
+    public static int LevelCount => LevelSources.Length;
+
+    public static string SourceForLevel(int level)
+    {
+        int index = Mathf.Clamp(level, 1, LevelSources.Length) - 1;
+        return LevelSources[index];
+    }
+
     // word -> senses. Homonyms (같은 word, different english) are kept as
     // separate entries under one key rather than overwriting each other.
     private static Dictionary<string, List<WordEntry>> _wordMap;

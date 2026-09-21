@@ -77,17 +77,46 @@ public static class SceneBootstrap
         // Mode components must attach even when the controller already
         // existed — a scene-authored controller once swallowed them and
         // silently disabled Zen's journal and Classic's guided puzzle entirely.
-        if (GameSettings.Mode == GameMode.Zen && controller.GetComponent<WordJournal>() == null)
+        bool tutorial = SceneRouter.TutorialRequested;
+
+        // The tutorial wins over the chosen mode, and attaches only
+        // TutorialController — that pulls in ClassicModeController itself in
+        // its Awake, which is what lets it hand over the scripted word list
+        // before Classic picks its first word in Start.
+        if (tutorial)
+        {
+            if (controller.GetComponent<TutorialController>() == null)
+                controller.AddComponent<TutorialController>();
+        }
+        else if (GameSettings.Mode == GameMode.Zen && controller.GetComponent<WordJournal>() == null)
             controller.AddComponent<WordJournal>();
         else if (GameSettings.IsGuided && controller.GetComponent<ClassicModeController>() == null)
             controller.AddComponent<ClassicModeController>();
+
+        // No clock in the tutorial: otherwise a lesson is cut off at the
+        // 3:00 mark and the player lands in ResultScene mid-word.
+        GameManager manager = controller.GetComponent<GameManager>();
+        if (manager != null) manager.CountdownEnabled = !tutorial;
 
         // Classic's clue banner and hint button are authored in GameScene,
         // so they exist in every mode — unlike the runtime-built versions
         // they replaced, which only appeared because ClassicModeController
         // created them. Zen and Word Hunt have to switch them off.
-        SetActiveByName("ClueBanner", GameSettings.IsGuided);
-        SetActiveByName("HintButton", GameSettings.IsGuided);
+        //
+        // The tutorial is guided too: it wants the banner (that is where the
+        // coaching goes) and the hint, which is free there because nothing
+        // reads the score.
+        bool guided = tutorial || GameSettings.IsGuided;
+        SetActiveByName("ClueBanner", guided);
+        SetActiveByName("HintButton", guided);
+
+        // Tutorial chrome. The timer has nothing to count, the score has
+        // nothing to pressure, and the gauge measures a target the tutorial
+        // does not use. Skip takes the slot the score vacates.
+        SetActiveByName("TimerText", !tutorial);
+        SetActiveByName("ScoreText", !tutorial);
+        SetActiveByName("ProgressBar", !tutorial);
+        SetActiveByName("SkipButton", tutorial);
 
         // SyllableBuilderUI is deliberately not bundled with GameController:
         // it belongs on the scene's SyllableBuilder object with its

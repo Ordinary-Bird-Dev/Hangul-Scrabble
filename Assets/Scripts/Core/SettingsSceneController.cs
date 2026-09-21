@@ -34,17 +34,76 @@ public class SettingsSceneController : MonoBehaviour
         else
             Debug.LogWarning("SettingsSceneController: BackButton not found (or inactive) — back navigation is disabled.");
 
-        BuildModeSelect();
+        ResolveModeSelect();
+        ResolveLevelSelect();
     }
 
+    // Row states. Selected = orange border plate + solid white face + a
+    // filled dot; unselected = no border, slightly translucent face, no dot.
+    private static readonly Color RowBorderOn   = Palette.Action;
+    private static readonly Color RowBorderOff  = new Color(1f, 1f, 1f, 0f);
+    private static readonly Color RowFaceOn     = Palette.Surface;
+    private static readonly Color RowFaceOff    = Palette.SurfaceMuted;
+    private static readonly Color RowDotOn      = Palette.Action;
+    private static readonly Color RowDotOff     = new Color(1f, 1f, 1f, 0f);
+
+    // Fallback-only colours: the runtime row is a single flat chip with no
+    // border plate, so it cannot express the scene-authored look.
     private static readonly Color ModeNormal = Palette.SurfaceMuted;
     private static readonly Color ModeSelected = Palette.Action;
 
-    private readonly List<(GameMode mode, Image background)> _modeButtons =
-        new List<(GameMode, Image)>();
+    private struct ModeRow
+    {
+        public GameMode Mode;
+        public Image Border;   // outer plate; null on the runtime fallback
+        public Image Face;     // the white body
+        public Image Dot;      // selection dot; null on the runtime fallback
+    }
 
-    // Mode select: a row of Classic / Zen / Word Hunt buttons built at
-    // runtime; the chosen mode applies on the next GameScene load.
+    private readonly List<ModeRow> _modeRows = new List<ModeRow>();
+
+    // Scene-authored rows win. GameScene's clue banner works the same way:
+    // if the scene provides the objects the Inspector owns their look, and
+    // the runtime build below is only the fallback for a scene that ships
+    // without them.
+    private void ResolveModeSelect()
+    {
+        bool allFound = true;
+        foreach (GameMode mode in new[] { GameMode.Classic, GameMode.WordHunt, GameMode.Zen })
+        {
+            GameObject row = FindIncludingInactive($"Mode_{mode}");
+            if (row == null) { allFound = false; break; }
+
+            Button button = row.GetComponent<Button>();
+            Image border = row.GetComponent<Image>();
+            Transform inner = row.transform.Find("Inner");
+            Image face = inner != null ? inner.GetComponent<Image>() : null;
+            Transform dotT = inner != null ? inner.Find("Dot") : null;
+            Image dot = dotT != null ? dotT.GetComponent<Image>() : null;
+
+            if (button == null || face == null) { allFound = false; break; }
+
+            GameMode captured = mode;
+            button.onClick.AddListener(() =>
+            {
+                GameSettings.Mode = captured;
+                RefreshModeButtons();
+            });
+            _modeRows.Add(new ModeRow { Mode = mode, Border = border, Face = face, Dot = dot });
+        }
+
+        if (!allFound)
+        {
+            _modeRows.Clear();
+            BuildModeSelect();
+            return;
+        }
+
+        RefreshModeButtons();
+    }
+
+    // Runtime fallback: a flat row of chips, used only when the scene has no
+    // Mode_* objects of its own.
     private void BuildModeSelect()
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
@@ -53,10 +112,6 @@ public class SettingsSceneController : MonoBehaviour
         var rowGo = new GameObject("ModeSelect", typeof(RectTransform));
         rowGo.transform.SetParent(canvas.transform, false);
 
-        // Anchored to the TOP, not the centre: every other control on this
-        // screen is top-anchored, so a centre-anchored row drifts away from
-        // its own "Game Mode" heading as the canvas height changes. -700
-        // puts it directly under that label, which sits at -540.
         var rowRect = (RectTransform)rowGo.transform;
         rowRect.anchorMin = new Vector2(0.5f, 1f);
         rowRect.anchorMax = new Vector2(0.5f, 1f);
@@ -103,23 +158,116 @@ public class SettingsSceneController : MonoBehaviour
 
         var text = labelGo.AddComponent<TextMeshProUGUI>();
         text.text = label;
-        // Explicit, because TMP defaults to white: both chip states are now
-        // light, so an unset colour would render the label invisible.
         text.color = Palette.Ink;
         text.fontSize = 34f;
         text.alignment = TextAlignmentOptions.Center;
         text.raycastTarget = false;
         if (font != null) text.font = font;
 
-        _modeButtons.Add((mode, bg));
+        _modeRows.Add(new ModeRow { Mode = mode, Border = null, Face = bg, Dot = null });
     }
 
     private void RefreshModeButtons()
     {
         GameMode current = GameSettings.Mode;
-        foreach ((GameMode mode, Image background) in _modeButtons)
-            if (background != null)
-                background.color = mode == current ? ModeSelected : ModeNormal;
+        foreach (ModeRow row in _modeRows)
+        {
+            bool on = row.Mode == current;
+
+            // The fallback chip has no border plate, so its single Image is
+            // the thing that has to change colour. A scene-authored row keeps
+            // its face white and shows selection on the border and the dot.
+            if (row.Border == null)
+            {
+                if (row.Face != null) row.Face.color = on ? ModeSelected : ModeNormal;
+                continue;
+            }
+
+            row.Border.color = on ? RowBorderOn : RowBorderOff;
+            if (row.Face != null) row.Face.color = on ? RowFaceOn : RowFaceOff;
+            if (row.Dot != null) row.Dot.color = on ? RowDotOn : RowDotOff;
+        }
+    }
+
+    private struct LevelRow
+    {
+        public int Level;
+        public Image Border;
+        public Image Face;
+        public Image Dot;
+    }
+
+    private readonly List<LevelRow> _levelRows = new List<LevelRow>();
+
+    // Level rows pick which vocabulary Classic draws its clues from:
+    // Level_1 -> topik1, Level_2 -> vocabB, Level_3 -> vocabC.
+    //
+    // Unlike the mode rows there is no runtime fallback. A scene without
+    // Level_* objects simply has no level picker and the game keeps using
+    // whatever GameSettings.Level already holds — which is a working game,
+    // just without the choice. Building these in code instead would mean a
+    // second copy of the row styling that nothing keeps in step with the
+    // scene's.
+    //
+    // Driven by WordValidator.LevelCount rather than a literal 3, so adding
+    // a fourth word set and a fourth row needs no change here.
+    private void ResolveLevelSelect()
+    {
+        for (int level = GameSettings.MinLevel; level <= WordValidator.LevelCount; level++)
+        {
+            GameObject row = FindIncludingInactive($"Level_{level}");
+            if (row == null) continue;
+
+            Button button = row.GetComponent<Button>();
+            Transform inner = row.transform.Find("Inner");
+            Image face = inner != null ? inner.GetComponent<Image>() : null;
+            if (button == null || face == null)
+            {
+                Debug.LogWarning($"SettingsSceneController: 'Level_{level}' is missing its Button or its Inner image — that row will not be selectable.");
+                continue;
+            }
+
+            Transform dotT = inner.Find("Dot");
+
+            int captured = level;
+            button.onClick.AddListener(() =>
+            {
+                GameSettings.Level = captured;
+                RefreshLevelButtons();
+            });
+
+            _levelRows.Add(new LevelRow
+            {
+                Level = captured,
+                Border = row.GetComponent<Image>(),
+                Face = face,
+                Dot = dotT != null ? dotT.GetComponent<Image>() : null,
+            });
+        }
+
+        RefreshLevelButtons();
+    }
+
+    private void RefreshLevelButtons()
+    {
+        int current = GameSettings.Level;
+        foreach (LevelRow row in _levelRows)
+        {
+            bool on = row.Level == current;
+            if (row.Border != null) row.Border.color = on ? RowBorderOn : RowBorderOff;
+            if (row.Face != null) row.Face.color = on ? RowFaceOn : RowFaceOff;
+            if (row.Dot != null) row.Dot.color = on ? RowDotOn : RowDotOff;
+        }
+    }
+
+    // GameObject.Find cannot see inactive objects, and a mode row may well
+    // start inactive while a screen is being laid out.
+    private static GameObject FindIncludingInactive(string name)
+    {
+        foreach (GameObject root in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+            foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+                if (t.name == name) return t.gameObject;
+        return null;
     }
 
     private static Toggle FindToggle(string name)
