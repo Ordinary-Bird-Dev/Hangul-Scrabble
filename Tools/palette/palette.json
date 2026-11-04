@@ -1,0 +1,149 @@
+[
+ {
+  "hex": "#502E1C",
+  "rgb": [
+   80,
+   46,
+   28
+  ],
+  "hsv": [
+   21,
+   65,
+   31
+  ],
+  "unity": [
+   0.3137,
+   0.1804,
+   0.1098
+  ],
+  "share": 23.22,
+  "role": "Ink",
+  "where": "every outline, eyes, nose, mouth"
+ },
+ {
+  "hex": "#9F765B",
+  "rgb": [
+   159,
+   118,
+   91
+  ],
+  "hsv": [
+   24,
+   43,
+   62
+  ],
+  "unity": [
+   0.6235,
+   0.4627,
+   0.3569
+  ],
+  "share": 12.83,
+  "role": "Fur shade",
+  "where": "shadowed side of the fur"
+ },
+ {
+  "hex": "#B98C6A",
+  "rgb": [
+   185,
+   140,
+   106
+  ],
+  "hsv": [
+   26,
+   43,
+   73
+  ],
+  "unity": [
+   0.7255,
+   0.549,
+   0.4157
+  ],
+  "share": 23.24,
+  "role": "Fur base",
+  "where": "head, body, limbs, tail"
+ },
+ {
+  "hex": "#BF967B",
+  "rgb": [
+   191,
+   150,
+   123
+  ],
+  "hsv": [
+   24,
+   36,
+   75
+  ],
+  "unity": [
+   0.749,
+   0.5882,
+   0.4824
+  ],
+  "share": 8.09,
+  "role": "Fur light",
+  "where": "lit side of the fur"
+ },
+ {
+  "hex": "#D5B092",
+  "rgb": [
+   213,
+   176,
+   146
+  ],
+  "hsv": [
+   27,
+   31,
+   84
+  ],
+  "unity": [
+   0.8353,
+   0.6902,
+   0.5725
+  ],
+  "share": 4.36,
+  "role": "Skin shade",
+  "where": "underside of muzzle and belly"
+ },
+ {
+  "hex": "#E9C5A0",
+  "rgb": [
+   233,
+   197,
+   160
+  ],
+  "hsv": [
+   30,
+   31,
+   91
+  ],
+  "unity": [
+   0.9137,
+   0.7725,
+   0.6275
+  ],
+  "share": 17.68,
+  "role": "Skin base",
+  "where": "muzzle, belly, inner ears, hands, feet"
+ },
+ {
+  "hex": "#EFD7C0",
+  "rgb": [
+   239,
+   215,
+   192
+  ],
+  "hsv": [
+   29,
+   20,
+   94
+  ],
+  "unity": [
+   0.9373,
+   0.8431,
+   0.7529
+  ],
+  "share": 3.94,
+  "role": "Skin highlight",
+  "where": "small catch-lights"
+ }
+]

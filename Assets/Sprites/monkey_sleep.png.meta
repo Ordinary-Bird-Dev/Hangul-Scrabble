@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 170
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -163,10 +163,10 @@ TextureImporter:
       name: monkey_sleep_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 10
-        width: 84
-        height: 99
+        x: 4
+        y: 437
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: monkey_sleep_1
       rect:
         serializedVersion: 2
-        x: 410
-        y: 4
-        width: 83
-        height: 99
+        x: 383
+        y: 437
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,10 +207,10 @@ TextureImporter:
       name: monkey_sleep_2
       rect:
         serializedVersion: 2
-        x: 714
-        y: 4
-        width: 83
-        height: 101
+        x: 762
+        y: 437
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,10 +229,10 @@ TextureImporter:
       name: monkey_sleep_3
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 11
-        width: 83
-        height: 101
+        x: 1141
+        y: 437
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: monkey_sleep_4
       rect:
         serializedVersion: 2
-        x: 1323
+        x: 4
         y: 4
-        width: 82
-        height: 101
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,10 +273,10 @@ TextureImporter:
       name: monkey_sleep_5
       rect:
         serializedVersion: 2
-        x: 1626
+        x: 383
         y: 4
-        width: 82
-        height: 102
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,10 +295,10 @@ TextureImporter:
       name: monkey_sleep_6
       rect:
         serializedVersion: 2
-        x: 1929
+        x: 762
         y: 4
-        width: 83
-        height: 103
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: monkey_sleep_7
       rect:
         serializedVersion: 2
-        x: 2235
+        x: 1141
         y: 4
-        width: 81
-        height: 102
+        width: 371
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

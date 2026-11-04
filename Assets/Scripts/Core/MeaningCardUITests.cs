@@ -29,7 +29,7 @@ public class MeaningCardUITests : MonoBehaviour
         {
             word = "학교",
             english = "school",
-            romanization = "hakgyo",
+            prompt = "school",
             example = "학교에 가요.",
             syllable_count = 2
         };
@@ -51,7 +51,6 @@ public class MeaningCardUITests : MonoBehaviour
         var text = card.GetComponentInChildren<TMPro.TMP_Text>(true);
         Assert(text != null && text.text.Contains("학교"), "Card should show the word");
         Assert(text != null && text.text.Contains("school"), "Card should show the meaning");
-        Assert(text != null && text.text.Contains("hakgyo"), "Card should show the romanization");
         Assert(text != null && text.text.Contains("학교에 가요."), "Card should show the example sentence");
 
         card.Hide();

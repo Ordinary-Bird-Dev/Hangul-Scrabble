@@ -110,11 +110,9 @@ public class WordBuilder : MonoBehaviour
             }
         }
 
-        GameObject mascot = GameObject.Find("MascotImage");
-        if (mascot != null)
-            _mascotAnimator = mascot.GetComponent<Animator>();
-        else
-            Debug.LogWarning("WordBuilder: MascotImage not found (or inactive) — celebrate/wrong animations are disabled.");
+        _mascotAnimator = FindMascotAnimator();
+        if (_mascotAnimator == null)
+            Debug.LogWarning("WordBuilder: no mascot Animator found — celebrate/wrong animations are disabled. (Looked for a MascotSleepController; it lives on the mascot root beside the Animator.)");
 
         _initialized = true;
         UpdateWordText();
@@ -284,6 +282,33 @@ public class WordBuilder : MonoBehaviour
         target.localScale = Vector3.one;
         if (_resetPunchRoutine != null) StopCoroutine(_resetPunchRoutine);
         _resetPunchRoutine = StartCoroutine(UITween.PunchScale(target, 0.18f, 0.28f));
+    }
+
+    // The mascot's Animator, found by COMPONENT rather than by name.
+    //
+    // This used to be GameObject.Find("MascotImage"), and that broke the
+    // moment the mascot became a rig: a prefab's root GameObject name is
+    // tied to its asset filename, so renaming MascotImage.prefab to
+    // MascotRig.prefab silently renamed the root and the lookup started
+    // returning null — with nothing but a console warning to say so.
+    //
+    // Name lookups have cost this project the same afternoon several times
+    // (the dead WordConfirmButton, the duplicate runtime labels, the
+    // SkipButton collision). MascotSleepController sits on the mascot root
+    // beside the Animator, so asking for it removes the string entirely and
+    // the prefab can be called anything.
+    private static Animator FindMascotAnimator()
+    {
+        MascotSleepController sleeper = MascotSleepController.Instance;
+
+        // Explicit null check, not ??: Unity overloads == so a destroyed
+        // object compares equal to null while ?? still sees a reference.
+        // Inactive-inclusive, because Instance is only set in Awake and a
+        // mascot that starts switched off has not run one yet.
+        if (sleeper == null)
+            sleeper = FindAnyObjectByType<MascotSleepController>(FindObjectsInactive.Include);
+
+        return sleeper != null ? sleeper.GetComponent<Animator>() : null;
     }
 
     private static Button FindButton(string name)

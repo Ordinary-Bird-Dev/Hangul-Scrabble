@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -154,10 +154,10 @@ TextureImporter:
       name: monkey_idle_0
       rect:
         serializedVersion: 2
-        x: 107
+        x: 4
         y: 4
-        width: 80
-        height: 100
+        width: 320
+        height: 400
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: monkey_idle_1
       rect:
         serializedVersion: 2
-        x: 411
+        x: 332
         y: 4
-        width: 80
-        height: 100
+        width: 320
+        height: 400
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,10 +198,10 @@ TextureImporter:
       name: monkey_idle_2
       rect:
         serializedVersion: 2
-        x: 715
+        x: 660
         y: 4
-        width: 80
-        height: 100
+        width: 320
+        height: 400
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,10 +220,10 @@ TextureImporter:
       name: monkey_idle_3
       rect:
         serializedVersion: 2
-        x: 1019
+        x: 988
         y: 4
-        width: 80
-        height: 100
+        width: 320
+        height: 400
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,10 @@ TextureImporter:
       name: monkey_idle_4
       rect:
         serializedVersion: 2
-        x: 1323
+        x: 1316
         y: 4
-        width: 80
-        height: 100
+        width: 320
+        height: 400
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

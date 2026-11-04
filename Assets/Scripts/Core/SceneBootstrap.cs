@@ -110,11 +110,24 @@ public static class SceneBootstrap
         SetActiveByName("ClueBanner", guided);
         SetActiveByName("HintButton", guided);
 
+        // Skip-the-word is Classic only, not "guided": the tutorial is a
+        // fixed five-lesson sequence with no score to spend, and skipping a
+        // lesson would desync TutorialController, which follows the run by
+        // ScriptIndex. ClassicModeController re-checks this itself, so the
+        // two cannot disagree — this just avoids a one-frame flash.
+        SetActiveByName("SkipWordButton", guided && !tutorial);
+
         // Tutorial chrome. The timer has nothing to count, the score has
         // nothing to pressure, and the gauge measures a target the tutorial
         // does not use. Skip takes the slot the score vacates.
-        SetActiveByName("TimerText", !tutorial);
-        SetActiveByName("ScoreText", !tutorial);
+        // Zen shows neither readout. The score is genuinely not kept
+        // (GameManager.ScoringEnabled), and the countdown never ticks — Tick
+        // returns early for Zen, so TimerText would sit at a frozen 3:00 for
+        // the whole session, which reads as a stopped clock rather than as
+        // no clock. "No timer, no score" is what How to Play promises.
+        bool zen = !tutorial && GameSettings.Mode == GameMode.Zen;
+        SetActiveByName("TimerText", !tutorial && !zen);
+        SetActiveByName("ScoreText", !tutorial && !zen);
         SetActiveByName("ProgressBar", !tutorial);
         SetActiveByName("SkipButton", tutorial);
 

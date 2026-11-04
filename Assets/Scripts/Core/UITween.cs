@@ -57,6 +57,23 @@ public static class UITween
         if (target != null) target.anchoredPosition = to;
     }
 
+    // Fades a CanvasGroup to a target alpha. Split out of BurstAndDestroy,
+    // which had the only fade in the project welded to a scale and a
+    // Destroy — nothing else could reuse it.
+    public static IEnumerator FadeTo(CanvasGroup group, float to, float duration)
+    {
+        if (group == null) yield break;
+
+        float from = group.alpha;
+        for (float t = 0f; t < duration; t += Time.deltaTime)
+        {
+            if (group == null) yield break;
+            group.alpha = Mathf.LerpUnclamped(from, to, EaseOutCubic(t / duration));
+            yield return null;
+        }
+        if (group != null) group.alpha = to;
+    }
+
     // Scales the object up while fading a CanvasGroup out, then destroys it.
     public static IEnumerator BurstAndDestroy(GameObject target, float targetScale = 1.8f, float duration = 0.4f)
     {

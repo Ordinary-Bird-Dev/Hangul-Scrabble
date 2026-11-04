@@ -81,6 +81,13 @@ public class MascotController : MonoBehaviour
     private void ApplySprite(Sprite sprite)
     {
         if (_image == null || sprite == null) return;
+
+        // The line this method was missing. It set the tint and the aspect
+        // and then returned, so ShowIdle and ShowReading had never actually
+        // swapped anything — the reading face has been dead since the
+        // feature was written.
+        _image.sprite = sprite;
+
         _image.color = Color.white; // clear the grey placeholder tint
         _image.preserveAspect = true;
     }

@@ -80,19 +80,21 @@ public class TileManagerTests : MonoBehaviour
             if (jamo == "ㅃ") rare++;
         }
         Assert(common > rare * 3,
-            $"ㅇ (weight 74) should appear far more often than ㅃ (weight 5): got {common} vs {rare}");
+            $"ㅇ (weight 804) should appear far more often than ㅃ (weight 35): got {common} vs {rare}");
     }
 
     void TestDealerDealsRareVowel()
     {
-        // ㅞ was weight 0 (absent from topik1) but the vocabB/vocabC sets
-        // have ㅞ words, so it now carries a small weight and must show up
-        // in random deals. Weight 2 of ~426 total: ~23 expected in 5000.
+        // ㅞ is the rarest vowel in the corpus — 25 occurrences across all
+        // three sets — so it carries the smallest real weight and is the
+        // first thing to vanish from the tray if the tables are ever
+        // regenerated wrongly. Weight 10 of 4448: ~11 expected in 5000
+        // draws, and measured over 50 seeds not one missed it.
         var dealer = new TileDealer(123);
         bool seen = false;
         for (int i = 0; i < 5000 && !seen; i++)
             seen = dealer.NextJungseong() == "ㅞ";
-        Assert(seen, "ㅞ (weight 2) should be dealt at least once in 5000 draws");
+        Assert(seen, "ㅞ (weight 10) should be dealt at least once in 5000 draws");
     }
 
     void TestDealerRefillRestoresBalance()

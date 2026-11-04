@@ -9,7 +9,8 @@ public class ClassicModeControllerTests : MonoBehaviour
     {
         TestRequiredJamoFor();
         TestPickTargetFiltersAndIsSeeded();
-        TestHintPenaltyAndScoreFloor();
+        TestHintPenaltyAndScore();
+        TestHelpBudgetEndsRound();
         TestDealWithRequiredGuaranteesJamo();
         TestTargetAdvancesOnMatch();
         Cleanup();
@@ -28,20 +29,26 @@ public class ClassicModeControllerTests : MonoBehaviour
 
     void TestPickTargetFiltersAndIsSeeded()
     {
+        // Every entry needs a `prompt`, not just an `english`: PickTarget
+        // gates on the clue the banner actually renders. 사랑 is here to
+        // pin that — it has a gloss and no prompt, and must still be
+        // skipped. Without it, swapping the gate back to `english` would
+        // pass this test silently.
         var entries = new List<WordEntry>
         {
-            new WordEntry { word = "물", english = "water", syllable_count = 1 },
-            new WordEntry { word = "학교", english = "school", syllable_count = 2 },
-            new WordEntry { word = "바나나", english = "banana", syllable_count = 3 },
-            new WordEntry { word = "무엇인가", english = "something", syllable_count = 4 },
-            new WordEntry { word = "친구", english = "", syllable_count = 2 },
+            new WordEntry { word = "물", english = "water", prompt = "water", syllable_count = 1 },
+            new WordEntry { word = "학교", english = "school", prompt = "school", syllable_count = 2 },
+            new WordEntry { word = "바나나", english = "banana", prompt = "banana", syllable_count = 3 },
+            new WordEntry { word = "무엇인가", english = "something", prompt = "something", syllable_count = 4 },
+            new WordEntry { word = "친구", english = "", prompt = "", syllable_count = 2 },
+            new WordEntry { word = "사랑", english = "love", prompt = "", syllable_count = 2 },
         };
 
         for (int i = 0; i < 20; i++)
         {
             WordEntry pick = ClassicModeController.PickTarget(entries, new System.Random(i));
             Assert(pick != null && (pick.word == "학교" || pick.word == "바나나"),
-                $"Only 2-3 syllable words with meanings qualify, got {pick?.word}");
+                $"Only 2-3 syllable words with a clue qualify, got {pick?.word ?? "(null)"}");
         }
 
         WordEntry a = ClassicModeController.PickTarget(entries, new System.Random(7));
@@ -52,20 +59,79 @@ public class ClassicModeControllerTests : MonoBehaviour
             "No candidates should yield a null target");
     }
 
-    void TestHintPenaltyAndScoreFloor()
+    // One GameManager for every test here, deliberately. Awake treats a
+    // second live instance as a bug and logs an error, so spawning one per
+    // test would fill the console with a failure that is the test's fault
+    // rather than the game's. StartRound resets the round state, which is
+    // all these need.
+    private GameManager _manager;
+
+    // StartRound reads GameSettings.Mode, and Zen switches scoring off
+    // entirely. Pinning it makes these tests independent of whatever mode
+    // the machine running them last played in — without this they pass or
+    // fail depending on a PlayerPrefs value.
+    private GameManager FreshRound()
     {
-        var go = new GameObject("TestGameManagerHunt");
-        _spawned.Add(go);
-        var manager = go.AddComponent<GameManager>();
-        manager.Configure(loadResultSceneOnEnd: false);
-        manager.StartRound();
+        GameSettings.Mode = GameMode.Classic;
+        if (_manager == null)
+        {
+            var go = new GameObject("TestGameManagerScoring");
+            _spawned.Add(go);
+            _manager = go.AddComponent<GameManager>();
+            _manager.Configure(loadResultSceneOnEnd: false);
+        }
+        GameManager.ClearSavedSession();
+        _manager.StartRound();
+        return _manager;
+    }
 
-        manager.AddPoints(-ClassicModeController.HintPenalty);
-        Assert(manager.Score == 0, "Score should never go below zero from a hint");
+    void TestHintPenaltyAndScore()
+    {
+        GameManager manager = FreshRound();
 
+        // The score DOES go negative. The old version of this test asserted
+        // it stayed at zero, which stopped being true when the floor moved
+        // off zero and has been failing quietly ever since.
+        manager.SpendHelp(ClassicModeController.HintPenalty);
+        Assert(manager.Score == -50, $"A 50-point hint from zero should leave -50, got {manager.Score}");
+        Assert(manager.HelpSpent == 50, $"The hint should book 50 against the budget, got {manager.HelpSpent}");
+
+        int before = manager.HelpRemaining;
         manager.RegisterWord("학교", 10f); // 150 points
-        manager.AddPoints(-ClassicModeController.HintPenalty);
-        Assert(manager.Score == 100, $"150 - 50 hint should leave 100, got {manager.Score}");
+        Assert(manager.Score == 100, $"150 earned against a 50 hint should leave 100, got {manager.Score}");
+        Assert(manager.HelpRemaining == before,
+            "Earning points must not refill the help budget — that is the whole difference from a score floor");
+
+        // AddPoints is not a purchase and must leave the budget alone.
+        manager.AddPoints(-25);
+        Assert(manager.HelpSpent == 50, $"AddPoints should not touch HelpSpent, got {manager.HelpSpent}");
+    }
+
+    void TestHelpBudgetEndsRound()
+    {
+        GameManager manager = FreshRound();
+
+        int purchases = GameManager.HelpBudget / ClassicModeController.SkipPenalty;
+        for (int i = 0; i < purchases - 1; i++)
+        {
+            bool ended = manager.SpendHelp(ClassicModeController.SkipPenalty);
+            Assert(!ended, $"Purchase {i + 1} of {purchases} should not end the round");
+            Assert(manager.CanAffordPenalty, $"Budget should still be open after purchase {i + 1}");
+        }
+
+        Assert(manager.SpendHelp(ClassicModeController.SkipPenalty),
+            "The purchase that empties the budget should end the round");
+        Assert(!manager.RoundActive, "Round should be over once the budget is spent");
+        Assert(!manager.CanAffordPenalty, "Budget should be closed once it is spent");
+        Assert(GameManager.LastRoundLost, "Running the budget out should mark the round lost");
+        Assert(manager.Score == -GameManager.HelpBudget,
+            $"A round that scores nothing should bottom out at {-GameManager.HelpBudget}, got {manager.Score}");
+
+        // Past the floor the purchase must be refused outright, not charged
+        // a clamped zero — a free hint is exactly the bug the gate exists for.
+        int spent = manager.HelpSpent;
+        Assert(!manager.SpendHelp(ClassicModeController.SkipPenalty), "Spending past the floor should do nothing");
+        Assert(manager.HelpSpent == spent, "A refused purchase must not move HelpSpent");
     }
 
     void TestDealWithRequiredGuaranteesJamo()

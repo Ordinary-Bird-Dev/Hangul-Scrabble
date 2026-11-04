@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -163,10 +163,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
-        width: 82
-        height: 103
+        x: 4
+        y: 431
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_1
       rect:
         serializedVersion: 2
-        x: 99
-        y: 0
-        width: 82
-        height: 103
+        x: 429
+        y: 431
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,10 +207,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_2
       rect:
         serializedVersion: 2
-        x: 194
-        y: 0
-        width: 82
-        height: 103
+        x: 854
+        y: 431
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,10 +229,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_3
       rect:
         serializedVersion: 2
-        x: 290
-        y: 0
-        width: 82
-        height: 103
+        x: 1279
+        y: 431
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_4
       rect:
         serializedVersion: 2
-        x: 385
-        y: 0
-        width: 82
-        height: 102
+        x: 4
+        y: 4
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,10 +273,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_5
       rect:
         serializedVersion: 2
-        x: 481
-        y: 0
-        width: 82
-        height: 102
+        x: 429
+        y: 4
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,10 +295,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_6
       rect:
         serializedVersion: 2
-        x: 572
-        y: 0
-        width: 82
-        height: 102
+        x: 854
+        y: 4
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: monkey_laugh_clap_sheet_7
       rect:
         serializedVersion: 2
-        x: 668
-        y: 0
-        width: 92
-        height: 102
+        x: 1279
+        y: 4
+        width: 417
+        height: 419
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

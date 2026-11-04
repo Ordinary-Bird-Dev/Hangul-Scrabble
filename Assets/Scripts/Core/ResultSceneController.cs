@@ -15,8 +15,9 @@ public class ResultSceneController : MonoBehaviour
         TMP_Text scoreText = FindText("ScoreText");
         TMP_Text resultText = FindText("ResultText");
 
-        bool success = GameManager.LastWordsCompleted > 0;
-        Apply(GameManager.LastFinalScore, GameManager.LastWordsCompleted, successPanel, failPanel, scoreText, resultText);
+        bool lost = GameManager.LastRoundLost;
+        bool success = GameManager.LastWordsCompleted > 0 && !lost;
+        Apply(GameManager.LastFinalScore, GameManager.LastWordsCompleted, successPanel, failPanel, scoreText, resultText, lost);
 
         // Both outcomes animate. Firing only on success left the mascot
         // sitting in Idle behind a "FAIL!" panel, which read as the screen
@@ -33,15 +34,23 @@ public class ResultSceneController : MonoBehaviour
     }
 
     // Pure panel/score logic, separated for unit testing.
+    //
+    // `lost` is the round having spent its whole help budget. It overrides
+    // the word count: solving six words and then skipping your way to the
+    // limit is still a loss, and showing SUCCESS there would make the limit
+    // look like it had not fired. Optional so the existing five-argument
+    // callers — and the tests — keep meaning "ended on the clock".
     public static void Apply(int score, int wordsCompleted,
-        GameObject successPanel, GameObject failPanel, TMP_Text scoreText, TMP_Text resultText)
+        GameObject successPanel, GameObject failPanel, TMP_Text scoreText, TMP_Text resultText,
+        bool lost = false)
     {
         if (scoreText != null) scoreText.text = $"Score: {score:N0}";
 
-        bool success = wordsCompleted > 0;
+        bool success = wordsCompleted > 0 && !lost;
         if (successPanel != null) successPanel.SetActive(success);
         if (failPanel != null) failPanel.SetActive(!success);
-        if (resultText != null) resultText.text = success ? "SUCCESS!" : "FAIL!";
+        if (resultText != null)
+            resultText.text = success ? "SUCCESS!" : (lost ? "OUT OF HINTS!" : "FAIL!");
     }
 
 

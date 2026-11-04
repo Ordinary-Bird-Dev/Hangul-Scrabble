@@ -543,12 +543,12 @@ GameObject:
   - component: {fileID: 723346614}
   - component: {fileID: 723346616}
   m_Layer: 5
-  m_Name: Gloree
+  m_Name: Mascot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &723346613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1397,6 +1397,7 @@ RectTransform:
   - {fileID: 1792317769}
   - {fileID: 822125865}
   - {fileID: 723346613}
+  - {fileID: 1900100002}
   - {fileID: 420628462}
   - {fileID: 1254726248}
   m_Father: {fileID: 0}
@@ -1664,6 +1665,64 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &1900100001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1532129390}
+    m_Modifications:
+    - target: {fileID: 8100000000000000001, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_Name
+      value: TitleMascotRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000001, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100000000000000006, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+--- !u!224 &1900100002 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8100000000000000002, guid: ea76fc2598c07fc4a9259015251f4ac7, type: 3}
+  m_PrefabInstance: {fileID: 1900100001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

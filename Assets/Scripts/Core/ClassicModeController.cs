@@ -12,6 +12,11 @@ public class ClassicModeController : MonoBehaviour
 {
     public const int HintPenalty = 50;
 
+    // Bailing out of a word the player cannot get. Deliberately dearer than
+    // a hint: the hint helps you solve it, this gives up on it, and the
+    // cheaper option should be the one that teaches.
+    public const int SkipPenalty = 50;
+
     private WordBuilder _builder;
     private SyllableBuilderUI _syllableBuilder;
     private MeaningCardUI _meaningCard;
@@ -22,6 +27,10 @@ public class ClassicModeController : MonoBehaviour
     private Button _hintButton;
     private Image _hintBackground;
     private bool? _hintShownEnabled;
+
+    private Button _skipButton;
+    private Image _skipBackground;
+    private bool? _skipShownEnabled;
 
     // A clue redraw requested while the meaning card was up, waiting for it
     // to leave. See UpdateClue.
@@ -43,8 +52,10 @@ public class ClassicModeController : MonoBehaviour
     private const float ClueFontSize = 65f;
 
     // True when pressing Hint would BUY one: this word has not had one yet
-    // AND the round still has penalty budget left. Without the second half
-    // the penalty is free at the floor, which is the bug this replaced.
+    // AND the round still has help budget left. Without the second half the
+    // penalty is free at the floor, which is the bug this replaced. In
+    // practice the budget emptying ends the round, so the disabled state is
+    // mostly reached in the tutorial, where nothing ends.
     public bool CanUseHint =>
         !_hintUsed
         && Target != null
@@ -65,6 +76,25 @@ public class ClassicModeController : MonoBehaviour
     // something useful.
     private bool HintButtonEnabled => CanUseHint || CanRepeatHint;
 
+    // True when Skip would do something. Same affordability gate as the
+    // hint — SpendHelp charges only what is left of the budget, so without
+    // this the skip is free at the floor.
+    //
+    // Note there is no per-word limit here, unlike the hint's _hintUsed:
+    // every press deals a new word and costs 50, so four quick presses
+    // spend the whole budget and lose the round. That is deliberate — the
+    // budget is what bounds it — but it is also the fastest way to reach
+    // the loss, so if skip-mashing turns out to be a problem this is where
+    // a cooldown or a _skipUsed flag goes.
+    //
+    // Never in the tutorial. ScriptedWords is a fixed five-lesson sequence
+    // that TutorialController tracks by index for its coaching line, and
+    // there is no score there to spend anyway.
+    public bool CanSkipWord =>
+        Target != null
+        && ScriptedWords == null
+        && (GameManager.Instance == null || GameManager.Instance.CanAffordPenalty);
+
     // Word-set id to draw targets from (see WordValidator's registry);
     // null draws from every loaded set. The hook for difficulty/DLC
     // scoping of the target pool.
@@ -73,6 +103,11 @@ public class ClassicModeController : MonoBehaviour
     public WordEntry Target { get; private set; }
     public int RoundsCompleted { get; private set; }
     public bool HintUsed => _hintUsed;
+
+    // Skipped words are NOT completed words: this is counted separately and
+    // never touches RoundsCompleted, so the progress gauge and the score
+    // both stay honest about what the player actually solved.
+    public int WordsSkipped { get; private set; }
 
     void Start()
     {
@@ -83,6 +118,7 @@ public class ClassicModeController : MonoBehaviour
     {
         EnsureTargetBuildable();
         RefreshHintButton();
+        RefreshSkipButton();
 
         // Release a clue that UpdateClue held back while the card was up.
         //
@@ -146,15 +182,21 @@ public class ClassicModeController : MonoBehaviour
         NextTarget();
     }
 
-    // Candidates are short words (2-3 syllables) with an English meaning.
+    // Candidates are short words (2-3 syllables) that have a clue.
     // excludeWord keeps the same target from being picked twice in a row.
+    //
+    // Gated on `prompt`, not `english`: the clue banner shows the prompt,
+    // so a word without one cannot be asked for. A handful of krdict
+    // entries have no English equivalent at all and the importer leaves
+    // their prompt blank — they stay loaded and buildable, just never
+    // chosen as a target.
     public static WordEntry PickTarget(IEnumerable<WordEntry> entries, System.Random rng, string excludeWord = null)
     {
         var candidates = new List<WordEntry>();
         WordEntry excluded = null;
         foreach (WordEntry entry in entries)
         {
-            if (entry == null || string.IsNullOrEmpty(entry.english)) continue;
+            if (entry == null || string.IsNullOrEmpty(entry.prompt)) continue;
             if (entry.syllable_count < 2 || entry.syllable_count > 3) continue;
             if (excludeWord != null && entry.word == excludeWord)
             {
@@ -223,6 +265,11 @@ public class ClassicModeController : MonoBehaviour
         UpdateClue();
         RefreshHintButton();
 
+        // Fetch this word's audio now rather than when Hint is pressed, so
+        // the 50 points buy instant sound instead of a round trip. Silent,
+        // optional, and harmless for a word with no clip.
+        if (Target != null) SpeechManager.Preload(Target.word);
+
         if (Target != null && TileManager.Instance != null)
         {
             // Start order between this controller and TileManager (both on
@@ -265,6 +312,7 @@ public class ClassicModeController : MonoBehaviour
         _hintUsed = false;
         UpdateClue();
         RefreshHintButton();
+        SpeechManager.Preload(Target.word);
 
         if (TileManager.Instance != null)
         {
@@ -348,8 +396,13 @@ public class ClassicModeController : MonoBehaviour
         // browsers require before they will speak at all.
         SpeechManager.Speak(Target.word);
 
-        if (GameManager.Instance != null)
-            GameManager.Instance.AddPoints(-HintPenalty);
+        // SpendHelp, not AddPoints: this is a purchase, so it comes out of
+        // the round's help budget as well as the score. It returns true when
+        // this press emptied the budget and ended the round, at which point
+        // ResultScene is already loading and there is nothing left to
+        // refresh.
+        if (GameManager.Instance != null && GameManager.Instance.SpendHelp(HintPenalty))
+            return;
         RefreshHintButton();
     }
 
@@ -379,6 +432,70 @@ public class ClassicModeController : MonoBehaviour
         _hintButton.interactable = enabled;
         if (_hintBackground != null)
             _hintBackground.color = enabled ? HintEnabledColor : HintDisabledColor;
+    }
+
+    // Give up on this word and deal another. Costs 100 points.
+    //
+    // The order here is the whole method. Clear the player's half-built
+    // attempt FIRST, then advance: NextTarget deals the new word's exact
+    // tiles, and leaving a stale chain or a part-filled syllable behind
+    // would mean the new deal lands on top of jamo belonging to the word
+    // that just went away. That is the same ordering ResetPuzzle documents,
+    // for the same reason.
+    public void SkipWord()
+    {
+        if (!CanSkipWord) return;
+
+        // Read before NextTarget moves it on — PickTarget takes the current
+        // word as its exclusion, so the skipped word cannot come straight
+        // back as the very next clue.
+        WordsSkipped++;
+
+        if (_builder != null) _builder.ClearChain();
+        if (_syllableBuilder == null)
+            _syllableBuilder = FindAnyObjectByType<SyllableBuilderUI>();
+        if (_syllableBuilder != null) _syllableBuilder.ResetSlot();
+
+        AudioManager.TryPlayReset();
+
+        // Charged before the new word is dealt, so the press that empties
+        // the budget ends the round here instead of dealing a word the
+        // player will never see — NextTarget would otherwise run against a
+        // scene that is already unloading.
+        if (GameManager.Instance != null && GameManager.Instance.SpendHelp(SkipPenalty))
+            return;
+
+        // Clears _hintUsed, redraws the clue and deals the new exact tray.
+        NextTarget();
+        RefreshHintButton();
+        RefreshSkipButton();
+    }
+
+    // Same shape as RefreshHintButton, including the cached-state guard —
+    // this runs every frame and reassigning an unchanged colour dirties the
+    // Graphic.
+    //
+    // Hidden rather than greyed in the tutorial: a disabled button invites
+    // a player to wonder what would unlock it, and the answer there is
+    // "nothing, this mode has no score". Everywhere else it greys, so its
+    // absence reads as unavailable rather than missing.
+    private void RefreshSkipButton()
+    {
+        if (_skipButton == null) return;
+
+        if (ScriptedWords != null)
+        {
+            if (_skipButton.gameObject.activeSelf) _skipButton.gameObject.SetActive(false);
+            return;
+        }
+
+        bool enabled = CanSkipWord;
+        if (_skipShownEnabled == enabled) return;
+        _skipShownEnabled = enabled;
+
+        _skipButton.interactable = enabled;
+        if (_skipBackground != null)
+            _skipBackground.color = enabled ? HintEnabledColor : HintDisabledColor;
     }
 
     // The scoring gate for guided mode: only the word the clue asked for
@@ -497,7 +614,11 @@ public class ClassicModeController : MonoBehaviour
         string coach = string.IsNullOrEmpty(CoachLine)
             ? ""
             : $"\n<size=55%>{CoachLine}</size>";
-        _clueText.text = $"Find: <b>{Target.english}</b>{coach}";
+        // `prompt`, not `english`. The full gloss carries every sense the
+        // dictionary lists — up to 581 characters — which overflows the
+        // banner and gives the answer away four different ways. `prompt`
+        // is the single short sense the importer guarantees is present.
+        _clueText.text = $"Find: <b>{Target.prompt}</b>{coach}";
     }
 
     // Scene objects win over the runtime fallbacks below. Author these in
@@ -542,6 +663,22 @@ public class ClassicModeController : MonoBehaviour
             _hintButton.onClick.AddListener(UseHint);
         }
 
+        // NOT "SkipButton" — that name belongs to the tutorial's top-bar
+        // button, which SceneBootstrap switches on and TutorialController
+        // wires to ExitTutorial. Two objects sharing a name would make
+        // FindInScene return whichever came first in the hierarchy, and the
+        // bug would look like "leaving the tutorial skips a word instead".
+        GameObject skipGo = FindInScene("SkipWordButton");
+        if (skipGo != null) skipGo.SetActive(ScriptedWords == null);
+        _skipButton = skipGo != null ? skipGo.GetComponent<Button>() : null;
+        if (skipGo != null && _skipButton == null)
+            Debug.LogWarning("ClassicModeController: 'SkipWordButton' exists but has no Button component — the skip is not clickable.");
+        if (_skipButton != null)
+        {
+            _skipBackground = null;   // scene-authored: its ColorBlock owns the tint
+            _skipButton.onClick.AddListener(SkipWord);
+        }
+
         if (canvas == null)
         {
             if (_clueText == null || _hintButton == null)
@@ -554,6 +691,7 @@ public class ClassicModeController : MonoBehaviour
 
         if (_clueText == null) BuildClueBanner(canvas, font);
         if (_hintButton == null) BuildHintButton(canvas, font);
+        if (_skipButton == null) BuildSkipButton(canvas, font);
     }
 
     private static GameObject FindInScene(string name)
@@ -639,5 +777,47 @@ public class ClassicModeController : MonoBehaviour
         hintLabel.alignment = TextAlignmentOptions.Center;
         hintLabel.raycastTarget = false;
         if (font != null) hintLabel.font = font;
+    }
+
+    // Runtime fallback: skip button, sitting to the left of the hint.
+    //
+    // Only ever built when GameScene has no SkipWordButton of its own. The
+    // scene-authored one is the real article — this exists so a stripped
+    // scene still plays, same as BuildHintButton.
+    private void BuildSkipButton(Canvas canvas, TMP_FontAsset font)
+    {
+        var skipGo = new GameObject("SkipWordButton", typeof(RectTransform));
+        skipGo.transform.SetParent(canvas.transform, false);
+        var skipRect = (RectTransform)skipGo.transform;
+        skipRect.anchorMin = new Vector2(1f, 1f);
+        skipRect.anchorMax = new Vector2(1f, 1f);
+        // Left of the fallback hint, which sits at x -140 and is 250 wide:
+        // -140 - 250 - 14 of gap.
+        skipRect.anchoredPosition = new Vector2(-404f, -370f);
+        skipRect.sizeDelta = new Vector2(250f, 84f);
+
+        _skipBackground = skipGo.AddComponent<Image>();
+        _skipBackground.color = HintEnabledColor;
+        _skipButton = skipGo.AddComponent<Button>();
+        _skipButton.targetGraphic = _skipBackground;
+        _skipButton.onClick.AddListener(SkipWord);
+
+        var skipLabelGo = new GameObject("Label", typeof(RectTransform));
+        skipLabelGo.transform.SetParent(skipGo.transform, false);
+        var skipLabelRect = (RectTransform)skipLabelGo.transform;
+        skipLabelRect.anchorMin = Vector2.zero;
+        skipLabelRect.anchorMax = Vector2.one;
+        skipLabelRect.offsetMin = Vector2.zero;
+        skipLabelRect.offsetMax = Vector2.zero;
+
+        var skipLabel = skipLabelGo.AddComponent<TextMeshProUGUI>();
+        skipLabel.text = $"Skip (-{SkipPenalty})";
+        skipLabel.color = Palette.OnAction;
+        skipLabel.fontSize = 34f;
+        skipLabel.alignment = TextAlignmentOptions.Center;
+        skipLabel.raycastTarget = false;
+        if (font != null) skipLabel.font = font;
+
+        skipGo.SetActive(ScriptedWords == null);
     }
 }

@@ -53,11 +53,16 @@ public static class SceneRouter
         SceneManager.LoadScene(GameScene);
     }
 
-    // Abandoning the tutorial via Skip. Goes to the title rather than into a
-    // round: a player who bailed out has not been taught anything yet, and
-    // dropping them straight into a timed game would be the opposite of what
-    // pressing Skip asked for. Finishing all the lessons goes to GameScene
-    // instead — see TutorialController.Finish, which calls StartGame.
+    // Leaving the tutorial without finishing it. Goes to the title rather
+    // than into a round: a player who bailed out has not been taught
+    // anything yet, and dropping them straight into a timed game would be
+    // the opposite of what they asked for.
+    //
+    // Two things call this now — the Skip button in the top bar, and "Back
+    // to Title" on the finish panel. Finishing all five lessons no longer
+    // routes anywhere by itself: TutorialController.Finish shows
+    // TutorialCompletePanel, and the player's choice there calls either this
+    // or StartGame.
     public static void ExitTutorial()
     {
         TutorialRequested = false;

@@ -6,6 +6,12 @@ public static class WordValidator
     // Word-set registry: set id -> Resources file. Load order is
     // priority: the first-loaded sense of a word is what GetEntry
     // returns, so topik1's gloss wins where sets share a word.
+    //
+    // The ids are historical. Since the October 2026 corpus replacement
+    // the three files hold the krdict (국립국어원 한국어기초사전) 초급,
+    // 중급 and 고급 sets respectively — the names survive only because
+    // renaming the Resources files would orphan their .meta guids for no
+    // functional gain. Read them as "level 1 / 2 / 3", not as provenance.
     private static readonly (string id, string resource)[] Registry =
     {
         ("topik1", "topik1_words"),

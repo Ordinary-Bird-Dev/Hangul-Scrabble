@@ -57,7 +57,7 @@ public class MascotControllerTests : MonoBehaviour
         MeaningCardUI card = MeaningCardUI.CreateRuntime(canvasGo.transform, null);
         mascot.WireTo(card);
 
-        var entry = new WordEntry { word = "물", english = "water", romanization = "mul", example = "" };
+        var entry = new WordEntry { word = "물", english = "water", prompt = "water", example = "" };
         card.Show(entry);
         yield return null;
 

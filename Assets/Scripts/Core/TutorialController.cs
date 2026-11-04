@@ -44,6 +44,7 @@ public class TutorialController : MonoBehaviour
 
     private ClassicModeController _classic;
     private bool _finished;
+    private MeaningCardUI _awaitedCard;
 
     void Awake()
     {
@@ -65,6 +66,11 @@ public class TutorialController : MonoBehaviour
     void OnDestroy()
     {
         if (_classic != null) _classic.ScriptCompleted -= Finish;
+
+        // The card outlives this component: it is parented to the Canvas by
+        // WordBuilder, and the real round that follows keeps using it. A
+        // handler left attached would pop the finish panel over live play.
+        if (_awaitedCard != null) _awaitedCard.Hidden -= ShowPanel;
     }
 
     void Start()
@@ -100,20 +106,66 @@ public class TutorialController : MonoBehaviour
         _classic.CoachLine = Lessons[i].Coach;
     }
 
-    // Every lesson done — straight into a real round, which is the whole
-    // point of having taught them. StartGame rather than ExitTutorial: the
-    // same flag clear, but it loads GameScene, and it respects whichever
-    // mode Settings has selected rather than forcing Classic.
+    // Every lesson done.
     //
-    // Deliberately NOT ResultScene: that screen reports a score, and the
-    // tutorial had no scoring and no round to report on.
+    // No longer a scene load. Finishing used to call StartGame on the same
+    // frame, so the reward for completing the tutorial was having it
+    // snatched away mid-celebration. Now it hands the screen to
+    // TutorialCompletePanel and lets the player pick where to go.
     //
-    // Skip goes somewhere different — to the title. See the SkipButton
-    // wiring in Start, and SceneRouter.ExitTutorial for why.
+    // Deliberately still NOT ResultScene: that screen reports a score, and
+    // the tutorial had no scoring and no round to report on.
     private void Finish()
     {
         if (_finished) return;
         _finished = true;
+
+        // The last lesson's meaning card is on screen RIGHT NOW.
+        // ScriptCompleted is raised from inside HandleWordCompleted, and
+        // WordBuilder.ConfirmWord calls _meaningCard.Show() BEFORE it
+        // raises WordCompleted — so by the time control reaches here, 별's
+        // card is already sliding up. Showing the panel now would bury it,
+        // the same collision the clue banner had. Wait for the card to
+        // leave, then take the screen.
+        //
+        // The wait is bounded without a timeout: the card hides itself after
+        // its own show-seconds whether or not it is tapped.
+        MeaningCardUI card = FindAnyObjectByType<MeaningCardUI>(FindObjectsInactive.Include);
+
+        if (card != null && card.gameObject.activeInHierarchy)
+        {
+            _awaitedCard = card;
+            card.Hidden += ShowPanel;
+            return;
+        }
+
+        ShowPanel();
+    }
+
+    // Unsubscribes itself first thing: Hidden fires on every completed word
+    // of the real game that follows, and a live handler would re-show the
+    // panel over live play.
+    private void ShowPanel()
+    {
+        if (_awaitedCard != null)
+        {
+            _awaitedCard.Hidden -= ShowPanel;
+            _awaitedCard = null;
+        }
+
+        // Skip goes to the title, which the panel now offers outright. A
+        // Skip button on a "well done" screen also reads as though there is
+        // something left to skip.
+        GameObject skip = FindIncludingInactive("SkipButton");
+        if (skip != null) skip.SetActive(false);
+
+        if (TutorialCompletePanel.Show(SceneRouter.StartGame, SceneRouter.ExitTutorial) != null)
+            return;
+
+        // Nothing could be built — a GameScene with no Canvas. Abrupt is
+        // far better than stranding the player on a finished tutorial with
+        // no way out, so fall back to the old behaviour.
+        Debug.LogWarning("TutorialController: no finish panel could be shown — going straight to the game, as before.");
         SceneRouter.StartGame();
     }
 

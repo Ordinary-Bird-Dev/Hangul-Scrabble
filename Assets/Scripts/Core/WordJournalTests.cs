@@ -10,6 +10,7 @@ public class WordJournalTests : MonoBehaviour
     {
         TestFormatEntry();
         TestAddWordNewestFirstAndCapped();
+        TestPanelHiddenUntilFirstWord();
         TestJournalSubscribesToWordBuilder();
         TestGameModeSettingRoundtrip();
         TestZenModeRoundNeverEnds();
@@ -18,7 +19,7 @@ public class WordJournalTests : MonoBehaviour
     }
 
     WordEntry Entry(string word, string english) =>
-        new WordEntry { word = word, english = english, romanization = "", example = "" };
+        new WordEntry { word = word, english = english, prompt = english, example = "" };
 
     void TestFormatEntry()
     {
@@ -56,6 +57,40 @@ public class WordJournalTests : MonoBehaviour
         Assert(journal.Lines[0] == "단어10 — word10", "Newest word should be listed first");
         Assert(text.text.StartsWith("단어10"), "Journal text should start with the newest word");
         Assert(!text.text.Contains("단어1 —"), "Oldest overflow entries should drop off the visible list");
+    }
+
+    // The journal panel starts hidden and appears with the first word.
+    //
+    // Built with a real parent, unlike MakeJournal: the panel is the text's
+    // parent, and a journal whose text is a root object has no panel to
+    // hide — which is exactly the case the other tests exercise.
+    void TestPanelHiddenUntilFirstWord()
+    {
+        var panelGo = new GameObject("TestJournalPanel", typeof(RectTransform));
+        _spawned.Add(panelGo);
+
+        var textGo = new GameObject("TestJournalText", typeof(RectTransform));
+        textGo.transform.SetParent(panelGo.transform, false);
+        TMP_Text text = textGo.AddComponent<TextMeshProUGUI>();
+
+        var journalGo = new GameObject("TestPanelJournal");
+        _spawned.Add(journalGo);
+        var journal = journalGo.AddComponent<WordJournal>();
+        journal.Configure(text, null);
+        journal.Initialize();
+
+        Assert(!panelGo.activeSelf,
+            "Journal panel should be hidden before the first word — an empty panel reads as a bug");
+        Assert(!journal.PanelVisible, "PanelVisible should be false with no words");
+
+        journal.AddWord(Entry("물", "water"));
+
+        Assert(panelGo.activeSelf, "Journal panel should appear once a word is found");
+        Assert(journal.PanelVisible, "PanelVisible should be true after the first word");
+
+        journal.AddWord(Entry("별", "star"));
+
+        Assert(panelGo.activeSelf, "Journal panel should stay visible for later words");
     }
 
     void TestJournalSubscribesToWordBuilder()
@@ -106,7 +141,14 @@ public class WordJournalTests : MonoBehaviour
 
         Assert(manager.RoundActive, "Zen Mode round should not end from elapsed time");
         Assert(manager.Mode == GameMode.Zen, "GameManager should report Zen mode");
-        Assert(manager.RegisterWord("학교", 10f) > 0, "Words should still score in Zen Mode");
+        // Reversed deliberately. This used to assert that Zen scored, which
+        // contradicted the How to Play copy; Zen is the casual mode and now
+        // awards nothing. The word still has to COUNT, though — the journal
+        // and the gauge both read WordsCompleted.
+        Assert(manager.RegisterWord("학교", 10f) == 0, "Zen Mode should award no points");
+        Assert(manager.Score == 0, "Zen Mode should leave the score at zero");
+        Assert(manager.WordsCompleted == 1, "Zen Mode should still count the word");
+        Assert(!manager.ScoringEnabled, "ScoringEnabled should be false in Zen Mode");
 
         GameSettings.Mode = original;
     }

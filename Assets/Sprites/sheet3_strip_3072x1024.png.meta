@@ -174,7 +174,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 75
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -265,10 +265,10 @@ TextureImporter:
       name: sheet3_strip_3072x1024_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 4
+        y: 780
+        width: 768
+        height: 768
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,10 +287,10 @@ TextureImporter:
       name: sheet3_strip_3072x1024_1
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 1024
-        height: 1024
+        x: 780
+        y: 780
+        width: 768
+        height: 768
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,10 +309,10 @@ TextureImporter:
       name: sheet3_strip_3072x1024_2
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 1024
-        height: 1024
+        x: 4
+        y: 4
+        width: 768
+        height: 768
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

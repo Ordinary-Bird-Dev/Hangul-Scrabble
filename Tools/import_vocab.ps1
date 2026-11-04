@@ -1,6 +1,13 @@
 # Imports a vocab list into Assets/Resources in the schema WordValidator
 # expects: {"words": [...]} wrapping, UTF-8, one entry per sense.
 #
+# SUPERSEDED for krdict imports (October 2026). The writer below emits the
+# five fields of the old schema and knows nothing about `prompt`,
+# `tile_count` or `band`, so running it on a krdict export silently drops
+# them and leaves every clue banner blank. Use Tools/import_krdict.py for
+# those. This stays for the older lists and as the reference for the
+# duplicate-triage rules.
+#
 #   powershell -ExecutionPolicy Bypass -File Tools\import_vocab.ps1 `
 #       -In C:\path\to\vocabB_words.json -Out vocabB_words
 #

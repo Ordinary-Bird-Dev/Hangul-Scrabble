@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // Meaning card shown when a word is completed: slides up from below the
-// screen, shows word / meaning / romanization / example, then dismisses
+// screen, shows word / meaning / example, then dismisses
 // after a few seconds or when tapped. Built at runtime so no scene
 // wiring is needed (the MeaningCard object in GameScene is an empty
 // non-UI placeholder).
@@ -79,8 +79,11 @@ public class MeaningCardUI : MonoBehaviour, IPointerClickHandler
 
         if (_text != null)
         {
+            // The full gloss, not the clue's short `prompt`: having solved
+            // the word, the player has earned every sense of it. This is
+            // the one place the long krdict glosses are an asset.
             string example = string.IsNullOrEmpty(entry.example) ? "" : $"\n<i><size=70%>{entry.example}</size></i>";
-            _text.text = $"<b>{entry.word}</b>  <size=60%>({entry.romanization})</size>\n{entry.english}{example}";
+            _text.text = $"<b>{entry.word}</b>\n{entry.english}{example}";
         }
 
         gameObject.SetActive(true);
