@@ -1,0 +1,56 @@
+{
+  "output_format": "mp3_44100_128",
+  "filename_scheme": "lowercase hex of each UTF-16 code point, .mp3",
+  "levels": [
+    1,
+    2,
+    3
+  ],
+  "clip_count": 22411,
+  "shipped_bitrate_kbps": 48,
+  "shipped_trimmed": true,
+  "master_format": "mp3_44100_128",
+  "master_dir": "C:\\Users\\hyunc\\HangulPuzzle\\VoiceMasters",
+  "voices_by_level": {
+    "1": {
+      "voice_id": "cBOtnpVZNlQ5VJygXGB8",
+      "voice_name": "Eunha - Elegant Korean Female",
+      "model_id": "eleven_multilingual_v2",
+      "voice_settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "use_speaker_boost": true,
+        "speed": 0.85
+      },
+      "generated_utc": "2026-10-29T04:08:14Z"
+    },
+    "2": {
+      "voice_id": "UmVsCJauYwXB4cGF0OlH",
+      "voice_name": "Soo - Warm Korean Teacher",
+      "model_id": "eleven_multilingual_v2",
+      "voice_settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "use_speaker_boost": true,
+        "speed": 0.85
+      },
+      "generated_utc": "2026-11-04T01:39:22Z"
+    },
+    "3": {
+      "voice_id": "0oqpliV6dVSr9XomngOW",
+      "voice_name": "Jini - Warm & Intelligent Korean Female",
+      "model_id": "eleven_multilingual_v2",
+      "voice_settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "use_speaker_boost": true,
+        "speed": 0.85
+      },
+      "generated_utc": "2026-11-04T02:12:49Z"
+    }
+  },
+  "shared_words_note": "One clip per word, not per level. A word in more than one level keeps the voice of the level that generated it first."
+}

@@ -75,3 +75,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+### Project ###
+# 128 kbps hint-voice originals (~440 MB). Kept so a re-encode costs no
+# ElevenLabs credits; back them up outside git. See VOICE.md.
+/[Vv]oice[Mm]asters/

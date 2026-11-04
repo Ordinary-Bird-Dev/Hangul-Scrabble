@@ -1,0 +1,2 @@
+# Hint-voice banks are raw MP3 bytes: never convert line endings. See VOICE.md.
+Assets/StreamingAssets/vo/*.bin binary
