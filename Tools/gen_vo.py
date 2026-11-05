@@ -330,12 +330,34 @@ def post(vo_dir, master_dir, bitrate):
         json.dump(man, open(mpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 
 
+# Spoken-text corrections. Some words are mispronounced the same way on
+# every take -- 닷새 came back as 닷사이, the voice reading 새 as the short
+# form of 사이 -- so re-rolling does not help. For those, ElevenLabs is sent
+# a respelling of how the word should SOUND, while the clip keeps the
+# original word's filename so the game still finds it. Lives next to this
+# script and is tracked in git, so every fix is on record and survives a
+# full regeneration.
+FIXES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          'vo_pronunciations.json')
+
+
+def load_fixes():
+    if not os.path.exists(FIXES_PATH):
+        return {}
+    raw = json.load(open(FIXES_PATH, encoding='utf-8'))
+    return {w: (v['say'] if isinstance(v, dict) else v)
+            for w, v in raw.items() if not w.startswith('_')}
+
+
+FIXES = load_fixes()
+
+
 def synth(word, out_dir, voice, model, fmt, settings, retries=5):
     dst = os.path.join(out_dir, stem(word) + '.mp3')
     if os.path.exists(dst) and os.path.getsize(dst) > 0:
         return word, 'skip', 0
 
-    body = {'text': word, 'model_id': model, 'voice_settings': settings}
+    body = {'text': FIXES.get(word, word), 'model_id': model, 'voice_settings': settings}
     delay = 0.5
     for attempt in range(retries + 1):
         try:
@@ -360,6 +382,64 @@ def synth(word, out_dir, voice, model, fmt, settings, retries=5):
     return word, 'gave up', 0
 
 
+def redo(words, a):
+    """Throw away specific clips and generate them again, each in the voice
+    of the level that owns it.
+
+    Both copies must go. --post re-encodes every clip from its master in
+    VoiceMasters/, so deleting only the live clip would bring the bad take
+    straight back on the next --post.
+    """
+    if os.path.exists(os.path.join(a.out, 'vo_index.json')):
+        sys.exit('Clips are packed. Unpack first:\n  python Tools\\pack_vo.py --unpack')
+    if not words:
+        words = sorted(FIXES)
+        if not words:
+            sys.exit('No words given and %s is empty.' % FIXES_PATH)
+        print('No words given: redoing everything in vo_pronunciations.json (%d).'
+              % len(words))
+
+    manifest = json.load(open(os.path.join(a.out, 'vo_manifest.json'), encoding='utf-8'))
+    voices = manifest.get('voices_by_level') or {}
+
+    # A word belongs to the lowest level that can ask for it -- that is the
+    # level that generated it first, so that is the voice it must keep.
+    owner = {}
+    for lv in (1, 2, 3):
+        for w in speakable(a.resources, lv):
+            owner.setdefault(w, lv)
+
+    done = failed = 0
+    for word in words:
+        lv = owner.get(word)
+        if lv is None:
+            print('  SKIP %s -- not a hint word in any level' % word)
+            continue
+        v = voices.get(str(lv))
+        if not v:
+            print('  SKIP %s -- manifest has no voice for level %d' % (word, lv))
+            continue
+        name = stem(word) + '.mp3'
+        for d in (a.out, a.masters):
+            path = os.path.join(d, name)
+            if os.path.exists(path):
+                os.remove(path)
+        said = FIXES.get(word, word)
+        _, status, _ = synth(word, a.out, v['voice_id'], v.get('model_id', a.model),
+                             a.format, v.get('voice_settings', DEFAULT_SETTINGS))
+        note = '' if said == word else '  (sent as %s)' % said
+        print('  %-4s %s  level %d, %s%s' % (word, status, lv, v.get('voice_name'), note))
+        if status == 'ok':
+            done += 1
+        else:
+            failed += 1
+
+    print('\nregenerated %d, failed %d. Next:\n'
+          '  python Tools\\gen_vo.py --post 48\n'
+          '  python Tools\\pack_vo.py --banks 512' % (done, failed))
+    return 1 if failed else 0
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--level', type=int, choices=(1, 2, 3), default=1)
@@ -381,8 +461,14 @@ def main():
                         '(default 48); keeps originals outside Assets/')
     p.add_argument('--masters', default=os.path.join(PROJECT, 'VoiceMasters'),
                    help='where untouched originals are kept (outside Assets/)')
+    p.add_argument('--redo', nargs='*', metavar='WORD',
+                   help='delete and regenerate these words (clip and master), each '
+                        'in its own level\'s voice; with no words, every word in '
+                        'Tools/vo_pronunciations.json')
     a = p.parse_args()
 
+    if a.redo is not None:
+        return redo(a.redo, a)
     if a.post is not None:
         post(a.out, a.masters, a.post)
         return 0

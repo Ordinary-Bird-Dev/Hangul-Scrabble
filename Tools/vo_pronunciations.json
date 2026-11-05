@@ -1,0 +1,15 @@
+{
+  "_readme": "Hint-voice corrections. Key = the word as the game knows it (the clip keeps this word's filename). say = what is sent to ElevenLabs instead, spelled the way the word should SOUND. Apply with: gen_vo.py --redo <word> (see VOICE.md).",
+  "닷새": {
+    "say": "닫쌔",
+    "why": "Heard as 닷사이: the voice read 새 as the short form of 사이. Sent as its standard pronunciation [닫쌔], which also takes the ambiguous 새 out. Reported 2026-11-05."
+  },
+  "엿새": {
+    "say": "엳쌔",
+    "why": "Same construction as 닷새 (numeral + 새, 'six days'); fixed pre-emptively, not yet heard. Standard pronunciation [엳쌔]. 2026-11-05."
+  },
+  "댓새": {
+    "say": "댇쌔",
+    "why": "Same construction as 닷새 ('about five days'); fixed pre-emptively, not yet heard. Standard pronunciation [댇쌔]. 2026-11-05."
+  }
+}
